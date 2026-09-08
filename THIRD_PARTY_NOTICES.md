@@ -6,7 +6,7 @@ This project bundles third-party native GDAL distributions in `gdal-ffm-natives`
 
 - Source type: third-party binary distributions (pinned via URL + SHA256)
 - Lock file: `tools/natives/binaries.lock`
-- Initial GDAL target: `3.12.2`
+- Initial GDAL target: `3.13.3`
 
 ## License responsibilities
 

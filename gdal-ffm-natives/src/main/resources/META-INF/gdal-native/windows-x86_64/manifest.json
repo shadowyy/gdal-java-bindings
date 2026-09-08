@@ -1,5 +1,5 @@
 {
-  "bundleVersion": "3.12.2",
+  "bundleVersion": "3.13.3",
   "entryLibrary": "bin/gdal.dll",
   "preloadLibraries": [
     "bin/proj_9.dll"

@@ -48,3 +48,5 @@ gdal-ffm-natives/src/main/resources/META-INF/gdal-native/*/**
 !gdal-ffm-natives/src/main/resources/META-INF/gdal-native/*/share/proj/.gitkeep
 !gdal-ffm-natives/src/main/resources/META-INF/gdal-native/*/ssl/
 !gdal-ffm-natives/src/main/resources/META-INF/gdal-native/*/ssl/cacert.pem
+
+.idea

@@ -20,11 +20,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v5
-      - name: Set up JDK 23
+      - name: Set up JDK 25
         uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: '23'
+          java-version: '25'
       - name: Make gradlew executable
         shell: bash
         run: chmod +x ./gradlew
@@ -56,16 +56,12 @@ jobs:
     name: windows-native-smoke (${{ matrix.label }})
     runs-on: windows-2025
     timeout-minutes: 30
-    continue-on-error: ${{ matrix.allow_failure }}
     strategy:
       fail-fast: false
       matrix:
         include:
-          - { label: temurin-23, distribution: temurin, java-version: '23', allow_failure: false }
-          - { label: temurin-24, distribution: temurin, java-version: '24', allow_failure: false }
-          - { label: oracle-24.0.2-known-incompatibility, distribution: oracle, java-version: '24.0.2', allow_failure: true }
-          - { label: temurin-25, distribution: temurin, java-version: '25', allow_failure: false }
-          - { label: oracle-25, distribution: oracle, java-version: '25', allow_failure: false }
+          - { label: temurin-25, distribution: temurin, java-version: '25' }
+          - { label: oracle-25, distribution: oracle, java-version: '25' }
     steps:
       - uses: actions/checkout@v5
       - name: Set up ${{ matrix.distribution }} JDK ${{ matrix.java-version }}
@@ -111,15 +107,16 @@ jobs:
           -Porg.gradle.java.installations.auto-download=false
           -Porg.gradle.java.installations.paths="$JAVA_HOME"
           :gdal-ffm-natives:assemble
-      - name: Run packaged Windows smoke against standard and Swiss bundles
+      - name: Run packaged Windows smoke against standard, Swiss and CN bundles
         shell: bash
         env:
           JAVA_FEATURE: ${{ matrix.java-version }}
           RUNTIME_LABEL: ${{ matrix.label }}
         run: |
           set -euo pipefail
-          mapfile -t standard_matches < <(find gdal-ffm-natives/build/libs -maxdepth 1 -type f -name 'gdal-ffm-natives-*-natives-windows-x86_64.jar' ! -name 'gdal-ffm-natives-swiss-*' | sort)
+          mapfile -t standard_matches < <(find gdal-ffm-natives/build/libs -maxdepth 1 -type f -name 'gdal-ffm-natives-*-natives-windows-x86_64.jar' ! -name 'gdal-ffm-natives-swiss-*' ! -name 'gdal-ffm-natives-cn-*' | sort)
           mapfile -t swiss_matches < <(find gdal-ffm-natives/build/libs -maxdepth 1 -type f -name 'gdal-ffm-natives-swiss-*-natives-windows-x86_64.jar' | sort)
+          mapfile -t cn_matches < <(find gdal-ffm-natives/build/libs -maxdepth 1 -type f -name 'gdal-ffm-natives-cn-*-natives-windows-x86_64.jar' | sort)
           if [[ ${#standard_matches[@]} -ne 1 ]]; then
             echo "Expected exactly one standard Windows native jar, found ${#standard_matches[@]}" >&2
             printf '%s\n' "${standard_matches[@]}" >&2 || true
@@ -130,13 +127,20 @@ jobs:
             printf '%s\n' "${swiss_matches[@]}" >&2 || true
             exit 1
           fi
+          if [[ ${#cn_matches[@]} -ne 1 ]]; then
+            echo "Expected exactly one CN Windows native jar, found ${#cn_matches[@]}" >&2
+            printf '%s\n' "${cn_matches[@]}" >&2 || true
+            exit 1
+          fi
 
           java_feature="${JAVA_FEATURE%%.*}"
-          for variant in standard swiss; do
+          for variant in standard swiss cn; do
             if [[ "$variant" == standard ]]; then
               jar_path="$(pwd)/${standard_matches[0]}"
-            else
+            elif [[ "$variant" == swiss ]]; then
               jar_path="$(pwd)/${swiss_matches[0]}"
+            else
+              jar_path="$(pwd)/${cn_matches[0]}"
             fi
             shared_tmpdir="$(pwd)/gdal-ffm-core/build/tmp/smoke/windows-x86_64-${RUNTIME_LABEL}-${variant}-shared"
             mkdir -p "$shared_tmpdir"
@@ -201,20 +205,6 @@ jobs:
           } else {
             Write-Line "No extracted smoke tree found at $smokeRoot"
           }
-      - name: Document known Oracle 24.0.2 incompatibility
-        if: ${{ always() && matrix.allow_failure }}
-        shell: pwsh
-        run: |
-          @"
-          ### Known incompatibility: Oracle JDK 24.0.2 on Windows
-
-          This matrix entry is intentionally allowed to fail.
-
-          The packaged native GDAL smoke currently reproduces an
-          `EXCEPTION_ACCESS_VIOLATION` in `msvcp140.dll` during `GDALAllRegister()`.
-          The entry remains in CI so the incompatibility stays visible and is
-          automatically retested on future changes.
-          "@ >> $env:GITHUB_STEP_SUMMARY
       - name: Collect Windows crash diagnostics
         if: failure()
         shell: bash

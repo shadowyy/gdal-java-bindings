@@ -1,6 +1,6 @@
 {
-  "bundleVersion": "3.12.2",
-  "entryLibrary": "lib/libgdal.so.38",
+  "bundleVersion": "3.13.3",
+  "entryLibrary": "lib/libgdal.so.39",
   "preloadLibraries": [
     "lib/libproj.so.25"
   ],

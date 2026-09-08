@@ -104,9 +104,10 @@ final class NativeLoader {
                 throw new IllegalStateException(
                         "Multiple bundled GDAL native resources found for classifier '" + classifier + "': "
                                 + matches
-                                + ". Add exactly one runtime dependency, either "
-                                + "ch.so.agi:gdal-ffm-natives:<VERSION>:natives-" + classifier
-                                + " or ch.so.agi:gdal-ffm-natives-swiss:<VERSION>:natives-" + classifier
+                                 + ". Add exactly one runtime dependency, either "
+                                 + "ch.so.agi:gdal-ffm-natives:<VERSION>:natives-" + classifier
+                                 + ", ch.so.agi:gdal-ffm-natives-swiss:<VERSION>:natives-" + classifier
+                                 + " or ch.so.agi:gdal-ffm-natives-cn:<VERSION>:natives-" + classifier
                 );
             }
             return first;

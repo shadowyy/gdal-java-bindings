@@ -38,7 +38,7 @@ val hostNativeResources = tasks.register<Sync>("hostNativeResources") {
 
 val javaToolchainVersion = providers.gradleProperty("gdalFfmJavaToolchainVersion")
     .map(String::toInt)
-    .orElse(23)
+    .orElse(25)
 
 java {
     toolchain {
@@ -49,7 +49,7 @@ java {
 }
 
 tasks.withType<JavaCompile>().configureEach {
-    options.release.set(23)
+    options.release.set(javaToolchainVersion.get())
 }
 
 sourceSets {

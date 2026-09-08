@@ -11,6 +11,9 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 LOCK_FILE="$ROOT_DIR/tools/natives/binaries.lock"
 TARGET_DIR="$ROOT_DIR/gdal-ffm-natives/src/main/resources/META-INF/gdal-native/$CLASSIFIER"
 TMP_DIR="$ROOT_DIR/tmp/natives-$CLASSIFIER"
+# Conda mirror for payload downloads (SHA verification unchanged).
+# Default: Tsinghua mirror. Set GDAL_FFM_MIRROR="" to force original URLs.
+MIRROR_BASE="${GDAL_FFM_MIRROR:-https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge}"
 
 read_prop() {
   local key="$1"
@@ -41,6 +44,31 @@ normalize_url() {
   else
     echo "$url"
   fi
+}
+
+to_mirror_url() {
+  local url="$1"
+  if [[ -z "${MIRROR_BASE:-}" ]]; then
+    echo "$url"
+    return
+  fi
+  case "$url" in
+    *api.anaconda.org/download/conda-forge/*)
+      ;;
+    *)
+      echo "$url"
+      return
+      ;;
+  esac
+  local path="${url%%\?*}"
+  local file="${path##*/}"
+  local rest="${path%/*}"
+  local subdir="${rest##*/}"
+  if [[ -z "$file" || -z "$subdir" ]]; then
+    echo "$url"
+    return
+  fi
+  echo "${MIRROR_BASE%/}/$subdir/$file"
 }
 
 archive_suffix() {
@@ -115,12 +143,178 @@ PY
   exit 1
 }
 
+conda_extract_fallback() {
+  local archive_file="$1"
+  local extract_dir="$2"
+  local transmute_dir="$TMP_DIR/transmute"
+
+  if ! command -v cph >/dev/null 2>&1; then
+    echo "Transmute fallback requires cph." >&2
+    return 1
+  fi
+  if ! command -v python >/dev/null 2>&1; then
+    echo "Transmute fallback requires python." >&2
+    return 1
+  fi
+
+  rm -rf "$transmute_dir"
+  mkdir -p "$transmute_dir"
+  cph transmute "$archive_file" .tar.bz2 --out-folder "$transmute_dir" --force >/dev/null || return 1
+
+  local tbz2
+  tbz2="$(find "$transmute_dir" -maxdepth 1 -type f -name '*.tar.bz2' -print | head -n 1)"
+  if [[ -z "$tbz2" ]]; then
+    echo "Transmute produced no .tar.bz2 for $archive_file" >&2
+    return 1
+  fi
+
+  rm -rf "$extract_dir"
+  mkdir -p "$extract_dir"
+
+  local pending_file="${extract_dir}.pending_links"
+  rm -f "$pending_file"
+
+  python - "$tbz2" "$extract_dir" "$pending_file" <<'PY'
+import os
+import shutil
+import sys
+import tarfile
+
+tbz2, dest, pending_file = sys.argv[1], sys.argv[2], sys.argv[3]
+
+def resolve_link(name, linkname, is_hard, dest):
+    # Returns absolute on-disk target path for a hardlink/symlink member.
+    if is_hard:
+        return os.path.join(dest, linkname)
+    # symlink: linkname may be relative to the member's directory.
+    base = os.path.join(dest, os.path.dirname(name))
+    return os.path.normpath(os.path.join(base, linkname))
+
+with tarfile.open(tbz2, "r:bz2") as tf:
+    members = tf.getmembers()
+    # Pass 1: directories + regular files.
+    for m in members:
+        if m.isdir():
+            os.makedirs(os.path.join(dest, m.name), exist_ok=True)
+        elif m.isfile():
+            target = os.path.join(dest, m.name)
+            os.makedirs(os.path.dirname(target), exist_ok=True)
+            with tf.extractfile(m) as src, open(target, "wb") as out:
+                shutil.copyfileobj(src, out, 1024 * 1024)
+    # Pass 2: links land as copies (Windows-safe, no symlink privileges needed).
+    pending = [m for m in members if m.islnk() or m.issym()]
+    for _ in range(len(pending) + 1):
+        progress = False
+        remaining = []
+        for m in pending:
+            target = os.path.join(dest, m.name)
+            src = resolve_link(m.name, m.linkname, m.islnk(), dest)
+            if os.path.isfile(src):
+                os.makedirs(os.path.dirname(target), exist_ok=True)
+                if os.path.lexists(target) and not os.path.isdir(target):
+                    os.remove(target)
+                elif os.path.isdir(target) and not os.path.islink(target):
+                    shutil.rmtree(target)
+                shutil.copy2(src, target)
+                progress = True
+            elif os.path.isdir(src):
+                if os.path.lexists(target) and not os.path.isdir(target):
+                    os.remove(target)
+                os.makedirs(target, exist_ok=True)
+                shutil.copytree(src, target, dirs_exist_ok=True)
+                progress = True
+            else:
+                remaining.append(m)
+        pending = remaining
+        if not pending:
+            break
+        if not progress:
+            break
+    # Dangling links (target lives in another conda package, e.g. libgomp)
+    # are recorded and resolved against the merged TARGET_DIR later.
+    if pending:
+        with open(pending_file, "w", encoding="utf-8") as out:
+            for m in pending:
+                kind = "hard" if m.islnk() else "soft"
+                out.write(f"{m.name}\t{kind}\t{m.linkname}\n")
+        print(f"Recorded {len(pending)} dangling link(s), will resolve after merge: {tbz2}")
+PY
+}
+
+resolve_pending_links() {
+  local target_dir="$1"
+  local pending_count
+  pending_count="$(find "$TMP_DIR" -maxdepth 1 -name 'extracted-*.pending_links' -print | wc -l)"
+  if [[ "$pending_count" -eq 0 ]]; then
+    return 0
+  fi
+
+  python - "$TMP_DIR" "$target_dir" <<'PY'
+import glob
+import os
+import shutil
+import sys
+
+tmp_dir, target_dir = sys.argv[1], sys.argv[2]
+
+def resolve_target(link_rel, kind, linkname):
+    if kind == "hard":
+        return os.path.join(target_dir, linkname)
+    base = os.path.join(target_dir, os.path.dirname(link_rel))
+    return os.path.normpath(os.path.join(base, linkname))
+
+pending = []
+for sidecar in sorted(glob.glob(os.path.join(tmp_dir, "extracted-*.pending_links"))):
+    with open(sidecar, encoding="utf-8") as f:
+        for line in f:
+            line = line.rstrip("\n")
+            if not line:
+                continue
+            link_rel, kind, linkname = line.split("\t", 2)
+            pending.append((link_rel, kind, linkname))
+
+for _ in range(len(pending) + 1):
+    progress = False
+    remaining = []
+    for link_rel, kind, linkname in pending:
+        target = os.path.join(target_dir, link_rel)
+        if os.path.lexists(target):
+            progress = True  # already resolved by an earlier pass/package
+            continue
+        src = resolve_target(link_rel, kind, linkname)
+        if os.path.isfile(src):
+            os.makedirs(os.path.dirname(target), exist_ok=True)
+            shutil.copy2(src, target)
+            print(f"Resolved dangling link: {link_rel} -> {os.path.relpath(src, target_dir)}")
+            progress = True
+        elif os.path.isdir(src):
+            os.makedirs(target, exist_ok=True)
+            shutil.copytree(src, target, dirs_exist_ok=True)
+            print(f"Resolved dangling dir link: {link_rel} -> {os.path.relpath(src, target_dir)}")
+            progress = True
+        else:
+            remaining.append((link_rel, kind, linkname))
+    pending = remaining
+    if not pending:
+        break
+    if not progress:
+        break
+
+if pending:
+    names = ", ".join(p[0] for p in pending[:5])
+    suffix = f" (+{len(pending) - 5} more)" if len(pending) > 5 else ""
+    raise SystemExit(f"Unresolved dangling links in {target_dir}: {names}{suffix}")
+print("All dangling links resolved.")
+PY
+}
+
 extract_archive() {
   local archive_file="$1"
   local archive_type="$2"
   local extract_dir="$3"
 
   rm -rf "$extract_dir"
+  rm -f "${extract_dir}.pending_links"
   mkdir -p "$extract_dir"
 
   case "$archive_type" in
@@ -132,7 +326,12 @@ extract_archive() {
       ;;
     conda)
       if command -v cph >/dev/null 2>&1; then
-        cph extract --dest "$extract_dir" "$archive_file" >/dev/null
+        if cph extract --dest "$extract_dir" "$archive_file" >/dev/null; then
+          :
+        else
+          echo "cph extract failed, trying transmute fallback (Windows hardlink workaround): $archive_file" >&2
+          conda_extract_fallback "$archive_file" "$extract_dir" || exit 1
+        fi
       elif command -v python >/dev/null 2>&1; then
         python - "$archive_file" "$extract_dir" <<'PY'
 import sys
@@ -413,8 +612,17 @@ stage_package() {
   fi
 
   if [[ "$need_download" == "true" ]]; then
-    echo "Downloading $normalized_url"
-    curl --retry 5 --retry-delay 2 -fL "$normalized_url" -o "$archive_file"
+    mirror_url="$(to_mirror_url "$normalized_url")"
+    if [[ "$mirror_url" != "$normalized_url" ]]; then
+      echo "Downloading $mirror_url (mirror of $normalized_url)"
+      if ! curl --retry 5 --retry-delay 2 -fL "$mirror_url" -o "$archive_file"; then
+        echo "Mirror download failed, falling back to original: $normalized_url" >&2
+        curl --retry 5 --retry-delay 2 -fL "$normalized_url" -o "$archive_file"
+      fi
+    else
+      echo "Downloading $normalized_url"
+      curl --retry 5 --retry-delay 2 -fL "$normalized_url" -o "$archive_file"
+    fi
   fi
 
   actual_sha="$(sha256_file "$archive_file")"
@@ -453,7 +661,7 @@ OS_FAMILY="$(classifier_os)"
 mkdir -p "$TMP_DIR"
 mkdir -p "$TARGET_DIR"
 
-find "$TARGET_DIR" -mindepth 1 \
+find "$TARGET_DIR" -mindepth 1 -maxdepth 1 \
   ! -name manifest.json \
   ! -name README.txt \
   -exec rm -rf {} +
@@ -477,6 +685,8 @@ while true; do
 
   extra_index=$((extra_index + 1))
 done
+
+resolve_pending_links "$TARGET_DIR"
 
 if [[ "$OS_FAMILY" == "windows" ]]; then
   normalize_windows_runtime_bins

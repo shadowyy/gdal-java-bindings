@@ -34,6 +34,7 @@ class NativeLoaderTest {
             assertTrue(error.getMessage().contains("Multiple bundled GDAL native resources found"));
             assertTrue(error.getMessage().contains("gdal-ffm-natives"));
             assertTrue(error.getMessage().contains("gdal-ffm-natives-swiss"));
+            assertTrue(error.getMessage().contains("gdal-ffm-natives-cn"));
         }
     }
 

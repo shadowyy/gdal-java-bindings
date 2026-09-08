@@ -51,6 +51,29 @@ val swissProjAllowlistCandidates = swissProjRequirements
     .flatMap { it.candidates }
     .distinct()
 
+val gdalCnNativesEnabled = providers.gradleProperty("gdalCnNativesEnabled")
+    .map { raw ->
+        when (raw.lowercase()) {
+            "true" -> true
+            "false" -> false
+            else -> throw GradleException(
+                "Invalid value for gdalCnNativesEnabled: '$raw' (expected true or false)"
+            )
+        }
+    }
+    .orElse(true)
+    .get()
+
+val cnProjRequirements = listOf(
+    SwissProjRequirement("proj.db", listOf("proj.db")),
+    SwissProjRequirement("egm96_15", listOf("egm96_15.gtx", "us_nga_egm96_15.tif")),
+    SwissProjRequirement("egm08_25", listOf("egm08_25.gtx", "us_nga_egm08_25.tif"))
+)
+
+val cnProjAllowlistCandidates = cnProjRequirements
+    .flatMap { it.candidates }
+    .distinct()
+
 fun String.toTaskSuffix(): String {
     return split('-', '_').joinToString("") { part ->
         part.replaceFirstChar { c -> c.uppercase() }
@@ -142,7 +165,7 @@ fun validateSwissProjSubset(
         }
 
         throw GradleException(
-            "Swiss PROJ subset for classifier '$classifier' is incomplete. " +
+            "PROJ subset for classifier '$classifier' is incomplete. " +
                 "Missing groups: $missingLabels. Available files in share/proj: " +
                 stagedFiles.sorted().joinToString(", ")
         )
@@ -160,7 +183,13 @@ fun registerPackagedManifestTask(
     val projRoot = classifierRoot.dir("share/proj")
     val taskName = buildString {
         append("generate")
-        append(if (artifactId.endsWith("-swiss")) "NativesSwiss" else "Natives")
+        append(
+            when {
+                artifactId.endsWith("-swiss") -> "NativesSwiss"
+                artifactId.endsWith("-cn") -> "NativesCn"
+                else -> "Natives"
+            }
+        )
         append("Manifest")
         append(classifier.toTaskSuffix())
     }
@@ -268,10 +297,56 @@ val swissClassifierJarTasks: Map<String, TaskProvider<Jar>> = if (gdalSwissNativ
     emptyMap()
 }
 
+val cnClassifierJarTasks: Map<String, TaskProvider<Jar>> = if (gdalCnNativesEnabled) {
+    nativeClassifiers.associateWith { classifier ->
+        val classifierRoot = layout.projectDirectory.dir("src/main/resources/META-INF/gdal-native/$classifier")
+        val projRoot = classifierRoot.dir("share/proj")
+        val (packagedManifestTask, packagedManifestFile) = registerPackagedManifestTask(
+            classifier,
+            "gdal-ffm-natives-cn",
+            true,
+            cnProjAllowlistCandidates.toSet(),
+            cnProjRequirements
+        )
+        tasks.register<Jar>("nativesCnJar${classifier.toTaskSuffix()}") {
+            group = LifecycleBasePlugin.BUILD_GROUP
+            description = "Builds China-focused native bundle JAR for $classifier"
+            archiveBaseName.set("gdal-ffm-natives-cn")
+            archiveClassifier.set("natives-$classifier")
+
+            from(classifierRoot) {
+                into("META-INF/gdal-native/$classifier")
+                exclude("manifest.json")
+                exclude("share/proj/**")
+            }
+
+            from(projRoot) {
+                into("META-INF/gdal-native/$classifier/share/proj")
+                include(*cnProjAllowlistCandidates.toTypedArray())
+            }
+
+            from(packagedManifestFile) {
+                into("META-INF/gdal-native/$classifier")
+            }
+
+            doFirst {
+                validateSwissProjSubset(classifier, projRoot.asFile, cnProjRequirements)
+            }
+
+            dependsOn(packagedManifestTask)
+        }
+    }
+} else {
+    emptyMap()
+}
+
 tasks.assemble {
     dependsOn(classifierJarTasks.values)
     if (gdalSwissNativesEnabled) {
         dependsOn(swissClassifierJarTasks.values)
+    }
+    if (gdalCnNativesEnabled) {
+        dependsOn(cnClassifierJarTasks.values)
     }
 }
 
@@ -345,6 +420,21 @@ publishing {
                 pom {
                     name.set("gdal-ffm-natives-swiss")
                     description.set("Bundled GDAL native libraries with Swiss-focused PROJ data subset")
+                }
+            }
+        }
+
+        if (gdalCnNativesEnabled) {
+            create<MavenPublication>("nativesCn") {
+                artifactId = "gdal-ffm-natives-cn"
+
+                cnClassifierJarTasks.values.forEach { jarTaskProvider ->
+                    artifact(jarTaskProvider)
+                }
+
+                pom {
+                    name.set("gdal-ffm-natives-cn")
+                    description.set("Bundled GDAL native libraries with China-focused PROJ data subset")
                 }
             }
         }

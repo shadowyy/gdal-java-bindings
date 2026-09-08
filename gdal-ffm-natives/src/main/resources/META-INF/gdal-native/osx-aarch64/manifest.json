@@ -1,6 +1,6 @@
 {
-  "bundleVersion": "3.12.2",
-  "entryLibrary": "lib/libgdal.38.dylib",
+  "bundleVersion": "3.13.3",
+  "entryLibrary": "lib/libgdal.39.dylib",
   "preloadLibraries": [
     "lib/libproj.25.dylib"
   ],

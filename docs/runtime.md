@@ -31,7 +31,7 @@ If no matching bundle exists on classpath, initialization fails with a dependenc
 Packaged native manifests may also carry an internal `cacheKey`. When present, `NativeLoader`
 extracts the bundle under `java.io.tmpdir/gdal-ffm/<cacheKey>/<classifier>` instead of using
 `bundleVersion`, which prevents stale bundle reuse across bindings releases and across standard vs
-swiss native variants. Older manifests without `cacheKey` continue to fall back to `bundleVersion`.
+swiss vs cn native variants. Older manifests without `cacheKey` continue to fall back to `bundleVersion`.
 
 ## Runtime config options
 
@@ -145,7 +145,7 @@ absolute non-relocatable linkage as an error (`absolute DT_NEEDED dependency` / 
 GitHub Actions runs packaged runtime smokes in both `Build Natives` and `Release`:
 
 - for every supported classifier, including `windows-x86_64`
-- for both bundle variants (`gdal-ffm-natives` and `gdal-ffm-natives-swiss`)
+- for all bundle variants (`gdal-ffm-natives`, `gdal-ffm-natives-swiss` and `gdal-ffm-natives-cn`)
 - with per-run isolation via `-Djava.io.tmpdir=.../build/tmp/smoke/<label>` to avoid cache carry-over
 - with a second run against the same shared temp directory to catch stale extraction/cache reuse issues
 - packaged smoke exercises both raster conversion and OGR open/read/vector-translate against bundled test data

@@ -1,6 +1,6 @@
 # gdal-java-bindings
 
-Java 23 FFM bindings for GDAL/OGR utilities and vector streaming with bundled native libraries.
+Java 25 FFM bindings for GDAL/OGR utilities and vector streaming with bundled native libraries.
 The public API now covers the raster operations required by the Hop raster suite as well:
 `rasterInfo`, `rasterConvert`, `rasterClip`, `rasterReproject`, `rasterResize`, `rasterMosaic`,
 `rasterZonalStats`, `vectorRasterize`, structured dataset references and scoped
@@ -11,16 +11,12 @@ GDAL/VSI configuration.
 - `gdal-ffm-core`: public Java API (`Gdal.rasterInfo`, `Gdal.rasterConvert`, `Gdal.rasterClip`, `Gdal.rasterReproject`, `Gdal.rasterResize`, `Gdal.rasterMosaic`, `Gdal.rasterZonalStats`, `Gdal.vectorRasterize`, `Gdal.vectorTranslate`, `Ogr.*`), native loader, error/progress bridge.
 - `gdal-ffm-natives`: classifier JARs that package native GDAL libs + `share/gdal` + `share/proj` (+ bundled Unix CA bundle for libcurl-based HTTPS).
 - `gdal-ffm-natives-swiss`: optional classifier JARs with the same native libs, but a Swiss-focused `share/proj` subset.
+- `gdal-ffm-natives-cn`: optional classifier JARs with the same native libs, but a China-focused `share/proj` subset.
 
 ## Requirements
 
-- JDK 23+
+- JDK 25+
 
-If only JDK 25 is installed locally, you can run Gradle with:
-
-```bash
-./gradlew <task> -PgdalFfmJavaToolchainVersion=25
-```
 - Native access enabled at runtime:
   - Classpath: `--enable-native-access=ALL-UNNAMED`
   - JPMS: `--enable-native-access=ch.so.agi.gdal.ffm`
@@ -36,6 +32,9 @@ dependencies {
 
     // OR Swiss-focused PROJ data subset:
     // runtimeOnly("ch.so.agi:gdal-ffm-natives-swiss:<version>:natives-linux-x86_64")
+
+    // OR China-focused PROJ data subset:
+    // runtimeOnly("ch.so.agi:gdal-ffm-natives-cn:<version>:natives-linux-x86_64")
 }
 ```
 
@@ -47,7 +46,7 @@ Available classifiers:
 - `natives-osx-aarch64`
 - `natives-windows-x86_64`
 
-Important: include exactly one runtime native artifact line per classifier (either `gdal-ffm-natives` or `gdal-ffm-natives-swiss`, not both), otherwise the native loader aborts due to ambiguous manifests.
+Important: include exactly one runtime native artifact line per classifier (either `gdal-ffm-natives`, `gdal-ffm-natives-swiss` or `gdal-ffm-natives-cn`, not more than one), otherwise the native loader aborts due to ambiguous manifests.
 
 For plugin-based hosts (for example Apache Hop plugin folders with isolated classloaders), prefer a shared runtime layout:
 - keep all transforms using `gdal-ffm-core` in one plugin folder/classloader
@@ -61,6 +60,12 @@ Swiss `share/proj` subset keeps:
 - `CHENyx06a.gsb` or `ch_swisstopo_CHENyx06a.tif`
 - `CHENyx06_ETRS.gsb` or `ch_swisstopo_CHENyx06_ETRS.tif`
 - `egm96_15.gtx` or `us_nga_egm96_15.tif`
+
+China (`gdal-ffm-natives-cn`) `share/proj` subset keeps:
+
+- `proj.db` (covers CGCS2000 / Beijing 1954 / Xi'an 1980 horizontal transforms via parametric definitions; no public Chinese horizontal grid exists in PROJ-data)
+- `egm96_15.gtx` or `us_nga_egm96_15.tif`
+- `egm08_25.gtx` or `us_nga_egm08_25.tif`
 
 ## Usage
 
@@ -291,7 +296,7 @@ The staging step runs relocation/sanitization automatically via `tools/natives/r
 tools/natives/audit-runtime-deps.sh linux-x86_64
 ```
 
-7. Build native classifier jars (standard + swiss by default):
+7. Build native classifier jars (standard + swiss + cn by default):
 
 ```bash
 ./gradlew :gdal-ffm-natives:assemble
@@ -303,12 +308,19 @@ Disable Swiss jar creation/publication when needed:
 ./gradlew :gdal-ffm-natives:assemble -PgdalSwissNativesEnabled=false
 ```
 
+Disable China-focused jar creation/publication when needed:
+
+```bash
+./gradlew :gdal-ffm-natives:assemble -PgdalCnNativesEnabled=false
+```
+
 ## CI runtime smoke coverage
 
 - `Build Natives` and `Release` run packaged runtime smoke tests for every supported classifier, including `windows-x86_64`.
-- Both variants are validated per classifier:
+- All variants are validated per classifier:
   - standard (`gdal-ffm-natives`)
   - swiss (`gdal-ffm-natives-swiss`)
+  - china (`gdal-ffm-natives-cn`)
 - Each smoke run uses a dedicated label and isolated temp dir (`build/tmp/smoke/<label>`), and packaged smokes repeat once against the same temp dir to catch cache carry-over and stale extraction problems.
 - Packaged smokes cover both raster conversion and OGR open/read/vector translate against bundled smoke data.
 - Resolver drift check (`tools/natives/refresh-lock-closure.sh --check`) is available as optional workflow input `verify-lock-closure` and is disabled by default.
@@ -343,10 +355,16 @@ Swiss variant for the same classifier:
 ./gradlew :gdal-ffm-core:jar :gdal-ffm-natives:nativesSwissJarOsxAarch64
 ```
 
+China-focused variant for the same classifier:
+
+```bash
+./gradlew :gdal-ffm-core:jar :gdal-ffm-natives:nativesCnJarOsxAarch64
+```
+
 4. Clear extracted native cache for the exact GDAL/platform tuple:
 
 ```bash
-rm -rf "$TMPDIR/gdal-ffm/3.12.2/osx-aarch64"
+rm -rf "$TMPDIR/gdal-ffm/3.13.3/osx-aarch64"
 ```
 
 Why: `NativeLoader` extracts once into `java.io.tmpdir`. If you do not clear this folder, updated native jars may not be re-extracted.
@@ -378,6 +396,10 @@ Expected result:
 ./gradlew :gdal-ffm-core:smokeTestPackagedNative \
   -PgdalFfmSmokeNativeJar=gdal-ffm-natives/build/libs/gdal-ffm-natives-swiss-<version>-natives-osx-aarch64.jar \
   -PgdalFfmSmokeLabel=osx-aarch64-swiss
+
+./gradlew :gdal-ffm-core:smokeTestPackagedNative \
+  -PgdalFfmSmokeNativeJar=gdal-ffm-natives/build/libs/gdal-ffm-natives-cn-<version>-natives-osx-aarch64.jar \
+  -PgdalFfmSmokeLabel=osx-aarch64-cn
 ```
 
 Packaged smoke output is written to:

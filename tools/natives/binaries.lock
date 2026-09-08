@@ -1,4 +1,4 @@
-gdal.version=3.12.2
+gdal.version=3.13.3
 gdal.vendor=conda-forge
 
 # Seed lock for bundled GDAL runtime.
@@ -9,11 +9,11 @@ gdal.vendor=conda-forge
 # extra_url_<n>/sha256/archive/strip_prefix entries below are resolver-managed.
 # Regenerate deterministically with tools/natives/refresh-lock-closure.sh.
 
-platform.linux-x86_64.url=https://api.anaconda.org/download/conda-forge/libgdal-core/3.12.2/linux-64/libgdal-core-3.12.2-h4f65170_3.conda
-platform.linux-x86_64.sha256=7ea31130adc61b2cda72c02f51086deec699bb30ec6f51b37b6c67d02c93d061
+platform.linux-x86_64.url=https://api.anaconda.org/download/conda-forge/libgdal-core/3.13.3/linux-64/libgdal-core-3.13.3-h5fdb907_0.conda
+platform.linux-x86_64.sha256=02bd97f224595c10eb7a763906a5b7ffd33731d94fb662ba267f6ebe05589217
 platform.linux-x86_64.archive=conda
 platform.linux-x86_64.strip_prefix=.
-platform.linux-x86_64.entry_library=lib/libgdal.so.38
+platform.linux-x86_64.entry_library=lib/libgdal.so.39
 platform.linux-x86_64.preload_libraries=lib/libproj.so.25
 platform.linux-x86_64.driver_path=lib/gdalplugins
 platform.linux-x86_64.closure_roots=proj-data,libwebp-base
@@ -266,11 +266,11 @@ platform.linux-x86_64.extra_sha256_62=68f0206ca6e98fea941e5717cec780ed2873ffabc0
 platform.linux-x86_64.extra_archive_62=conda
 platform.linux-x86_64.extra_strip_prefix_62=.
 
-platform.linux-aarch64.url=https://api.anaconda.org/download/conda-forge/libgdal-core/3.12.2/linux-aarch64/libgdal-core-3.12.2-h5833e09_3.conda
-platform.linux-aarch64.sha256=3affc31aa46a3d397f92f16fad4eb0cba0f758862274def08b3a2d33364f6766
+platform.linux-aarch64.url=https://api.anaconda.org/download/conda-forge/libgdal-core/3.13.3/linux-aarch64/libgdal-core-3.13.3-hff7f927_0.conda
+platform.linux-aarch64.sha256=b702eda5c841ea5bff563359af0d3a0801a9f35b2977261f11a234277e9c1f72
 platform.linux-aarch64.archive=conda
 platform.linux-aarch64.strip_prefix=.
-platform.linux-aarch64.entry_library=lib/libgdal.so.38
+platform.linux-aarch64.entry_library=lib/libgdal.so.39
 platform.linux-aarch64.preload_libraries=lib/libproj.so.25
 platform.linux-aarch64.driver_path=lib/gdalplugins
 platform.linux-aarch64.closure_roots=proj-data,libwebp-base
@@ -523,11 +523,11 @@ platform.linux-aarch64.extra_sha256_62=569990cf12e46f9df540275146da567d9c618c1e9
 platform.linux-aarch64.extra_archive_62=conda
 platform.linux-aarch64.extra_strip_prefix_62=.
 
-platform.osx-x86_64.url=https://api.anaconda.org/download/conda-forge/libgdal-core/3.12.2/osx-64/libgdal-core-3.12.2-h24162b0_3.conda
-platform.osx-x86_64.sha256=0e336f5735011f13bdfe44f052767171dd5c03bab3d864e48233acc9db335c13
+platform.osx-x86_64.url=https://api.anaconda.org/download/conda-forge/libgdal-core/3.13.3/osx-64/libgdal-core-3.13.3-h4e69026_0.conda
+platform.osx-x86_64.sha256=16bccdfabaca6d76698098429527e500dd9b9731190097fa321dd4535894e016
 platform.osx-x86_64.archive=conda
 platform.osx-x86_64.strip_prefix=.
-platform.osx-x86_64.entry_library=lib/libgdal.38.dylib
+platform.osx-x86_64.entry_library=lib/libgdal.39.dylib
 platform.osx-x86_64.preload_libraries=lib/libproj.25.dylib
 platform.osx-x86_64.driver_path=lib/gdalplugins
 platform.osx-x86_64.closure_roots=proj-data,libwebp-base
@@ -756,11 +756,11 @@ platform.osx-x86_64.extra_sha256_56=47101a4055a70a4876ffc87b750ab2287b67eca793f2
 platform.osx-x86_64.extra_archive_56=conda
 platform.osx-x86_64.extra_strip_prefix_56=.
 
-platform.osx-aarch64.url=https://api.anaconda.org/download/conda-forge/libgdal-core/3.12.2/osx-arm64/libgdal-core-3.12.2-h38a4fdb_3.conda
-platform.osx-aarch64.sha256=5fd09abdd1143b727ab19cdeb144dbbc9c3e241a52256b7b2aadccb89128bc03
+platform.osx-aarch64.url=https://api.anaconda.org/download/conda-forge/libgdal-core/3.13.3/osx-arm64/libgdal-core-3.13.3-hed0ed58_0.conda
+platform.osx-aarch64.sha256=7c7c67f004bd7b464674ecfd0fa7821e71a8b88ee2af3b950e340c3843e44b43
 platform.osx-aarch64.archive=conda
 platform.osx-aarch64.strip_prefix=.
-platform.osx-aarch64.entry_library=lib/libgdal.38.dylib
+platform.osx-aarch64.entry_library=lib/libgdal.39.dylib
 platform.osx-aarch64.preload_libraries=lib/libproj.25.dylib
 platform.osx-aarch64.driver_path=lib/gdalplugins
 platform.osx-aarch64.closure_roots=proj-data,libwebp-base
@@ -989,8 +989,8 @@ platform.osx-aarch64.extra_sha256_56=9485ba49e8f47d2b597dd399e88f4802e100851b27c
 platform.osx-aarch64.extra_archive_56=conda
 platform.osx-aarch64.extra_strip_prefix_56=.
 
-platform.windows-x86_64.url=https://api.anaconda.org/download/conda-forge/libgdal-core/3.12.2/win-64/libgdal-core-3.12.2-h977623c_3.conda
-platform.windows-x86_64.sha256=f31d73e3d97ea4c18aeb8fa126675a2728a1ecfc74be1880e00e9bc95d9a1572
+platform.windows-x86_64.url=https://api.anaconda.org/download/conda-forge/libgdal-core/3.13.3/win-64/libgdal-core-3.13.3-hbfeefb7_0.conda
+platform.windows-x86_64.sha256=e87e2865517b6591433168d7e49be68a5e43a946a779e0121d530f82665daa20
 platform.windows-x86_64.archive=conda
 platform.windows-x86_64.strip_prefix=.
 platform.windows-x86_64.entry_library=bin/gdal.dll
