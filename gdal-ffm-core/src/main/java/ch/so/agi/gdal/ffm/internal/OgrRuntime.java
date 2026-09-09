@@ -15,6 +15,7 @@ import ch.so.agi.gdal.ffm.OgrLayerWriter;
 import ch.so.agi.gdal.ffm.OgrOpenOptions;
 import ch.so.agi.gdal.ffm.OgrWriteMode;
 import ch.so.agi.gdal.ffm.generated.GdalGenerated;
+
 import java.lang.foreign.Arena;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.ValueLayout;
@@ -37,6 +38,15 @@ import java.util.OptionalInt;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Internal FFM runtime behind the public {@code Ogr} facade.
+ * <p>
+ * 公开 {@code Ogr} 门面背后的内部 FFM 运行时，封装矢量数据的打开、创建、读写与驱动查询。
+ * <p>
+ * This is an internal API, not public. External callers should use {@code ch.so.agi.gdal.ffm.Ogr}.
+ * <p>
+ * 这是内部 API，不是公开 API。对外请使用 {@code ch.so.agi.gdal.ffm.Ogr}。
+ */
 public final class OgrRuntime {
     private static final AtomicBoolean INITIALIZED = new AtomicBoolean(false);
     private static final Object INIT_LOCK = new Object();
@@ -58,17 +68,57 @@ public final class OgrRuntime {
     private static final String MD_DCAP_CREATE = "DCAP_CREATE";
     private static final String MD_DMD_EXTENSIONS = "DMD_EXTENSIONS";
 
+    /**
+     * Prevents instantiation of this utility class.
+     * <p>
+     * 禁止实例化的工具类构造器。
+     */
     private OgrRuntime() {
     }
 
+    /**
+     * Opens a local vector dataset in read-only mode.
+     * <p>
+     * 以只读方式打开本地矢量数据集。
+     *
+     * @param path local dataset path, must not be {@code null} / 本地数据集路径，不能为 {@code null}
+     * @param openOptions driver open options, must not be {@code null} / 驱动打开选项，不能为 {@code null}
+     * @return open datasource, must be closed by the caller / 已打开的数据源，调用方负责关闭
+     * @throws NullPointerException if any argument is {@code null} / 任一参数为 {@code null} 时抛出
+     */
     public static OgrDataSource open(Path path, Map<String, String> openOptions) {
         return open(DatasetRef.local(path), openOptions, GdalConfig.empty());
     }
 
+    /**
+     * Opens a referenced dataset with open options and GDAL config.
+     * <p>
+     * 按数据集引用、打开选项与 GDAL 配置打开矢量数据源。
+     *
+     * @param datasetRef dataset reference, must not be {@code null} / 数据集引用，不能为 {@code null}
+     * @param openOptions driver open options, must not be {@code null} / 驱动打开选项，不能为 {@code null}
+     * @param config GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
+     * @return open datasource, must be closed by the caller / 已打开的数据源，调用方负责关闭
+     * @throws NullPointerException if any argument is {@code null} / 任一参数为 {@code null} 时抛出
+     */
     public static OgrDataSource open(DatasetRef datasetRef, Map<String, String> openOptions, GdalConfig config) {
         return open(datasetRef, openOptions, config, false);
     }
 
+    /**
+     * Creates a vector dataset at a local path.
+     * <p>
+     * 在本地路径创建新的矢量数据集。
+     *
+     * @param path local dataset path, must not be {@code null} / 本地数据集路径，不能为 {@code null}
+     * @param driverShortName driver short name, must not be {@code null} or blank / 驱动短名，不能为 {@code null} 或空
+     * @param writeMode behavior when the target exists, must not be {@code null} / 目标已存在时的处理策略，不能为 {@code null}
+     * @param datasetCreationOptions driver creation options, must not be {@code null} / 驱动创建选项，不能为 {@code null}
+     * @return open writable datasource, must be closed by the caller / 已打开的可写数据源，调用方负责关闭
+     * @throws NullPointerException if any argument is {@code null} / 任一参数为 {@code null} 时抛出
+     * @throws IllegalArgumentException if the driver name is blank, unknown, or the target handling fails /
+     *         驱动名为空、未知或目标处理失败时抛出
+     */
     public static OgrDataSource create(
             Path path,
             String driverShortName,
@@ -78,6 +128,21 @@ public final class OgrRuntime {
         return create(DatasetRef.local(path), driverShortName, writeMode, datasetCreationOptions, GdalConfig.empty());
     }
 
+    /**
+     * Creates a vector dataset for a dataset reference with GDAL config.
+     * <p>
+     * 按数据集引用与 GDAL 配置创建新的矢量数据集。
+     *
+     * @param datasetRef dataset reference, must not be {@code null} / 数据集引用，不能为 {@code null}
+     * @param driverShortName driver short name, must not be {@code null} or blank / 驱动短名，不能为 {@code null} 或空
+     * @param writeMode behavior when the target exists, must not be {@code null} / 目标已存在时的处理策略，不能为 {@code null}
+     * @param datasetCreationOptions driver creation options, must not be {@code null} / 驱动创建选项，不能为 {@code null}
+     * @param config GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
+     * @return open writable datasource, must be closed by the caller / 已打开的可写数据源，调用方负责关闭
+     * @throws NullPointerException if any argument is {@code null} / 任一参数为 {@code null} 时抛出
+     * @throws IllegalArgumentException if the driver name is blank, unknown, or the target handling fails /
+     *         驱动名为空、未知或目标处理失败时抛出
+     */
     public static OgrDataSource create(
             DatasetRef datasetRef,
             String driverShortName,
@@ -142,6 +207,13 @@ public final class OgrRuntime {
         }
     }
 
+    /**
+     * Lists vector drivers supporting data-source creation.
+     * <p>
+     * 列出支持创建数据源的矢量驱动。
+     *
+     * @return sorted immutable driver list, never {@code null} / 排序后的不可变驱动列表，永不为 {@code null}
+     */
     public static List<OgrDriverInfo> listWritableVectorDrivers() {
         ensureInitialized();
 
@@ -193,6 +265,18 @@ public final class OgrRuntime {
         return List.copyOf(writableDrivers);
     }
 
+    /**
+     * Opens a dataset with explicit writable flag.
+     * <p>
+     * 按可写标志打开数据集的内部实现。
+     *
+     * @param datasetRef dataset reference, must not be {@code null} / 数据集引用，不能为 {@code null}
+     * @param openOptions driver open options, must not be {@code null} / 驱动打开选项，不能为 {@code null}
+     * @param config GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
+     * @param writable {@code true} to request update access / 是否请求更新权限
+     * @return open datasource, must be closed by the caller / 已打开的数据源，调用方负责关闭
+     * @throws NullPointerException if any required argument is {@code null} / 任一必要参数为 {@code null} 时抛出
+     */
     private static OgrDataSource open(
             DatasetRef datasetRef,
             Map<String, String> openOptions,
@@ -241,6 +325,13 @@ public final class OgrRuntime {
         return new NativeOgrDataSource(datasetRef.toGdalIdentifier(), dataset, writable);
     }
 
+    /**
+     * Resolves an OGR driver. English + 解析 OGR 驱动。
+     *
+     * @param driverShortName driver short name / 驱动短名
+     * @return native driver handle / 本地驱动句柄
+     * @throws IllegalArgumentException if not found or not writable / 不存在或不可写时抛出
+     */
     private static MemorySegment resolveDriverByName(String driverShortName) {
         GdalGenerated.CPLErrorReset();
         try (Arena arena = Arena.ofConfined()) {
@@ -257,6 +348,14 @@ public final class OgrRuntime {
         );
     }
 
+    /**
+     * Creates a data source. English + 创建数据源。
+     *
+     * @param driver native driver handle / 本地驱动句柄
+     * @param datasetIdentifier GDAL dataset identifier / GDAL 数据集标识
+     * @param datasetCreationOptions creation options / 创建选项
+     * @return native dataset handle / 本地数据集句柄
+     */
     private static MemorySegment createDataSource(
             MemorySegment driver,
             String datasetIdentifier,
@@ -276,6 +375,13 @@ public final class OgrRuntime {
         }
     }
 
+    /**
+     * Deletes a data source. English + 删除数据源。
+     *
+     * @param driver native driver handle / 本地驱动句柄
+     * @param datasetIdentifier GDAL dataset identifier / GDAL 数据集标识
+     * @throws IllegalArgumentException if the driver lacks delete capability / 驱动不支持删除时抛出
+     */
     private static void deleteDataSource(MemorySegment driver, String datasetIdentifier) {
         GdalGenerated.CPLErrorReset();
         try (Arena arena = Arena.ofConfined()) {
@@ -290,6 +396,9 @@ public final class OgrRuntime {
         }
     }
 
+    /**
+     * Tests a driver capability. English + 检测驱动能力。
+     */
     private static boolean testDriverCapability(MemorySegment driver, String capability) {
         try (Arena arena = Arena.ofConfined()) {
             MemorySegment capabilityCString = arena.allocateFrom(capability);
@@ -297,16 +406,25 @@ public final class OgrRuntime {
         }
     }
 
+    /**
+     * Reads a driver metadata item. English + 读取驱动元数据项。
+     */
     private static String readMetadataItem(MemorySegment driver, String key, Arena arena) {
         MemorySegment keyCString = arena.allocateFrom(key);
         return CStrings.fromCString(GdalGenerated.GDALGetMetadataItem(driver, keyCString, MemorySegment.NULL)).trim();
     }
 
+    /**
+     * Checks a YES/TRUE/1 metadata flag. English + 判断元数据开关是否为真。
+     */
     private static boolean isMetadataTrue(MemorySegment driver, String key, Arena arena) {
         String value = readMetadataItem(driver, key, arena);
         return "YES".equalsIgnoreCase(value) || "TRUE".equalsIgnoreCase(value) || "1".equals(value);
     }
 
+    /**
+     * Parses extension metadata. English + 解析扩展名元数据。
+     */
     private static List<String> parseExtensions(String raw) {
         if (raw == null || raw.isBlank()) {
             return List.of();
@@ -326,6 +444,9 @@ public final class OgrRuntime {
         return List.copyOf(extensions);
     }
 
+    /**
+     * Converts options to KEY=VALUE array. English + 转换为 KEY=VALUE 数组。
+     */
     private static String[] toKeyValueArray(Map<String, String> options) {
         if (options == null || options.isEmpty()) {
             return new String[0];
@@ -342,18 +463,38 @@ public final class OgrRuntime {
         return keyValues.toArray(String[]::new);
     }
 
+    /**
+     * Native {@code OgrDataSource} implementation.
+     * <p>
+     * 基于本地数据集句柄的 {@code OgrDataSource} 实现。
+     */
     private static final class NativeOgrDataSource implements OgrDataSource {
         private final String sourcePath;
         private final MemorySegment dataset;
         private final boolean writable;
         private volatile boolean closed;
 
+        /**
+         * Creates a wrapper. English + 创建数据源包装器。
+         *
+         * @param sourcePath source identifier for diagnostics / 用于诊断的来源标识
+         * @param dataset native dataset handle / 本地数据集句柄
+         * @param writable whether writing is allowed / 是否允许写入
+         */
         private NativeOgrDataSource(String sourcePath, MemorySegment dataset, boolean writable) {
             this.sourcePath = sourcePath;
             this.dataset = dataset;
             this.writable = writable;
         }
 
+        /**
+         * Lists layer definitions.
+         * <p>
+         * 列出所有图层定义。
+         *
+         * @return immutable layer definitions, never {@code null} / 不可变图层定义列表，永不为 {@code null}
+         * @throws IllegalStateException if the datasource is closed / 数据源已关闭时抛出
+         */
         @Override
         public synchronized List<OgrLayerDefinition> listLayers() {
             ensureOpen();
@@ -374,6 +515,17 @@ public final class OgrRuntime {
             return List.copyOf(definitions);
         }
 
+        /**
+         * Opens a layer reader with filters.
+         * <p>
+         * 按选项打开图层读取器（含过滤与字段投影）。
+         *
+         * @param layerName layer name, blank means the first layer / 图层名，为空表示首个图层
+         * @param options reader options, may be {@code null} / 读取选项，可为 {@code null}
+         * @return open reader, must be closed by the caller / 已打开的读取器，调用方负责关闭
+         * @throws IllegalStateException if the datasource is closed / 数据源已关闭时抛出
+         * @throws IllegalArgumentException if the layer or selected fields are missing / 图层或字段不存在时抛出
+         */
         @Override
         public synchronized OgrLayerReader openReader(String layerName, Map<String, String> options) {
             ensureOpen();
@@ -399,6 +551,17 @@ public final class OgrRuntime {
             return new NativeOgrLayerReader(this, layer, layerDefinition, projectedFieldIndices, rowLimit);
         }
 
+        /**
+         * Opens a layer writer for create/overwrite/append.
+         * <p>
+         * 按写入规格打开图层写入器（新建 / 覆盖 / 追加）。
+         *
+         * @param spec write specification, must not be {@code null} / 写入规格，不能为 {@code null}
+         * @return open writer, must be closed by the caller / 已打开的写入器，调用方负责关闭
+         * @throws IllegalStateException if opened read-only or datasource is closed / 只读打开或已关闭时抛出
+         * @throws NullPointerException if {@code spec} is {@code null} / {@code spec} 为 {@code null} 时抛出
+         * @throws IllegalArgumentException if the layer state or schema is incompatible / 图层状态或模式不兼容时抛出
+         */
         @Override
         public synchronized OgrLayerWriter openWriter(OgrLayerWriteSpec spec) {
             ensureOpen();
@@ -458,6 +621,11 @@ public final class OgrRuntime {
             return new NativeOgrLayerWriter(this, layer, layerDefinition, geometryFieldIndex, null);
         }
 
+        /**
+         * Closes the native dataset idempotently.
+         * <p>
+         * 幂等地关闭本地数据集。
+         */
         @Override
         public synchronized void close() {
             if (closed) {
@@ -467,12 +635,24 @@ public final class OgrRuntime {
             closeDatasetQuietly(dataset);
         }
 
+        /**
+         * Ensures the datasource is open. English + 确保数据源仍处于打开状态。
+         *
+         * @throws IllegalStateException if closed / 已关闭时抛出
+         */
         private void ensureOpen() {
             if (closed) {
                 throw new IllegalStateException("Datasource is closed: " + sourcePath);
             }
         }
 
+        /**
+         * Resolves a layer, defaulting to the first one. English + 解析图层，为空时取首个。
+         *
+         * @param layerName layer name, may be {@code null} or blank / 图层名，可为 {@code null} 或空
+         * @return native layer handle / 本地图层句柄
+         * @throws IllegalArgumentException if no readable layer exists or lookup fails / 无可读图层或查找失败时抛出
+         */
         private MemorySegment resolveLayer(String layerName) {
             if (layerName == null || layerName.isBlank()) {
                 MemorySegment firstLayer = GdalGenerated.GDALDatasetGetLayer(dataset, 0);
@@ -488,6 +668,9 @@ public final class OgrRuntime {
             }
         }
 
+        /**
+         * Resolves a layer or NULL. English + 解析图层，不存在时返回 NULL。
+         */
         private MemorySegment resolveLayerOrNull(String layerName) {
             if (layerName == null || layerName.isBlank()) {
                 return MemorySegment.NULL;
@@ -498,6 +681,9 @@ public final class OgrRuntime {
             }
         }
 
+        /**
+         * Deletes a layer by name. English + 按名称删除图层。
+         */
         private void deleteLayer(String layerName) {
             int index = findLayerIndex(layerName);
             if (index < 0) {
@@ -508,6 +694,12 @@ public final class OgrRuntime {
             throwIfOgrError(errorCode, "Failed to delete existing layer '" + layerName + "'");
         }
 
+        /**
+         * Finds a layer index. English + 查找图层索引。
+         *
+         * @param layerName layer name / 图层名
+         * @return index, or -1 when missing / 索引；不存在时返回 -1
+         */
         private int findLayerIndex(String layerName) {
             int layerCount = GdalGenerated.GDALDatasetGetLayerCount(dataset);
             for (int i = 0; i < layerCount; i++) {
@@ -523,6 +715,18 @@ public final class OgrRuntime {
             return -1;
         }
 
+        /**
+         * Creates a layer with fields.
+         * <p>
+         * 创建带字段定义的图层。
+         *
+         * @param layerName layer name / 图层名
+         * @param geometryTypeCode geometry type code, must not be {@code null} / 几何类型码，不能为 {@code null}
+         * @param layerCreationOptions creation options / 创建选项
+         * @param fields field definitions / 字段定义
+         * @return native layer handle / 本地图层句柄
+         * @throws IllegalArgumentException if the geometry type is missing / 缺少几何类型时抛出
+         */
         private MemorySegment createLayer(
                 String layerName,
                 Integer geometryTypeCode,
@@ -561,6 +765,13 @@ public final class OgrRuntime {
             return layer;
         }
 
+        /**
+         * Adds fields to a layer. English + 为图层添加字段。
+         *
+         * @param layer native layer handle / 本地图层句柄
+         * @param fields field definitions, may be {@code null} / 字段定义，可为 {@code null}
+         * @throws IllegalArgumentException on blank names or UNKNOWN type / 名称为空或类型为 UNKNOWN 时抛出
+         */
         private void addFields(MemorySegment layer, List<OgrFieldDefinition> fields) {
             if (fields == null || fields.isEmpty()) {
                 return;
@@ -596,6 +807,9 @@ public final class OgrRuntime {
             }
         }
 
+        /**
+         * Validates append schema. English + 校验追加写入的模式兼容性。
+         */
         private void validateExistingLayerSchema(MemorySegment layer, List<OgrFieldDefinition> requestedFields) {
             if (requestedFields == null || requestedFields.isEmpty()) {
                 return;
@@ -627,6 +841,9 @@ public final class OgrRuntime {
             }
         }
 
+        /**
+         * Binds requested fields to created indexes. English + 绑定请求字段到创建后的索引。
+         */
         private Map<String, Integer> bindCreatedLayerFields(
                 String requestedLayerName,
                 List<OgrFieldDefinition> requestedFields,
@@ -661,6 +878,14 @@ public final class OgrRuntime {
             return Map.copyOf(bindings);
         }
 
+        /**
+         * Resolves a geometry field index. English + 解析几何字段索引。
+         *
+         * @param layer native layer handle / 本地图层句柄
+         * @param geometryFieldName geometry field name, may be {@code null} / 几何字段名，可为 {@code null}
+         * @return index, or -1 when unset / 索引；未指定时返回 -1
+         * @throws IllegalArgumentException if the named field is missing / 指定字段不存在时抛出
+         */
         private int resolveGeometryFieldIndex(MemorySegment layer, String geometryFieldName) {
             if (geometryFieldName == null || geometryFieldName.isBlank()) {
                 return -1;
@@ -683,6 +908,9 @@ public final class OgrRuntime {
             }
         }
 
+        /**
+         * Merges FID/geometry names into creation options. English + 合并 FID 与几何字段名到创建选项。
+         */
         private static Map<String, String> withOptionalIdFieldNames(
                 Map<String, String> layerCreationOptions,
                 String fidFieldName,
@@ -701,6 +929,9 @@ public final class OgrRuntime {
             return Map.copyOf(normalized);
         }
 
+        /**
+         * Formats field names for diagnostics. English + 格式化字段名用于诊断信息。
+         */
         private static String formatFieldNames(List<OgrFieldDefinition> fields) {
             List<String> names = new ArrayList<>(fields.size());
             for (OgrFieldDefinition field : fields) {
@@ -709,6 +940,9 @@ public final class OgrRuntime {
             return names.toString();
         }
 
+        /**
+         * Applies reader filters to a layer. English + 为图层应用读取过滤器。
+         */
         private static void configureLayer(
                 MemorySegment layer,
                 OgrLayerDefinition layerDefinition,
@@ -719,6 +953,9 @@ public final class OgrRuntime {
             applySpatialFilter(layer, options);
         }
 
+        /**
+         * Applies field projection via ignored fields. English + 按字段投影设置忽略字段。
+         */
         private static void applyIgnoredFields(
                 MemorySegment layer,
                 OgrLayerDefinition layerDefinition,
@@ -738,6 +975,9 @@ public final class OgrRuntime {
             applyIgnoredFields(layer, ignoredFields);
         }
 
+        /**
+         * Forwards ignored fields to native. English + 透传忽略字段到本地库。
+         */
         private static void applyIgnoredFields(MemorySegment layer, List<String> ignoredFields) {
             GdalGenerated.CPLErrorReset();
             try (Arena arena = Arena.ofConfined()) {
@@ -750,6 +990,9 @@ public final class OgrRuntime {
             }
         }
 
+        /**
+         * Applies an attribute filter. English + 应用属性过滤。
+         */
         private static void applyAttributeFilter(MemorySegment layer, String attributeFilter) {
             GdalGenerated.CPLErrorReset();
             try (Arena arena = Arena.ofConfined()) {
@@ -762,6 +1005,9 @@ public final class OgrRuntime {
             }
         }
 
+        /**
+         * Applies a bbox or WKT spatial filter. English + 应用 BBOX 或 WKT 空间过滤。
+         */
         private static void applySpatialFilter(MemorySegment layer, OgrOptions.ReaderOptions options) {
             if (options.bbox() != null) {
                 OgrOptions.BoundingBox bbox = options.bbox();
@@ -802,6 +1048,11 @@ public final class OgrRuntime {
         }
     }
 
+    /**
+     * Native single-iterator layer reader.
+     * <p>
+     * 基于本地句柄的单迭代器图层读取器。
+     */
     private static final class NativeOgrLayerReader implements OgrLayerReader {
         private final NativeOgrDataSource dataSource;
         private final MemorySegment layer;
@@ -815,6 +1066,15 @@ public final class OgrRuntime {
         private OgrFeature buffered;
         private long emitted;
 
+        /**
+         * Creates a reader. English + 创建读取器。
+         *
+         * @param dataSource owning datasource / 所属数据源
+         * @param layer native layer handle / 本地图层句柄
+         * @param layerDefinition layer definition snapshot / 图层定义快照
+         * @param projectedFieldIndices projected field indexes / 投影字段索引
+         * @param rowLimit max rows to emit / 最多返回行数
+         */
         private NativeOgrLayerReader(
                 NativeOgrDataSource dataSource,
                 MemorySegment layer,
@@ -829,6 +1089,14 @@ public final class OgrRuntime {
             this.rowLimit = rowLimit;
         }
 
+        /**
+         * Returns the single supported iterator.
+         * <p>
+         * 返回唯一支持的迭代器。
+         *
+         * @return feature iterator, never {@code null} / 要素迭代器，永不为 {@code null}
+         * @throws IllegalStateException if closed or already iterated / 已关闭或已迭代时抛出
+         */
         @Override
         public synchronized Iterator<OgrFeature> iterator() {
             ensureOpen();
@@ -856,6 +1124,11 @@ public final class OgrRuntime {
             };
         }
 
+        /**
+         * Closes the reader and drops buffered state.
+         * <p>
+         * 关闭读取器并丢弃缓冲状态。
+         */
         @Override
         public synchronized void close() {
             closed = true;
@@ -863,6 +1136,12 @@ public final class OgrRuntime {
             buffered = null;
         }
 
+        /**
+         * Fetches the next feature if needed. English + 按需获取下一个要素。
+         *
+         * @return next feature, or {@code null} at end or limit / 下一个要素；结束或达上限时返回 {@code null}
+         * @throws IllegalStateException if closed / 已关闭时抛出
+         */
         private OgrFeature fetchNextIfNeeded() {
             if (fetched) {
                 return buffered;
@@ -890,6 +1169,11 @@ public final class OgrRuntime {
             }
         }
 
+        /**
+         * Ensures the reader is open. English + 确保读取器仍处于打开状态。
+         *
+         * @throws IllegalStateException if closed / 已关闭时抛出
+         */
         private void ensureOpen() {
             if (closed) {
                 throw new IllegalStateException("Layer reader is closed");
@@ -898,6 +1182,11 @@ public final class OgrRuntime {
         }
     }
 
+    /**
+     * Native layer writer.
+     * <p>
+     * 基于本地句柄的图层写入器。
+     */
     private static final class NativeOgrLayerWriter implements OgrLayerWriter {
         private final NativeOgrDataSource dataSource;
         private final MemorySegment layer;
@@ -907,6 +1196,15 @@ public final class OgrRuntime {
 
         private boolean closed;
 
+        /**
+         * Creates a writer. English + 创建写入器。
+         *
+         * @param dataSource owning datasource / 所属数据源
+         * @param layer native layer handle / 本地图层句柄
+         * @param layerDefinition layer definition snapshot / 图层定义快照
+         * @param geometryFieldIndex geometry field index, -1 for default / 几何字段索引，-1 表示默认
+         * @param boundFieldIndexesByRequestedName bound field indexes, may be {@code null} / 绑定字段索引，可为 {@code null}
+         */
         private NativeOgrLayerWriter(
                 NativeOgrDataSource dataSource,
                 MemorySegment layer,
@@ -921,6 +1219,16 @@ public final class OgrRuntime {
             this.boundFieldIndexesByRequestedName = boundFieldIndexesByRequestedName;
         }
 
+        /**
+         * Writes one feature.
+         * <p>
+         * 写入单个要素（含 FID、属性与几何）。
+         *
+         * @param feature feature to write, must not be {@code null} / 待写入要素，不能为 {@code null}
+         * @throws IllegalStateException if closed / 已关闭时抛出
+         * @throws NullPointerException if {@code feature} is {@code null} / {@code feature} 为 {@code null} 时抛出
+         * @throws IllegalArgumentException if a field or geometry is invalid / 字段或几何非法时抛出
+         */
         @Override
         public synchronized void write(OgrFeature feature) {
             ensureOpen();
@@ -954,11 +1262,21 @@ public final class OgrRuntime {
             }
         }
 
+        /**
+         * Closes the writer.
+         * <p>
+         * 关闭写入器。
+         */
         @Override
         public synchronized void close() {
             closed = true;
         }
 
+        /**
+         * Ensures the writer is open. English + 确保写入器仍处于打开状态。
+         *
+         * @throws IllegalStateException if closed / 已关闭时抛出
+         */
         private void ensureOpen() {
             if (closed) {
                 throw new IllegalStateException("Layer writer is closed");
@@ -966,6 +1284,9 @@ public final class OgrRuntime {
             dataSource.ensureOpen();
         }
 
+        /**
+         * Writes attribute values. English + 写入属性值。
+         */
         private void writeAttributes(
                 MemorySegment nativeFeature,
                 Map<String, Object> attributes,
@@ -1014,6 +1335,15 @@ public final class OgrRuntime {
             }
         }
 
+        /**
+         * Resolves a field index. English + 解析字段索引。
+         *
+         * @param nativeFeature native feature handle / 本地要素句柄
+         * @param fieldName field name / 字段名
+         * @param arena arena for transient strings / 临时字符串的 Arena
+         * @return field index / 字段索引
+         * @throws IllegalArgumentException if the field is not in the target schema / 字段不在目标模式中时抛出
+         */
         private int resolveFieldIndex(MemorySegment nativeFeature, String fieldName, Arena arena) {
             if (boundFieldIndexesByRequestedName != null) {
                 Integer boundFieldIndex = boundFieldIndexesByRequestedName.get(fieldName.toLowerCase(Locale.ROOT));
@@ -1037,6 +1367,9 @@ public final class OgrRuntime {
             return fieldIndex;
         }
 
+        /**
+         * Writes feature geometry. English + 写入要素几何。
+         */
         private void writeGeometry(
                 MemorySegment nativeFeature,
                 OgrGeometry geometry,
@@ -1076,6 +1409,9 @@ public final class OgrRuntime {
             }
         }
 
+        /**
+         * Strips EWKB SRID to plain WKB. English + 去除 EWKB 中的 SRID 得到纯 WKB。
+         */
         private static byte[] normalizeToWkb(byte[] ewkbOrWkb) {
             if (ewkbOrWkb.length < WKB_HEADER_SIZE) {
                 return ewkbOrWkb;
@@ -1115,6 +1451,14 @@ public final class OgrRuntime {
         }
     }
 
+    /**
+     * Describes a native layer.
+     * <p>
+     * 读取本地图层的名称、几何类型与字段定义。
+     *
+     * @param layer native layer handle, must not be {@code null} / 本地图层句柄，不能为 {@code null}
+     * @return layer definition snapshot, never {@code null} / 图层定义快照，永不为 {@code null}
+     */
     private static OgrLayerDefinition describeLayer(MemorySegment layer) {
         String layerName = CStrings.fromCString(GdalGenerated.OGR_L_GetName(layer));
         int geometryType = GdalGenerated.OGR_L_GetGeomType(layer);
@@ -1139,6 +1483,16 @@ public final class OgrRuntime {
         return new OgrLayerDefinition(layerName, geometryType, List.copyOf(fields));
     }
 
+    /**
+     * Resolves projected field indexes.
+     * <p>
+     * 按请求字段解析投影字段索引。
+     *
+     * @param layerDefinition layer definition snapshot / 图层定义快照
+     * @param options parsed reader options / 解析后的读取选项
+     * @return projected indexes, never {@code null} / 投影索引数组，永不为 {@code null}
+     * @throws IllegalArgumentException if a selected field is unknown / 请求字段未知时抛出
+     */
     private static int[] resolveProjectedFieldIndices(
             OgrLayerDefinition layerDefinition,
             OgrOptions.ReaderOptions options
@@ -1182,6 +1536,9 @@ public final class OgrRuntime {
         return projectedArray;
     }
 
+    /**
+     * Converts a native feature. English + 转换本地要素为 Java 对象。
+     */
     private static OgrFeature toFeature(
             MemorySegment feature,
             OgrLayerDefinition layerDefinition,
@@ -1193,6 +1550,9 @@ public final class OgrRuntime {
         return new OgrFeature(fid, attributes, geometry);
     }
 
+    /**
+     * Extracts projected attributes. English + 提取投影字段的属性值。
+     */
     private static Map<String, Object> extractAttributes(
             MemorySegment feature,
             OgrLayerDefinition layerDefinition,
@@ -1207,6 +1567,9 @@ public final class OgrRuntime {
         return attributes;
     }
 
+    /**
+     * Reads one field value. English + 读取单个字段值。
+     */
     private static Object readFieldValue(MemorySegment feature, int fieldIndex, OgrFieldType fieldType) {
         if (GdalGenerated.OGR_F_IsFieldSetAndNotNull(feature, fieldIndex) == 0) {
             return null;
@@ -1219,6 +1582,9 @@ public final class OgrRuntime {
         };
     }
 
+    /**
+     * Extracts geometry as WKB. English + 提取几何为 WKB。
+     */
     private static OgrGeometry extractGeometry(MemorySegment feature) {
         MemorySegment geometry = GdalGenerated.OGR_F_GetGeometryRef(feature);
         if (CStrings.isNull(geometry)) {
@@ -1245,6 +1611,9 @@ public final class OgrRuntime {
         return OgrGeometry.fromWkb(wkb);
     }
 
+    /**
+     * Reads the SRID authority code. English + 读取 SRID 权威编码。
+     */
     private static OptionalInt readSrid(MemorySegment geometry) {
         MemorySegment spatialReference = GdalGenerated.OGR_G_GetSpatialReference(geometry);
         if (CStrings.isNull(spatialReference)) {
@@ -1269,6 +1638,9 @@ public final class OgrRuntime {
         }
     }
 
+    /**
+     * Reads one authority code. English + 读取单个权威编码。
+     */
     private static String readAuthorityCode(MemorySegment spatialReference, String targetKey) {
         try (Arena arena = Arena.ofConfined()) {
             MemorySegment targetKeyCString = targetKey == null ? MemorySegment.NULL : arena.allocateFrom(targetKey);
@@ -1279,6 +1651,12 @@ public final class OgrRuntime {
         }
     }
 
+    /**
+     * Throws on OGR error. English + 遇 OGR 错误时抛异常。
+     *
+     * @param errorCode OGR error code / OGR 错误码
+     * @param message failure message / 失败信息
+     */
     private static void throwIfOgrError(int errorCode, String message) {
         if (errorCode == OGRERR_NONE) {
             return;
@@ -1286,6 +1664,11 @@ public final class OgrRuntime {
         throw GdalErrors.lastError(message);
     }
 
+    /**
+     * Initializes native GDAL once in a thread-safe way.
+     * <p>
+     * 以线程安全方式一次性初始化本地 GDAL。
+     */
     private static void ensureInitialized() {
         if (INITIALIZED.get()) {
             return;
@@ -1304,6 +1687,9 @@ public final class OgrRuntime {
         }
     }
 
+    /**
+     * Applies bundled global config options. English + 应用内置全局配置项。
+     */
     private static void applyConfig(NativeBundleInfo bundleInfo) {
         try (Arena arena = Arena.ofConfined()) {
             for (Map.Entry<String, Path> entry : NativeBundleRuntimeConfig.globalConfigOptions(bundleInfo).entrySet()) {
@@ -1312,6 +1698,9 @@ public final class OgrRuntime {
         }
     }
 
+    /**
+     * Sets one config option. English + 设置单个配置项。
+     */
     private static void setConfigOption(Arena arena, String key, Path value) {
         if (value == null) {
             return;
@@ -1323,6 +1712,9 @@ public final class OgrRuntime {
         System.setProperty(key, value.toAbsolutePath().toString());
     }
 
+    /**
+     * Closes a dataset best-effort. English + 尽力关闭数据集。
+     */
     private static void closeDatasetQuietly(MemorySegment dataset) {
         if (CStrings.isNull(dataset)) {
             return;
