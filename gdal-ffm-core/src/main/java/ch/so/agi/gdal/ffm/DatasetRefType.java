@@ -17,5 +17,12 @@ public enum DatasetRefType {
     /**
      * Explicit GDAL/VSI path (must start with {@code /vsi}). / 显式 GDAL/VSI 路径（须以 {@code /vsi} 开头）。
      */
-    GDAL_VSI
+    GDAL_VSI,
+    /**
+     * Pass-through GDAL dataset identifier, used verbatim by GDAL (e.g. a driver connection
+     * string such as {@code PG:"host=... dbname=..."}). No format validation is applied.
+     * <p>
+     * 直通 GDAL 数据集标识，原样交给 GDAL（如驱动连接串 {@code PG:"host=... dbname=..."}），不做格式校验。
+     */
+    RAW
 }

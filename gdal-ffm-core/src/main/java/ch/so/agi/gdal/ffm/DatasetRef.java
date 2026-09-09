@@ -6,9 +6,11 @@ import java.nio.file.Path;
 import java.util.Objects;
 
 /**
- * Addressing of a GDAL dataset: local path, HTTP(S) URL or explicit GDAL/VSI path.
+ * Addressing of a GDAL dataset: local path, HTTP(S) URL, explicit GDAL/VSI path or
+ * verbatim pass-through identifier.
  * <p>
- * GDAL 数据集寻址：本地路径、HTTP(S) 地址或显式 GDAL/VSI 路径（如 {@code /vsizip/...}）。
+ * GDAL 数据集寻址：本地路径、HTTP(S) 地址、显式 GDAL/VSI 路径（如 {@code /vsizip/...}）
+ * 或原样透传的标识（如 {@code PG:"..."} 驱动连接串）。
  *
  * @param type dataset reference type, must not be {@code null} / 数据集引用类型，不能为 {@code null}
  * @param identifier normalized identifier (absolute local path, URL or VSI string) /
@@ -40,6 +42,9 @@ public record DatasetRef(DatasetRefType type, String identifier) {
             case LOCAL_PATH -> identifier = Path.of(identifier).toAbsolutePath().normalize().toString();
             case HTTP_URL -> validateHttpUrl(identifier);
             case GDAL_VSI -> validateVsi(identifier);
+            case RAW -> {
+                // pass-through: identifier is used verbatim by GDAL / 直通：标识原样交给 GDAL
+            }
             default -> throw new IllegalStateException("Unhandled dataset ref type: " + type);
         }
     }
@@ -102,6 +107,24 @@ public record DatasetRef(DatasetRefType type, String identifier) {
     }
 
     /**
+     * Creates a pass-through reference for a verbatim GDAL dataset identifier, e.g. a driver
+     * connection string such as {@code PG:"host=... dbname=..."}. No format validation is
+     * performed; only {@code null} and blank values are rejected.
+     * <p>
+     * 创建直通引用：标识原样传给 GDAL（如驱动连接串 {@code PG:"host=... dbname=..."}）。
+     * 不做格式校验，仅拒绝 {@code null} 与空白值。
+     *
+     * @param identifier verbatim GDAL identifier, must not be {@code null} or blank /
+     *                   原样 GDAL 标识，不能为 {@code null} 或空白
+     * @return dataset reference, never {@code null} / 数据集引用，永不为 {@code null}
+     * @throws NullPointerException if {@code identifier} is {@code null} / 参数为 {@code null} 时抛出
+     * @throws IllegalArgumentException if {@code identifier} is blank / 参数为空白时抛出
+     */
+    public static DatasetRef raw(String identifier) {
+        return new DatasetRef(DatasetRefType.RAW, identifier);
+    }
+
+    /**
      * Checks whether this reference is a local path.
      * <p>
      * 是否为本地路径引用。
@@ -139,6 +162,7 @@ public record DatasetRef(DatasetRefType type, String identifier) {
             case LOCAL_PATH -> identifier;
             case HTTP_URL -> VSICURL_PREFIX + identifier;
             case GDAL_VSI -> identifier;
+            case RAW -> identifier;
         };
     }
 

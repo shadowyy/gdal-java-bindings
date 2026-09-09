@@ -60,6 +60,68 @@ public final class Gdal {
     }
 
     /**
+     * Translates/converts a vector dataset referenced by {@link DatasetRef}.
+     * <p>
+     * 矢量数据转换（数据集引用版本），支持 {@code /vsizip/...} 输入与
+     * {@code PG:"..."} 等直通连接串输出。
+     *
+     * @param dest output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
+     * @param src input dataset reference, must not be {@code null} / 输入数据集引用，不能为 {@code null}
+     * @param args extra GDALVectorTranslate CLI arguments, e.g. {@code "-f", "GPKG"} /
+     *             透传给 GDAL 的额外参数，例如 {@code "-f", "GPKG"}
+     * @throws NullPointerException if {@code dest} or {@code src} is {@code null} / 参数为 {@code null} 时抛出
+     * @throws GdalException if the native call fails / 本地调用失败时抛出
+     */
+    public static void vectorTranslate(DatasetRef dest, DatasetRef src, String... args) {
+        vectorTranslate(dest, src, GdalConfig.empty(), null, args);
+    }
+
+    /**
+     * Translates a vector dataset with explicit GDAL configuration ({@code --config} equivalent).
+     * <p>
+     * 使用指定 GDAL 配置做矢量转换（{@code --config} 等价能力，线程级作用域，调用结束后自动恢复）。
+     *
+     * @param dest output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
+     * @param src input dataset reference, must not be {@code null} / 输入数据集引用，不能为 {@code null}
+     * @param config GDAL config options, must not be {@code null} / GDAL 配置项，不能为 {@code null}
+     * @param args extra GDALVectorTranslate CLI arguments / 透传给 GDAL 的额外参数
+     * @throws NullPointerException if {@code dest}, {@code src} or {@code config} is {@code null} /
+     *                              参数为 {@code null} 时抛出
+     * @throws GdalException if the native call fails / 本地调用失败时抛出
+     */
+    public static void vectorTranslate(DatasetRef dest, DatasetRef src, GdalConfig config, String... args) {
+        vectorTranslate(dest, src, config, null, args);
+    }
+
+    /**
+     * Full vector-translate overload with config and progress support.
+     * <p>
+     * 最完整的矢量转换重载，支持配置项与进度回调。
+     *
+     * @param dest output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
+     * @param src input dataset reference, must not be {@code null} / 输入数据集引用，不能为 {@code null}
+     * @param config GDAL config options, must not be {@code null} / GDAL 配置项，不能为 {@code null}
+     * @param progress progress callback, may be {@code null} for no reporting /
+     *                 进度回调，可为 {@code null} 表示不监听；返回 {@code false} 可中断任务
+     * @param args extra GDALVectorTranslate CLI arguments / 透传给 GDAL 的额外参数
+     * @throws NullPointerException if {@code dest}, {@code src} or {@code config} is {@code null} /
+     *                              输出/输入/配置为 {@code null} 时抛出
+     * @throws GdalException if the native call fails or is aborted / 本地调用失败或被中断时抛出
+     */
+    public static void vectorTranslate(
+            DatasetRef dest,
+            DatasetRef src,
+            GdalConfig config,
+            ProgressCallback progress,
+            String... args
+    ) {
+        Objects.requireNonNull(dest, "dest must not be null");
+        Objects.requireNonNull(src, "src must not be null");
+        Objects.requireNonNull(config, "config must not be null");
+        GdalRuntime.vectorTranslate(dest, src, config, progress, args);
+    }
+
+    /**
      * Converts a raster dataset (format/type translation, {@code gdal raster convert}).
      * <p>
      * 栅格转换（对应 {@code gdal raster convert}），如格式转换、压缩、类型转换。

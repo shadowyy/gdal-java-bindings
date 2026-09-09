@@ -19,6 +19,8 @@ read_prop() {
   local key="$1"
   local line
   line="$(awk -F= -v wanted="$key" '$1 == wanted { sub(/^[^=]*=/, "", $0); print $0; exit }' "$LOCK_FILE")"
+  # Tolerate CRLF line endings in the lock file (e.g. after a Windows edit).
+  line="${line%$'\r'}"
   if [[ -z "$line" ]]; then
     echo ""
   else
@@ -73,6 +75,7 @@ to_mirror_url() {
 
 archive_suffix() {
   local archive_type="$1"
+  local url="${2:-}"
   case "$archive_type" in
     tar.gz)
       echo ".tar.gz"
@@ -81,7 +84,15 @@ archive_suffix() {
       echo ".zip"
       ;;
     conda)
-      echo ".conda"
+      # Legacy conda-forge builds ship as .tar.bz2 (e.g. libntlm on linux-aarch64).
+      if [[ "${url##*/}" == *.tar.bz2 ]]; then
+        echo ".tar.bz2"
+      else
+        echo ".conda"
+      fi
+      ;;
+    tar.bz2)
+      echo ".tar.bz2"
       ;;
     *)
       echo ""
@@ -355,6 +366,17 @@ PY
         exit 1
       fi
       ;;
+    tar.bz2)
+      # Legacy conda v1 bzip2 tarballs (e.g. libntlm on linux-aarch64): cph's
+      # streaming extractor cannot seek backwards on these, so use plain tar.
+      mkdir -p "$extract_dir"
+      tar -xjf "$archive_file" -C "$extract_dir" || exit 1
+      # conda v1 tarballs wrap the payload in Package/; hoist it like cph does.
+      if [[ -d "$extract_dir/Package" ]]; then
+        cp -R "$extract_dir/Package/." "$extract_dir/"
+        rm -rf "$extract_dir/Package"
+      fi
+      ;;
     *)
       echo "Unsupported archive type: $archive_type" >&2
       exit 1
@@ -404,6 +426,13 @@ normalize_windows_runtime_bins() {
   mkdir -p "$TARGET_DIR/bin"
 
   if [[ -d "$TARGET_DIR/lib" ]]; then
+    # Preserve the GDAL plugin directory layout (lib/gdalplugins -> bin/gdalplugins)
+    # so plugin DLLs match platform.<classifier>.driver_path instead of being flattened.
+    if [[ -d "$TARGET_DIR/lib/gdalplugins" ]]; then
+      mkdir -p "$TARGET_DIR/bin/gdalplugins"
+      cp -R "$TARGET_DIR/lib/gdalplugins/." "$TARGET_DIR/bin/gdalplugins/"
+    fi
+
     while IFS= read -r dll_path; do
       local dll_name
       dll_name="$(basename "$dll_path")"
@@ -411,7 +440,7 @@ normalize_windows_runtime_bins() {
       if [[ ! -f "$target_path" && ! -L "$target_path" ]]; then
         cp "$dll_path" "$target_path"
       fi
-    done < <(find "$TARGET_DIR/lib" -type f -iname '*.dll' -print)
+    done < <(find "$TARGET_DIR/lib" -type f -iname '*.dll' ! -path '*/gdalplugins/*' -print)
   fi
 }
 
@@ -454,6 +483,11 @@ prune_runtime_payload() {
     fi
   else
     rm -rf "$TARGET_DIR/bin"
+
+    # The postgresql package bundles the server-side uuid-ossp extension library
+    # (lib/uuid-ossp.so). It is not referenced by libgdal/libpq, and its own
+    # dependency (libuuid.so.1) is not part of the client closure, so drop it.
+    rm -f "$TARGET_DIR/lib/uuid-ossp.so"
 
     if [[ -d "$TARGET_DIR/lib" ]]; then
       find "$TARGET_DIR/lib" -type f \
@@ -577,7 +611,7 @@ stage_package() {
   normalized_url="$(normalize_url "$url")"
 
   local suffix
-  suffix="$(archive_suffix "$archive_type")"
+  suffix="$(archive_suffix "$archive_type" "$normalized_url")"
   if [[ -z "$suffix" ]]; then
     echo "Unsupported archive type: $archive_type" >&2
     exit 1

@@ -355,7 +355,9 @@ def candidates_for(dep_name: str, subdir: str) -> list[dict]:
     out: list[dict] = []
     for entry in fetch_package_files(dep_name):
         basename = entry.get("basename", "")
-        if not basename.endswith(".conda"):
+        # conda-forge packages ship as .conda (zip) or legacy .tar.bz2;
+        # some subdirs (e.g. linux-aarch64 libntlm) only have .tar.bz2 builds.
+        if not (basename.endswith(".conda") or basename.endswith(".tar.bz2")):
             continue
 
         attrs = entry.get("attrs") or {}
@@ -689,7 +691,8 @@ def resolve_classifier(props: dict[str, str], classifier: str, existing_sha_by_u
 
         lines.append(f"platform.{classifier}.extra_url_{idx}={dep_url}")
         lines.append(f"platform.{classifier}.extra_sha256_{idx}={dep_sha}")
-        lines.append(f"platform.{classifier}.extra_archive_{idx}=conda")
+        archive_type = "tar.bz2" if dep_url.endswith(".tar.bz2") else "conda"
+        lines.append(f"platform.{classifier}.extra_archive_{idx}={archive_type}")
         lines.append(f"platform.{classifier}.extra_strip_prefix_{idx}=.")
 
     return lines
@@ -786,6 +789,6 @@ if args.check:
     print("binaries.lock is up to date.")
     sys.exit(0)
 
-LOCK_FILE.write_text(updated_text, encoding="utf-8")
+LOCK_FILE.write_text(updated_text, encoding="utf-8", newline="\n")
 print(f"Updated {LOCK_FILE}")
 PY

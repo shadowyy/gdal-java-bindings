@@ -1,6 +1,7 @@
 package ch.so.agi.gdal.ffm;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -41,5 +42,42 @@ class DatasetRefTest {
     @Test
     void shouldRejectInvalidVsiPrefix() {
         assertThrows(IllegalArgumentException.class, () -> DatasetRef.gdalVsi("vsimem/example.tif"));
+    }
+
+    @Test
+    void rawShouldKeepPgConnectionStringVerbatim() {
+        String connection = "PG:\"host=192.168.0.112 port=65432 dbname=test user=postgres password=123456\"";
+
+        DatasetRef datasetRef = DatasetRef.raw(connection);
+
+        assertEquals(DatasetRefType.RAW, datasetRef.type());
+        assertEquals(connection, datasetRef.identifier());
+        assertEquals(connection, datasetRef.toGdalIdentifier());
+    }
+
+    @Test
+    void rawShouldKeepChineseIdentifierVerbatim() {
+        DatasetRef datasetRef = DatasetRef.raw("PG:dbname=三亚市 layer=河流管理范围线");
+
+        assertEquals(DatasetRefType.RAW, datasetRef.type());
+        assertEquals("PG:dbname=三亚市 layer=河流管理范围线", datasetRef.toGdalIdentifier());
+    }
+
+    @Test
+    void rawShouldNotBeLocalPath() {
+        DatasetRef datasetRef = DatasetRef.raw("PG:dbname=test");
+
+        assertFalse(datasetRef.isLocalPath());
+        assertThrows(IllegalStateException.class, datasetRef::localPath);
+    }
+
+    @Test
+    void rawShouldRejectBlankIdentifier() {
+        assertThrows(IllegalArgumentException.class, () -> DatasetRef.raw("   "));
+    }
+
+    @Test
+    void rawShouldRejectNullIdentifier() {
+        assertThrows(NullPointerException.class, () -> DatasetRef.raw(null));
     }
 }

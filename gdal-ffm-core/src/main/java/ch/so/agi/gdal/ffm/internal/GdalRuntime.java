@@ -61,8 +61,34 @@ public final class GdalRuntime {
      * @throws GdalException if option creation or translation fails / 选项创建或转换失败时抛出
      */
     public static void vectorTranslate(Path dest, Path src, ProgressCallback progress, String... args) {
+        vectorTranslate(DatasetRef.local(dest), DatasetRef.local(src), GdalConfig.empty(), progress, args);
+    }
+
+    /**
+     * Runs GDALVectorTranslate from dataset references with scoped config options and
+     * optional progress. Config options are applied thread-scoped and restored afterwards.
+     * <p>
+     * 基于数据集引用执行矢量转换（GDALVectorTranslate）：配置项以线程级作用域生效并在调用结束后自动恢复，
+     * 支持可选进度回调。
+     *
+     * @param dest output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
+     * @param src input dataset reference, must not be {@code null} / 输入数据集引用，不能为 {@code null}
+     * @param config GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
+     * @param progress progress callback, may be {@code null} / 进度回调，可为 {@code null}
+     * @param args extra GDALVectorTranslate CLI arguments / 透传的额外命令行参数
+     * @throws NullPointerException if {@code dest}, {@code src} or {@code config} is {@code null} / 参数为 {@code null} 时抛出
+     * @throws GdalException if option creation or translation fails / 选项创建或转换失败时抛出
+     */
+    public static void vectorTranslate(
+            DatasetRef dest,
+            DatasetRef src,
+            GdalConfig config,
+            ProgressCallback progress,
+            String... args
+    ) {
         Objects.requireNonNull(dest, "dest must not be null");
         Objects.requireNonNull(src, "src must not be null");
+        Objects.requireNonNull(config, "config must not be null");
         initialize();
 
         MemorySegment options = MemorySegment.NULL;
@@ -70,7 +96,8 @@ public final class GdalRuntime {
         MemorySegment resultDataset = MemorySegment.NULL;
 
         GdalGenerated.CPLErrorReset();
-        try (Arena arena = Arena.ofConfined();
+        try (GdalConfigScope.ScopedConfigHandle ignored = GdalConfigScope.applyScoped(config);
+             Arena arena = Arena.ofConfined();
              ProgressBridge.ProgressHandle progressHandle = ProgressBridge.create(progress, arena)) {
             MemorySegment argv = CArgv.toCStringArray(args, arena);
             options = GdalGenerated.GDALVectorTranslateOptionsNew(argv, MemorySegment.NULL);
@@ -82,13 +109,13 @@ public final class GdalRuntime {
                 GdalGenerated.GDALVectorTranslateOptionsSetProgress(options, progressHandle.callbackFn(), progressHandle.userData());
             }
 
-            sourceDataset = openDataset(DatasetRef.local(src), GDAL_OF_VECTOR | GDAL_OF_VERBOSE_ERROR, arena);
+            sourceDataset = openDataset(src, GDAL_OF_VECTOR | GDAL_OF_VERBOSE_ERROR, arena);
 
             MemorySegment sources = arena.allocate(ValueLayout.ADDRESS);
             sources.set(ValueLayout.ADDRESS, 0, sourceDataset);
 
             MemorySegment usageError = arena.allocate(ValueLayout.JAVA_INT);
-            MemorySegment destination = arena.allocateFrom(dest.toAbsolutePath().toString());
+            MemorySegment destination = arena.allocateFrom(dest.toGdalIdentifier());
 
             resultDataset = GdalGenerated.GDALVectorTranslate(
                     destination,

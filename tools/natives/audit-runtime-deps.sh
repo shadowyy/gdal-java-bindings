@@ -154,6 +154,9 @@ audit_linux() {
   if command -v readelf >/dev/null 2>&1; then
     local binary
     while IFS= read -r binary; do
+      if is_linker_script "$binary"; then
+        continue
+      fi
       while IFS= read -r dep; do
         local dep_name="$dep"
         if [[ "$dep_name" == */* ]]; then
@@ -178,6 +181,9 @@ audit_linux() {
   if command -v objdump >/dev/null 2>&1; then
     local binary
     while IFS= read -r binary; do
+      if is_linker_script "$binary"; then
+        continue
+      fi
       while IFS= read -r dep; do
         local dep_name
         dep_name="$(trim "$dep")"
@@ -201,8 +207,16 @@ audit_linux() {
 trim() {
   local value="$1"
   value="${value#${value%%[![:space:]]*}}"
-  value="${value%${value##*[![:space:]]}}"
+  value="${value%"${value##*[![:space:]]}"}"
   printf '%s' "$value"
+}
+
+# conda ncurses packages ship libncurses.so / libncursesw.so as GNU ld
+# linker scripts (text files referencing the real .so.6 files), not ELF.
+is_linker_script() {
+  local head
+  head="$(head -c 5 "$1" 2>/dev/null || true)"
+  [[ "$head" == "INPUT" ]]
 }
 
 audit_windows() {

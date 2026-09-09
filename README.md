@@ -77,6 +77,24 @@ Gdal.vectorTranslate(
     "-overwrite"
 );
 
+// Vector translate from a zipped shapefile to PostgreSQL with scoped config options.
+// `--config` equivalents (PG_USE_COPY, SHAPE_ENCODING) go into GdalConfig, not args.
+GdalConfig pgConfig = GdalConfig.empty()
+    .withConfigOption("PG_USE_COPY", "YES")
+    .withConfigOption("SHAPE_ENCODING", "UTF-8");
+
+Gdal.vectorTranslate(
+    DatasetRef.raw("PG:\"host=localhost port=5432 dbname=gdal user=postgres password=***\""),
+    DatasetRef.gdalVsi("/vsizip/D:/data/_矢量_三亚市_三亚市河流管理范围线3857.shp.zip/内层.shp"),
+    pgConfig,
+    "-f", "PostgreSQL",
+    "-nln", "shp_test",
+    "-overwrite",
+    "-lco", "GEOMETRY_NAME=geom",
+    "-lco", "FID=gid",
+    "-lco", "SPATIAL_INDEX=GIST"
+);
+
 String infoJson = Gdal.rasterInfo(Path.of("input.tif"), "--output-format", "json");
 
 String vectorInfoJson = Gdal.vectorInfo(Path.of("input.geojson"), "--output-format", "json");
