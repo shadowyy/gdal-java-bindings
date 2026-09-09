@@ -86,6 +86,15 @@ class GdalIntegrationTest {
     }
 
     @Test
+    void vectorInfoReturnsJsonForVectorDataset() {
+        Path input = testData("sample.geojson");
+
+        String json = Gdal.vectorInfo(input, "--output-format", "json");
+
+        assertTrue(json.contains("\"layers\""), "Expected vector info JSON with layers");
+    }
+
+    @Test
     void rasterMosaicCreatesVirtualMosaic() throws Exception {
         Path input = bundledRaster();
         Path output = outputFile("buildvrt.vrt");

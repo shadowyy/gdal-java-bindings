@@ -79,6 +79,8 @@ Gdal.vectorTranslate(
 
 String infoJson = Gdal.rasterInfo(Path.of("input.tif"), "--output-format", "json");
 
+String vectorInfoJson = Gdal.vectorInfo(Path.of("input.geojson"), "--output-format", "json");
+
 Gdal.rasterConvert(
     Path.of("output-cog.tif"),
     Path.of("input.tif"),

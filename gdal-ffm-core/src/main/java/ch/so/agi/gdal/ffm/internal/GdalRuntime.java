@@ -136,6 +136,30 @@ public final class GdalRuntime {
     }
 
     /**
+     * Returns {@code gdal vector info} output for a dataset.
+     * <p>
+     * 返回数据集的 {@code gdal vector info} 文本输出。
+     *
+     * @param src dataset reference, must not be {@code null} / 数据集引用，不能为 {@code null}
+     * @param config GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
+     * @param args extra CLI arguments / 透传的额外命令行参数
+     * @return info output text, never {@code null} / 信息文本输出，永不为 {@code null}
+     * @throws NullPointerException if {@code src} or {@code config} is {@code null} / 参数为 {@code null} 时抛出
+     * @throws GdalException if the native call fails / 本地调用失败时抛出
+     */
+    public static String vectorInfo(DatasetRef src, GdalConfig config, String... args) {
+        Objects.requireNonNull(src, "src must not be null");
+        Objects.requireNonNull(config, "config must not be null");
+        initialize();
+        return GdalAlgorithmRunner.runForStringOutput(
+                List.of("vector", "info"),
+                config,
+                null,
+                withInputArg(src, args)
+        );
+    }
+
+    /**
      * Clips a raster via {@code gdal raster clip}.
      * <p>
      * 通过 {@code gdal raster clip} 裁剪栅格。

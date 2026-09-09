@@ -233,6 +233,55 @@ public final class Gdal {
     }
 
     /**
+     * Returns {@code gdal vector info} output for a local vector dataset.
+     * <p>
+     * 中文：获取矢量元信息（对应 {@code gdal vector info}），返回文本/JSON 描述。
+     *
+     * @param src input dataset path / 输入数据集路径
+     * @param args extra CLI arguments, e.g. {@code "--format=json"} / 额外参数，例如指定 JSON 输出
+     * @return info output, never {@code null} / 元信息文本，不会为 {@code null}
+     * @throws NullPointerException if {@code src} is {@code null} / 参数为 {@code null} 时抛出
+     * @throws GdalException if the native call fails / 本地调用失败时抛出
+     */
+    public static String vectorInfo(Path src, String... args) {
+        return vectorInfo(DatasetRef.local(src), GdalConfig.empty(), args);
+    }
+
+    /**
+     * Returns {@code gdal vector info} output for an arbitrary dataset reference.
+     * <p>
+     * 中文：获取任意数据集引用（本地路径 / HTTP / VSI）的矢量元信息。
+     *
+     * @param src dataset reference, must not be {@code null} / 数据集引用，不能为 {@code null}
+     * @param args extra CLI arguments / 透传给 GDAL 的额外参数
+     * @return info output, never {@code null} / 元信息文本，不会为 {@code null}
+     * @throws NullPointerException if {@code src} is {@code null} / 参数为 {@code null} 时抛出
+     * @throws GdalException if the native call fails / 本地调用失败时抛出
+     * @see DatasetRef
+     */
+    public static String vectorInfo(DatasetRef src, String... args) {
+        return vectorInfo(src, GdalConfig.empty(), args);
+    }
+
+    /**
+     * Returns {@code gdal vector info} output with explicit GDAL configuration.
+     * <p>
+     * 中文：使用指定 GDAL 配置获取矢量元信息。
+     *
+     * @param src dataset reference, must not be {@code null} / 数据集引用，不能为 {@code null}
+     * @param config GDAL config options, must not be {@code null} / GDAL 配置项，不能为 {@code null}
+     * @param args extra CLI arguments / 透传给 GDAL 的额外参数
+     * @return info output, never {@code null} / 元信息文本，不会为 {@code null}
+     * @throws NullPointerException if any argument is {@code null} / 任一参数为 {@code null} 时抛出
+     * @throws GdalException if the native call fails / 本地调用失败时抛出
+     */
+    public static String vectorInfo(DatasetRef src, GdalConfig config, String... args) {
+        Objects.requireNonNull(src, "src must not be null");
+        Objects.requireNonNull(config, "config must not be null");
+        return GdalRuntime.vectorInfo(src, config, args);
+    }
+
+    /**
      * Converts a raster referenced by {@link DatasetRef}.
      * <p>
      * 栅格转换（数据集引用版本），支持本地路径、HTTP、VSI。
