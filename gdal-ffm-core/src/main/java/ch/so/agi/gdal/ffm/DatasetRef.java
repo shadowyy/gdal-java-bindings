@@ -12,7 +12,7 @@ import java.util.Objects;
  * GDAL 数据集寻址：本地路径、HTTP(S) 地址、显式 GDAL/VSI 路径（如 {@code /vsizip/...}）
  * 或原样透传的标识（如 {@code PG:"..."} 驱动连接串）。
  *
- * @param type dataset reference type, must not be {@code null} / 数据集引用类型，不能为 {@code null}
+ * @param type       dataset reference type, must not be {@code null} / 数据集引用类型，不能为 {@code null}
  * @param identifier normalized identifier (absolute local path, URL or VSI string) /
  *                   归一化标识（本地绝对路径、URL 或 VSI 字符串）
  */
@@ -24,9 +24,9 @@ public record DatasetRef(DatasetRefType type, String identifier) {
      * <p>
      * 规范构造器，做归一化与校验（本地路径转绝对路径、HTTP 校验 scheme、VSI 校验前缀）。
      *
-     * @param type dataset reference type / 数据集引用类型
+     * @param type       dataset reference type / 数据集引用类型
      * @param identifier raw identifier, blank values are rejected / 原始标识，空白不合法
-     * @throws NullPointerException if any argument is {@code null} / 任一参数为 {@code null} 时抛出
+     * @throws NullPointerException     if any argument is {@code null} / 任一参数为 {@code null} 时抛出
      * @throws IllegalArgumentException if the identifier is blank or malformed / 标识为空或格式非法时抛出
      */
     public DatasetRef {
@@ -84,7 +84,7 @@ public record DatasetRef(DatasetRefType type, String identifier) {
      *
      * @param url http/https URL, must not be {@code null} / http/https 地址，不能为 {@code null}
      * @return dataset reference, never {@code null} / 数据集引用，不会为 {@code null}
-     * @throws NullPointerException if {@code url} is {@code null} / 参数为 {@code null} 时抛出
+     * @throws NullPointerException     if {@code url} is {@code null} / 参数为 {@code null} 时抛出
      * @throws IllegalArgumentException if the scheme is not http/https / 非 http/https 时抛出
      */
     public static DatasetRef httpUrl(String url) {
@@ -99,7 +99,7 @@ public record DatasetRef(DatasetRefType type, String identifier) {
      * @param identifier VSI identifier, e.g. {@code "/vsizip/a.zip/a.tif"}, must not be {@code null} /
      *                   VSI 标识，例如 {@code "/vsizip/a.zip/a.tif"}，不能为 {@code null}
      * @return dataset reference, never {@code null} / 数据集引用，不会为 {@code null}
-     * @throws NullPointerException if {@code identifier} is {@code null} / 参数为 {@code null} 时抛出
+     * @throws NullPointerException     if {@code identifier} is {@code null} / 参数为 {@code null} 时抛出
      * @throws IllegalArgumentException if it does not start with {@code /vsi} / 非 {@code /vsi} 开头时抛出
      */
     public static DatasetRef gdalVsi(String identifier) {
@@ -117,7 +117,7 @@ public record DatasetRef(DatasetRefType type, String identifier) {
      * @param identifier verbatim GDAL identifier, must not be {@code null} or blank /
      *                   原样 GDAL 标识，不能为 {@code null} 或空白
      * @return dataset reference, never {@code null} / 数据集引用，永不为 {@code null}
-     * @throws NullPointerException if {@code identifier} is {@code null} / 参数为 {@code null} 时抛出
+     * @throws NullPointerException     if {@code identifier} is {@code null} / 参数为 {@code null} 时抛出
      * @throws IllegalArgumentException if {@code identifier} is blank / 参数为空白时抛出
      */
     public static DatasetRef raw(String identifier) {

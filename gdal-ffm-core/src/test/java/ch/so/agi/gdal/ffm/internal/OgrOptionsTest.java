@@ -1,16 +1,17 @@
 package ch.so.agi.gdal.ffm.internal;
 
+import ch.so.agi.gdal.ffm.OgrFieldType;
+import ch.so.agi.gdal.ffm.OgrOpenOptions;
+import ch.so.agi.gdal.ffm.OgrReaderOptions;
+import org.junit.jupiter.api.Test;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import ch.so.agi.gdal.ffm.OgrFieldType;
-import ch.so.agi.gdal.ffm.OgrOpenOptions;
-import ch.so.agi.gdal.ffm.OgrReaderOptions;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import org.junit.jupiter.api.Test;
 
 class OgrOptionsTest {
     @Test

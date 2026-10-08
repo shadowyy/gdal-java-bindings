@@ -11,6 +11,7 @@ import ch.so.agi.gdal.ffm.OgrLayerReader;
 import ch.so.agi.gdal.ffm.OgrLayerWriteSpec;
 import ch.so.agi.gdal.ffm.OgrLayerWriter;
 import ch.so.agi.gdal.ffm.OgrWriteMode;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;

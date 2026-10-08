@@ -6,35 +6,65 @@ package ch.so.agi.gdal.ffm;
  * OGR 字段类型码（对应本地 {@code OGRFieldType} 枚举）。
  */
 public enum OgrFieldType {
-    /** 32-bit integer. / 32 位整数。 */
+    /**
+     * 32-bit integer. / 32 位整数。
+     */
     INTEGER(0),
-    /** List of 32-bit integers. / 32 位整数列表。 */
+    /**
+     * List of 32-bit integers. / 32 位整数列表。
+     */
     INTEGER_LIST(1),
-    /** Double floating point. / 双精度浮点。 */
+    /**
+     * Double floating point. / 双精度浮点。
+     */
     REAL(2),
-    /** List of doubles. / 双精度浮点列表。 */
+    /**
+     * List of doubles. / 双精度浮点列表。
+     */
     REAL_LIST(3),
-    /** UTF-8 string. / 字符串。 */
+    /**
+     * UTF-8 string. / 字符串。
+     */
     STRING(4),
-    /** List of strings. / 字符串列表。 */
+    /**
+     * List of strings. / 字符串列表。
+     */
     STRING_LIST(5),
-    /** Wide string. / 宽字符串。 */
+    /**
+     * Wide string. / 宽字符串。
+     */
     WIDE_STRING(6),
-    /** List of wide strings. / 宽字符串列表。 */
+    /**
+     * List of wide strings. / 宽字符串列表。
+     */
     WIDE_STRING_LIST(7),
-    /** Raw binary. / 二进制。 */
+    /**
+     * Raw binary. / 二进制。
+     */
     BINARY(8),
-    /** Date ({@code YYYY-MM-DD}). / 日期。 */
+    /**
+     * Date ({@code YYYY-MM-DD}). / 日期。
+     */
     DATE(9),
-    /** Time ({@code HH:MM:SS}). / 时间。 */
+    /**
+     * Time ({@code HH:MM:SS}). / 时间。
+     */
     TIME(10),
-    /** Date and time. / 日期时间。 */
+    /**
+     * Date and time. / 日期时间。
+     */
     DATETIME(11),
-    /** 64-bit integer. / 64 位整数。 */
+    /**
+     * 64-bit integer. / 64 位整数。
+     */
     INTEGER64(12),
-    /** List of 64-bit integers. / 64 位整数列表。 */
+    /**
+     * List of 64-bit integers. / 64 位整数列表。
+     */
     INTEGER64_LIST(13),
-    /** Unknown / unmapped native type. / 未知/未映射的本地类型。 */
+    /**
+     * Unknown / unmapped native type. / 未知/未映射的本地类型。
+     */
     UNKNOWN(-1);
 
     private final int nativeCode;

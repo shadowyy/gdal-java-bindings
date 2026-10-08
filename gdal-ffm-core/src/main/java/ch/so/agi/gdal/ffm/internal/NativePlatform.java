@@ -7,8 +7,8 @@ import java.util.Locale;
  * <p>
  * 当前主机的规范化操作系统、架构与 bundle 分类串。此为内部 API（internal, not public），请勿在业务代码中直接使用。
  *
- * @param os normalized OS name, e.g. {@code linux} / 规范化操作系统名，例如 {@code linux}
- * @param arch normalized architecture, e.g. {@code x86_64} / 规范化架构名，例如 {@code x86_64}
+ * @param os         normalized OS name, e.g. {@code linux} / 规范化操作系统名，例如 {@code linux}
+ * @param arch       normalized architecture, e.g. {@code x86_64} / 规范化架构名，例如 {@code x86_64}
  * @param classifier platform classifier in {@code os-arch} form / {@code os-arch} 形式的平台分类串
  */
 public record NativePlatform(String os, String arch, String classifier) {

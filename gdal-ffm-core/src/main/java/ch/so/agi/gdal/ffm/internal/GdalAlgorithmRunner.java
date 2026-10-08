@@ -3,6 +3,7 @@ package ch.so.agi.gdal.ffm.internal;
 import ch.so.agi.gdal.ffm.GdalConfig;
 import ch.so.agi.gdal.ffm.ProgressCallback;
 import ch.so.agi.gdal.ffm.generated.GdalGenerated;
+
 import java.lang.foreign.Arena;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.ValueLayout;
@@ -41,12 +42,12 @@ final class GdalAlgorithmRunner {
      *
      * @param algorithmPath algorithm path segments, e.g. {@code ["raster", "convert"]}, must not be {@code null} /
      *                      算法路径片段，例如 {@code ["raster", "convert"]}，不能为 {@code null}
-     * @param config GDAL config applied around the call, must not be {@code null} / 调用期间生效的 GDAL 配置，不能为 {@code null}
-     * @param progress progress callback, may be {@code null} for no reporting / 进度回调，可为 {@code null} 表示不监听
-     * @param args CLI-style arguments forwarded to the algorithm, must not be {@code null} / 透传给算法的命令行风格参数，不能为 {@code null}
-     * @throws NullPointerException if {@code algorithmPath}, {@code config} or {@code args} is {@code null} /
-     *                              任一必需参数为 {@code null} 时抛出
-     * @throws IllegalArgumentException if {@code algorithmPath} is empty / {@code algorithmPath} 为空时抛出
+     * @param config        GDAL config applied around the call, must not be {@code null} / 调用期间生效的 GDAL 配置，不能为 {@code null}
+     * @param progress      progress callback, may be {@code null} for no reporting / 进度回调，可为 {@code null} 表示不监听
+     * @param args          CLI-style arguments forwarded to the algorithm, must not be {@code null} / 透传给算法的命令行风格参数，不能为 {@code null}
+     * @throws NullPointerException             if {@code algorithmPath}, {@code config} or {@code args} is {@code null} /
+     *                                          任一必需参数为 {@code null} 时抛出
+     * @throws IllegalArgumentException         if {@code algorithmPath} is empty / {@code algorithmPath} 为空时抛出
      * @throws ch.so.agi.gdal.ffm.GdalException if the native call fails / 本地调用失败时抛出
      */
     static void run(List<String> algorithmPath, GdalConfig config, ProgressCallback progress, List<String> args) {
@@ -59,13 +60,13 @@ final class GdalAlgorithmRunner {
      * 运行算法并返回其首个非空字符串输出，适用于信息查询类算法。
      *
      * @param algorithmPath algorithm path segments, must not be {@code null} / 算法路径片段，不能为 {@code null}
-     * @param config GDAL config applied around the call, must not be {@code null} / 调用期间生效的 GDAL 配置，不能为 {@code null}
-     * @param progress progress callback, may be {@code null} for no reporting / 进度回调，可为 {@code null} 表示不监听
-     * @param args CLI-style arguments forwarded to the algorithm, must not be {@code null} / 透传给算法的命令行风格参数，不能为 {@code null}
+     * @param config        GDAL config applied around the call, must not be {@code null} / 调用期间生效的 GDAL 配置，不能为 {@code null}
+     * @param progress      progress callback, may be {@code null} for no reporting / 进度回调，可为 {@code null} 表示不监听
+     * @param args          CLI-style arguments forwarded to the algorithm, must not be {@code null} / 透传给算法的命令行风格参数，不能为 {@code null}
      * @return first non-blank string output, or {@code ""} when none exists / 首个非空字符串输出，无输出时返回 {@code ""}
-     * @throws NullPointerException if {@code algorithmPath}, {@code config} or {@code args} is {@code null} /
-     *                              任一必需参数为 {@code null} 时抛出
-     * @throws IllegalArgumentException if {@code algorithmPath} is empty / {@code algorithmPath} 为空时抛出
+     * @throws NullPointerException             if {@code algorithmPath}, {@code config} or {@code args} is {@code null} /
+     *                                          任一必需参数为 {@code null} 时抛出
+     * @throws IllegalArgumentException         if {@code algorithmPath} is empty / {@code algorithmPath} 为空时抛出
      * @throws ch.so.agi.gdal.ffm.GdalException if the native call fails / 本地调用失败时抛出
      */
     static String runForStringOutput(
@@ -82,17 +83,17 @@ final class GdalAlgorithmRunner {
      * <p>
      * 单次算法调用的完整流程：实例化、解析参数、运行、读取输出并收尾，失败时释放本地资源。
      *
-     * @param algorithmPath algorithm path segments, must not be {@code null} / 算法路径片段，不能为 {@code null}
-     * @param config GDAL config applied around the call, must not be {@code null} / 调用期间生效的 GDAL 配置，不能为 {@code null}
-     * @param progress progress callback, may be {@code null} / 进度回调，可为 {@code null}
-     * @param args CLI-style arguments forwarded to the algorithm, must not be {@code null} / 透传给算法的命令行风格参数，不能为 {@code null}
+     * @param algorithmPath      algorithm path segments, must not be {@code null} / 算法路径片段，不能为 {@code null}
+     * @param config             GDAL config applied around the call, must not be {@code null} / 调用期间生效的 GDAL 配置，不能为 {@code null}
+     * @param progress           progress callback, may be {@code null} / 进度回调，可为 {@code null}
+     * @param args               CLI-style arguments forwarded to the algorithm, must not be {@code null} / 透传给算法的命令行风格参数，不能为 {@code null}
      * @param expectStringOutput {@code true} to read the first string output, {@code false} to skip it /
      *                           是否读取首个字符串输出，{@code true} 表示读取，{@code false} 表示跳过
      * @return string output when {@code expectStringOutput} is {@code true}, otherwise {@code ""} /
-     *         需要输出时返回字符串结果，否则返回 {@code ""}
-     * @throws NullPointerException if {@code algorithmPath}, {@code config} or {@code args} is {@code null} /
-     *                              任一必需参数为 {@code null} 时抛出
-     * @throws IllegalArgumentException if {@code algorithmPath} is empty / {@code algorithmPath} 为空时抛出
+     * 需要输出时返回字符串结果，否则返回 {@code ""}
+     * @throws NullPointerException             if {@code algorithmPath}, {@code config} or {@code args} is {@code null} /
+     *                                          任一必需参数为 {@code null} 时抛出
+     * @throws IllegalArgumentException         if {@code algorithmPath} is empty / {@code algorithmPath} 为空时抛出
      * @throws ch.so.agi.gdal.ffm.GdalException if any native step fails / 任一本地步骤失败时抛出
      */
     private static String execute(

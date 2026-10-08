@@ -3,7 +3,6 @@ package ch.so.agi.gdal.ffm.internal;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.JarURLConnection;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -105,8 +104,8 @@ final class NativeLoader {
      * 根据给定 manifest 构建 bundle 信息，仅解析路径，不加载任何本地库。
      *
      * @param manifestUrl URL of {@code manifest.json}, must not be {@code null} / {@code manifest.json} 的 URL，不能为 {@code null}
-     * @param manifest parsed manifest, must not be {@code null} / 已解析的 manifest，不能为 {@code null}
-     * @param classifier platform classifier such as {@code linux-x86_64}, must not be {@code null} / 平台分类串，例如 {@code linux-x86_64}，不能为 {@code null}
+     * @param manifest    parsed manifest, must not be {@code null} / 已解析的 manifest，不能为 {@code null}
+     * @param classifier  platform classifier such as {@code linux-x86_64}, must not be {@code null} / 平台分类串，例如 {@code linux-x86_64}，不能为 {@code null}
      * @return resolved bundle info, never {@code null} / 解析后的 bundle 信息，永不为 {@code null}
      */
     static NativeBundleInfo resolveBundleInfo(URL manifestUrl, NativeManifest manifest, String classifier) {
@@ -143,7 +142,7 @@ final class NativeLoader {
      * <p>
      * 在 classpath 上查找指定平台分类串唯一的 {@code manifest.json}。
      *
-     * @param prefix classpath prefix of the platform bundle, must not be {@code null} / 平台 bundle 的 classpath 前缀，不能为 {@code null}
+     * @param prefix     classpath prefix of the platform bundle, must not be {@code null} / 平台 bundle 的 classpath 前缀，不能为 {@code null}
      * @param classifier platform classifier such as {@code linux-x86_64}, must not be {@code null} / 平台分类串，不能为 {@code null}
      * @return manifest URL, never {@code null} / manifest 的 URL，永不为 {@code null}
      * @throws IllegalStateException if zero or multiple manifests are found, or scanning fails / 找不到、找到多个 manifest 或扫描失败时抛出
@@ -173,10 +172,10 @@ final class NativeLoader {
                 throw new IllegalStateException(
                         "Multiple bundled GDAL native resources found for classifier '" + classifier + "': "
                                 + matches
-                                 + ". Add exactly one runtime dependency, either "
-                                 + "ch.so.agi:gdal-ffm-natives:<VERSION>:natives-" + classifier
-                                 + ", ch.so.agi:gdal-ffm-natives-swiss:<VERSION>:natives-" + classifier
-                                 + " or ch.so.agi:gdal-ffm-natives-cn:<VERSION>:natives-" + classifier
+                                + ". Add exactly one runtime dependency, either "
+                                + "ch.so.agi:gdal-ffm-natives:<VERSION>:natives-" + classifier
+                                + ", ch.so.agi:gdal-ffm-natives-swiss:<VERSION>:natives-" + classifier
+                                + " or ch.so.agi:gdal-ffm-natives-cn:<VERSION>:natives-" + classifier
                 );
             }
             return first;
@@ -208,7 +207,7 @@ final class NativeLoader {
      * 返回指定标识与平台分类串对应的解压目录（位于系统临时目录下）。
      *
      * @param extractionIdentity extraction identity, must not be {@code null} / 解压标识，不能为 {@code null}
-     * @param classifier platform classifier, must not be {@code null} / 平台分类串，不能为 {@code null}
+     * @param classifier         platform classifier, must not be {@code null} / 平台分类串，不能为 {@code null}
      * @return extraction directory path, never {@code null} / 解压目录路径，永不为 {@code null}
      */
     private static Path extractionRoot(String extractionIdentity, String classifier) {
@@ -221,9 +220,9 @@ final class NativeLoader {
      * <p>
      * 解析可用的 bundle 根目录；file 协议直接使用源码树，否则按需从 classpath 解压（带完成标记避免重复解压）。
      *
-     * @param manifestUrl URL of {@code manifest.json}, must not be {@code null} / {@code manifest.json} 的 URL，不能为 {@code null}
+     * @param manifestUrl        URL of {@code manifest.json}, must not be {@code null} / {@code manifest.json} 的 URL，不能为 {@code null}
      * @param extractionIdentity extraction identity, must not be {@code null} / 解压标识，不能为 {@code null}
-     * @param classifier platform classifier, must not be {@code null} / 平台分类串，不能为 {@code null}
+     * @param classifier         platform classifier, must not be {@code null} / 平台分类串，不能为 {@code null}
      * @return bundle root directory, never {@code null} / bundle 根目录，永不为 {@code null}
      * @throws IllegalStateException if extraction fails / 解压失败时抛出
      */
@@ -275,7 +274,7 @@ final class NativeLoader {
      * <p>
      * 将 manifest URL 指向的本地 bundle 解压到目标目录，仅支持 jar 与 file 协议。
      *
-     * @param manifestUrl URL of {@code manifest.json}, must not be {@code null} / {@code manifest.json} 的 URL，不能为 {@code null}
+     * @param manifestUrl    URL of {@code manifest.json}, must not be {@code null} / {@code manifest.json} 的 URL，不能为 {@code null}
      * @param extractionRoot target directory, must not be {@code null} / 目标解压目录，不能为 {@code null}
      * @throws IllegalStateException if the protocol is unsupported or extraction fails / 协议不支持或解压失败时抛出
      */
@@ -303,7 +302,7 @@ final class NativeLoader {
      * <p>
      * 从 manifest 所在 JAR 包中解压当前平台 bundle 的全部条目。
      *
-     * @param manifestUrl manifest URL with jar protocol, must not be {@code null} / jar 协议的 manifest URL，不能为 {@code null}
+     * @param manifestUrl    manifest URL with jar protocol, must not be {@code null} / jar 协议的 manifest URL，不能为 {@code null}
      * @param extractionRoot target directory, must not be {@code null} / 目标解压目录，不能为 {@code null}
      * @throws IllegalStateException if extraction fails / 解压失败时抛出
      */
@@ -345,7 +344,7 @@ final class NativeLoader {
      * <p>
      * 从文件系统源码树复制本地 bundle（主要用于本地开发与测试场景）。
      *
-     * @param manifestUrl manifest URL with file protocol, must not be {@code null} / file 协议的 manifest URL，不能为 {@code null}
+     * @param manifestUrl    manifest URL with file protocol, must not be {@code null} / file 协议的 manifest URL，不能为 {@code null}
      * @param extractionRoot target directory, must not be {@code null} / 目标解压目录，不能为 {@code null}
      * @throws IllegalStateException if traversal or copying fails / 遍历或复制失败时抛出
      */
@@ -374,10 +373,10 @@ final class NativeLoader {
      * 通过 {@code System.load} 从解压根目录加载单个本地库；若已被其他类加载器加载则忽略。
      *
      * @param extractionRoot bundle root directory, must not be {@code null} / bundle 根目录，不能为 {@code null}
-     * @param relativePath library path relative to the root, must not be {@code null} / 相对根目录的库路径，不能为 {@code null}
-     * @param sourceField manifest field name used in error messages, must not be {@code null} / 出错信息中引用的 manifest 字段名，不能为 {@code null}
+     * @param relativePath   library path relative to the root, must not be {@code null} / 相对根目录的库路径，不能为 {@code null}
+     * @param sourceField    manifest field name used in error messages, must not be {@code null} / 出错信息中引用的 manifest 字段名，不能为 {@code null}
      * @throws IllegalStateException if the library file is missing / 库文件缺失时抛出
-     * @throws UnsatisfiedLinkError if the native load fails / 本地加载失败时抛出
+     * @throws UnsatisfiedLinkError  if the native load fails / 本地加载失败时抛出
      */
     private static void loadLibrary(Path extractionRoot, String relativePath, String sourceField) {
         Path libPath = safeResolve(extractionRoot, relativePath);
@@ -401,7 +400,7 @@ final class NativeLoader {
      * <p>
      * 判断链接错误是否仅表示该库已被另一个类加载器加载（此种情况可安全忽略）。
      *
-     * @param error the link error, must not be {@code null} / 链接错误，不能为 {@code null}
+     * @param error   the link error, must not be {@code null} / 链接错误，不能为 {@code null}
      * @param libPath the library path that was loaded, must not be {@code null} / 尝试加载的库路径，不能为 {@code null}
      * @return {@code true} if the library is already loaded elsewhere / 若库已在别处加载则返回 {@code true}
      */
@@ -420,7 +419,7 @@ final class NativeLoader {
      * 解析 manifest 中的可选路径；为空或文件不存在时返回 {@code null}。
      *
      * @param extractionRoot bundle root directory, must not be {@code null} / bundle 根目录，不能为 {@code null}
-     * @param relativePath relative path, may be {@code null} / 相对路径，可为 {@code null}
+     * @param relativePath   relative path, may be {@code null} / 相对路径，可为 {@code null}
      * @return resolved path, or {@code null} if absent / 解析后的路径，缺失时为 {@code null}
      */
     private static Path resolveOptional(Path extractionRoot, String relativePath) {
@@ -436,7 +435,7 @@ final class NativeLoader {
      * <p>
      * 解析 manifest 给出的相对路径并拦截目录穿越，保证结果仍在根目录之内。
      *
-     * @param base base directory, must not be {@code null} / 基准目录，不能为 {@code null}
+     * @param base     base directory, must not be {@code null} / 基准目录，不能为 {@code null}
      * @param relative relative path from the manifest, must not be {@code null} / manifest 中的相对路径，不能为 {@code null}
      * @return normalized resolved path, never {@code null} / 规范化后的解析路径，永不为 {@code null}
      * @throws IllegalStateException if the path escapes the base directory / 路径逃逸出基准目录时抛出

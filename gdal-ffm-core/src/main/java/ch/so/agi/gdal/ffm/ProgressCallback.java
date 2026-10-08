@@ -16,7 +16,7 @@ public interface ProgressCallback {
      * 按进度周期性回调。
      *
      * @param complete progress in range {@code [0.0, 1.0]} / 进度，范围 {@code [0.0, 1.0]}
-     * @param message informational text from GDAL, can be empty / GDAL 附带信息，可为空
+     * @param message  informational text from GDAL, can be empty / GDAL 附带信息，可为空
      * @return {@code true} to continue, {@code false} to abort / {@code true} 继续，{@code false} 中断
      */
     boolean onProgress(double complete, String message);

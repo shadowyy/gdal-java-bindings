@@ -2,15 +2,12 @@
 
 package ch.so.agi.gdal.ffm.generated;
 
-import java.lang.invoke.*;
-import java.lang.foreign.*;
-import java.nio.ByteOrder;
-import java.util.*;
-import java.util.function.*;
-import java.util.stream.*;
-
-import static java.lang.foreign.ValueLayout.*;
-import static java.lang.foreign.MemoryLayout.PathElement.*;
+import java.lang.foreign.Arena;
+import java.lang.foreign.FunctionDescriptor;
+import java.lang.foreign.Linker;
+import java.lang.foreign.MemorySegment;
+import java.lang.foreign.SymbolLookup;
+import java.lang.invoke.MethodHandle;
 
 public class GdalGenerated extends GdalGenerated$shared {
 
@@ -25,7 +22,7 @@ public class GdalGenerated extends GdalGenerated$shared {
 
 
     private static class CPLErrorReset {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(    );
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid();
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("CPLErrorReset");
 
@@ -34,9 +31,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void CPLErrorReset()
-     * }
+     *}
      */
     public static FunctionDescriptor CPLErrorReset$descriptor() {
         return CPLErrorReset.DESC;
@@ -44,9 +41,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void CPLErrorReset()
-     * }
+     *}
      */
     public static MethodHandle CPLErrorReset$handle() {
         return CPLErrorReset.HANDLE;
@@ -54,18 +51,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void CPLErrorReset()
-     * }
+     *}
      */
     public static MemorySegment CPLErrorReset$address() {
         return CPLErrorReset.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void CPLErrorReset()
-     * }
+     *}
      */
     public static void CPLErrorReset() {
         var mh$ = CPLErrorReset.HANDLE;
@@ -75,15 +72,15 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact();
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class CPLGetLastErrorNo {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT    );
+                GdalGenerated.C_INT);
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("CPLGetLastErrorNo");
 
@@ -92,9 +89,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * CPLErrorNum CPLGetLastErrorNo()
-     * }
+     *}
      */
     public static FunctionDescriptor CPLGetLastErrorNo$descriptor() {
         return CPLGetLastErrorNo.DESC;
@@ -102,9 +99,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * CPLErrorNum CPLGetLastErrorNo()
-     * }
+     *}
      */
     public static MethodHandle CPLGetLastErrorNo$handle() {
         return CPLGetLastErrorNo.HANDLE;
@@ -112,18 +109,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * CPLErrorNum CPLGetLastErrorNo()
-     * }
+     *}
      */
     public static MemorySegment CPLGetLastErrorNo$address() {
         return CPLGetLastErrorNo.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * CPLErrorNum CPLGetLastErrorNo()
-     * }
+     *}
      */
     public static int CPLGetLastErrorNo() {
         var mh$ = CPLGetLastErrorNo.HANDLE;
@@ -131,17 +128,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("CPLGetLastErrorNo");
             }
-            return (int)mh$.invokeExact();
+            return (int) mh$.invokeExact();
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class CPLGetLastErrorType {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT    );
+                GdalGenerated.C_INT);
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("CPLGetLastErrorType");
 
@@ -150,9 +147,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * CPLErr CPLGetLastErrorType()
-     * }
+     *}
      */
     public static FunctionDescriptor CPLGetLastErrorType$descriptor() {
         return CPLGetLastErrorType.DESC;
@@ -160,9 +157,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * CPLErr CPLGetLastErrorType()
-     * }
+     *}
      */
     public static MethodHandle CPLGetLastErrorType$handle() {
         return CPLGetLastErrorType.HANDLE;
@@ -170,18 +167,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * CPLErr CPLGetLastErrorType()
-     * }
+     *}
      */
     public static MemorySegment CPLGetLastErrorType$address() {
         return CPLGetLastErrorType.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * CPLErr CPLGetLastErrorType()
-     * }
+     *}
      */
     public static int CPLGetLastErrorType() {
         var mh$ = CPLGetLastErrorType.HANDLE;
@@ -189,17 +186,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("CPLGetLastErrorType");
             }
-            return (int)mh$.invokeExact();
+            return (int) mh$.invokeExact();
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class CPLGetLastErrorMsg {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER    );
+                GdalGenerated.C_POINTER);
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("CPLGetLastErrorMsg");
 
@@ -208,9 +205,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *CPLGetLastErrorMsg()
-     * }
+     *}
      */
     public static FunctionDescriptor CPLGetLastErrorMsg$descriptor() {
         return CPLGetLastErrorMsg.DESC;
@@ -218,9 +215,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *CPLGetLastErrorMsg()
-     * }
+     *}
      */
     public static MethodHandle CPLGetLastErrorMsg$handle() {
         return CPLGetLastErrorMsg.HANDLE;
@@ -228,18 +225,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *CPLGetLastErrorMsg()
-     * }
+     *}
      */
     public static MemorySegment CPLGetLastErrorMsg$address() {
         return CPLGetLastErrorMsg.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *CPLGetLastErrorMsg()
-     * }
+     *}
      */
     public static MemorySegment CPLGetLastErrorMsg() {
         var mh$ = CPLGetLastErrorMsg.HANDLE;
@@ -247,17 +244,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("CPLGetLastErrorMsg");
             }
-            return (MemorySegment)mh$.invokeExact();
+            return (MemorySegment) mh$.invokeExact();
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class VSIFree {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("VSIFree");
@@ -267,9 +264,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void VSIFree(void *)
-     * }
+     *}
      */
     public static FunctionDescriptor VSIFree$descriptor() {
         return VSIFree.DESC;
@@ -277,9 +274,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void VSIFree(void *)
-     * }
+     *}
      */
     public static MethodHandle VSIFree$handle() {
         return VSIFree.HANDLE;
@@ -287,18 +284,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void VSIFree(void *)
-     * }
+     *}
      */
     public static MemorySegment VSIFree$address() {
         return VSIFree.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void VSIFree(void *)
-     * }
+     *}
      */
     public static void VSIFree(MemorySegment x0) {
         var mh$ = VSIFree.HANDLE;
@@ -308,19 +305,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_G_CreateFromWkb {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_G_CreateFromWkb");
@@ -330,9 +327,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_G_CreateFromWkb(const void *, OGRSpatialReferenceH, OGRGeometryH *, int)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_G_CreateFromWkb$descriptor() {
         return OGR_G_CreateFromWkb.DESC;
@@ -340,9 +337,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_G_CreateFromWkb(const void *, OGRSpatialReferenceH, OGRGeometryH *, int)
-     * }
+     *}
      */
     public static MethodHandle OGR_G_CreateFromWkb$handle() {
         return OGR_G_CreateFromWkb.HANDLE;
@@ -350,18 +347,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_G_CreateFromWkb(const void *, OGRSpatialReferenceH, OGRGeometryH *, int)
-     * }
+     *}
      */
     public static MemorySegment OGR_G_CreateFromWkb$address() {
         return OGR_G_CreateFromWkb.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_G_CreateFromWkb(const void *, OGRSpatialReferenceH, OGRGeometryH *, int)
-     * }
+     *}
      */
     public static int OGR_G_CreateFromWkb(MemorySegment x0, MemorySegment x1, MemorySegment x2, int x3) {
         var mh$ = OGR_G_CreateFromWkb.HANDLE;
@@ -369,20 +366,20 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_G_CreateFromWkb", x0, x1, x2, x3);
             }
-            return (int)mh$.invokeExact(x0, x1, x2, x3);
+            return (int) mh$.invokeExact(x0, x1, x2, x3);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_G_CreateFromWkt {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_G_CreateFromWkt");
@@ -392,9 +389,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_G_CreateFromWkt(char **, OGRSpatialReferenceH, OGRGeometryH *)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_G_CreateFromWkt$descriptor() {
         return OGR_G_CreateFromWkt.DESC;
@@ -402,9 +399,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_G_CreateFromWkt(char **, OGRSpatialReferenceH, OGRGeometryH *)
-     * }
+     *}
      */
     public static MethodHandle OGR_G_CreateFromWkt$handle() {
         return OGR_G_CreateFromWkt.HANDLE;
@@ -412,18 +409,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_G_CreateFromWkt(char **, OGRSpatialReferenceH, OGRGeometryH *)
-     * }
+     *}
      */
     public static MemorySegment OGR_G_CreateFromWkt$address() {
         return OGR_G_CreateFromWkt.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_G_CreateFromWkt(char **, OGRSpatialReferenceH, OGRGeometryH *)
-     * }
+     *}
      */
     public static int OGR_G_CreateFromWkt(MemorySegment x0, MemorySegment x1, MemorySegment x2) {
         var mh$ = OGR_G_CreateFromWkt.HANDLE;
@@ -431,17 +428,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_G_CreateFromWkt", x0, x1, x2);
             }
-            return (int)mh$.invokeExact(x0, x1, x2);
+            return (int) mh$.invokeExact(x0, x1, x2);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_G_DestroyGeometry {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_G_DestroyGeometry");
@@ -451,9 +448,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_G_DestroyGeometry(OGRGeometryH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_G_DestroyGeometry$descriptor() {
         return OGR_G_DestroyGeometry.DESC;
@@ -461,9 +458,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_G_DestroyGeometry(OGRGeometryH)
-     * }
+     *}
      */
     public static MethodHandle OGR_G_DestroyGeometry$handle() {
         return OGR_G_DestroyGeometry.HANDLE;
@@ -471,18 +468,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_G_DestroyGeometry(OGRGeometryH)
-     * }
+     *}
      */
     public static MemorySegment OGR_G_DestroyGeometry$address() {
         return OGR_G_DestroyGeometry.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_G_DestroyGeometry(OGRGeometryH)
-     * }
+     *}
      */
     public static void OGR_G_DestroyGeometry(MemorySegment x0) {
         var mh$ = OGR_G_DestroyGeometry.HANDLE;
@@ -492,18 +489,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_G_ExportToWkb {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_G_ExportToWkb");
@@ -513,9 +510,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_G_ExportToWkb(OGRGeometryH, OGRwkbByteOrder, unsigned char *)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_G_ExportToWkb$descriptor() {
         return OGR_G_ExportToWkb.DESC;
@@ -523,9 +520,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_G_ExportToWkb(OGRGeometryH, OGRwkbByteOrder, unsigned char *)
-     * }
+     *}
      */
     public static MethodHandle OGR_G_ExportToWkb$handle() {
         return OGR_G_ExportToWkb.HANDLE;
@@ -533,18 +530,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_G_ExportToWkb(OGRGeometryH, OGRwkbByteOrder, unsigned char *)
-     * }
+     *}
      */
     public static MemorySegment OGR_G_ExportToWkb$address() {
         return OGR_G_ExportToWkb.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_G_ExportToWkb(OGRGeometryH, OGRwkbByteOrder, unsigned char *)
-     * }
+     *}
      */
     public static int OGR_G_ExportToWkb(MemorySegment x0, int x1, MemorySegment x2) {
         var mh$ = OGR_G_ExportToWkb.HANDLE;
@@ -552,18 +549,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_G_ExportToWkb", x0, x1, x2);
             }
-            return (int)mh$.invokeExact(x0, x1, x2);
+            return (int) mh$.invokeExact(x0, x1, x2);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_G_WkbSize {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_G_WkbSize");
@@ -573,9 +570,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_G_WkbSize(OGRGeometryH hGeom)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_G_WkbSize$descriptor() {
         return OGR_G_WkbSize.DESC;
@@ -583,9 +580,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_G_WkbSize(OGRGeometryH hGeom)
-     * }
+     *}
      */
     public static MethodHandle OGR_G_WkbSize$handle() {
         return OGR_G_WkbSize.HANDLE;
@@ -593,18 +590,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_G_WkbSize(OGRGeometryH hGeom)
-     * }
+     *}
      */
     public static MemorySegment OGR_G_WkbSize$address() {
         return OGR_G_WkbSize.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_G_WkbSize(OGRGeometryH hGeom)
-     * }
+     *}
      */
     public static int OGR_G_WkbSize(MemorySegment hGeom) {
         var mh$ = OGR_G_WkbSize.HANDLE;
@@ -612,18 +609,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_G_WkbSize", hGeom);
             }
-            return (int)mh$.invokeExact(hGeom);
+            return (int) mh$.invokeExact(hGeom);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_G_GetSpatialReference {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_G_GetSpatialReference");
@@ -633,9 +630,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRSpatialReferenceH OGR_G_GetSpatialReference(OGRGeometryH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_G_GetSpatialReference$descriptor() {
         return OGR_G_GetSpatialReference.DESC;
@@ -643,9 +640,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRSpatialReferenceH OGR_G_GetSpatialReference(OGRGeometryH)
-     * }
+     *}
      */
     public static MethodHandle OGR_G_GetSpatialReference$handle() {
         return OGR_G_GetSpatialReference.HANDLE;
@@ -653,18 +650,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRSpatialReferenceH OGR_G_GetSpatialReference(OGRGeometryH)
-     * }
+     *}
      */
     public static MemorySegment OGR_G_GetSpatialReference$address() {
         return OGR_G_GetSpatialReference.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRSpatialReferenceH OGR_G_GetSpatialReference(OGRGeometryH)
-     * }
+     *}
      */
     public static MemorySegment OGR_G_GetSpatialReference(MemorySegment x0) {
         var mh$ = OGR_G_GetSpatialReference.HANDLE;
@@ -672,19 +669,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_G_GetSpatialReference", x0);
             }
-            return (MemorySegment)mh$.invokeExact(x0);
+            return (MemorySegment) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_Fld_Create {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_Fld_Create");
@@ -694,9 +691,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFieldDefnH OGR_Fld_Create(const char *, OGRFieldType)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_Fld_Create$descriptor() {
         return OGR_Fld_Create.DESC;
@@ -704,9 +701,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFieldDefnH OGR_Fld_Create(const char *, OGRFieldType)
-     * }
+     *}
      */
     public static MethodHandle OGR_Fld_Create$handle() {
         return OGR_Fld_Create.HANDLE;
@@ -714,18 +711,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFieldDefnH OGR_Fld_Create(const char *, OGRFieldType)
-     * }
+     *}
      */
     public static MemorySegment OGR_Fld_Create$address() {
         return OGR_Fld_Create.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFieldDefnH OGR_Fld_Create(const char *, OGRFieldType)
-     * }
+     *}
      */
     public static MemorySegment OGR_Fld_Create(MemorySegment x0, int x1) {
         var mh$ = OGR_Fld_Create.HANDLE;
@@ -733,17 +730,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_Fld_Create", x0, x1);
             }
-            return (MemorySegment)mh$.invokeExact(x0, x1);
+            return (MemorySegment) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_Fld_Destroy {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_Fld_Destroy");
@@ -753,9 +750,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_Fld_Destroy(OGRFieldDefnH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_Fld_Destroy$descriptor() {
         return OGR_Fld_Destroy.DESC;
@@ -763,9 +760,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_Fld_Destroy(OGRFieldDefnH)
-     * }
+     *}
      */
     public static MethodHandle OGR_Fld_Destroy$handle() {
         return OGR_Fld_Destroy.HANDLE;
@@ -773,18 +770,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_Fld_Destroy(OGRFieldDefnH)
-     * }
+     *}
      */
     public static MemorySegment OGR_Fld_Destroy$address() {
         return OGR_Fld_Destroy.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_Fld_Destroy(OGRFieldDefnH)
-     * }
+     *}
      */
     public static void OGR_Fld_Destroy(MemorySegment x0) {
         var mh$ = OGR_Fld_Destroy.HANDLE;
@@ -794,16 +791,16 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_Fld_GetNameRef {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_Fld_GetNameRef");
@@ -813,9 +810,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OGR_Fld_GetNameRef(OGRFieldDefnH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_Fld_GetNameRef$descriptor() {
         return OGR_Fld_GetNameRef.DESC;
@@ -823,9 +820,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OGR_Fld_GetNameRef(OGRFieldDefnH)
-     * }
+     *}
      */
     public static MethodHandle OGR_Fld_GetNameRef$handle() {
         return OGR_Fld_GetNameRef.HANDLE;
@@ -833,18 +830,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OGR_Fld_GetNameRef(OGRFieldDefnH)
-     * }
+     *}
      */
     public static MemorySegment OGR_Fld_GetNameRef$address() {
         return OGR_Fld_GetNameRef.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OGR_Fld_GetNameRef(OGRFieldDefnH)
-     * }
+     *}
      */
     public static MemorySegment OGR_Fld_GetNameRef(MemorySegment x0) {
         var mh$ = OGR_Fld_GetNameRef.HANDLE;
@@ -852,18 +849,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_Fld_GetNameRef", x0);
             }
-            return (MemorySegment)mh$.invokeExact(x0);
+            return (MemorySegment) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_Fld_GetType {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_Fld_GetType");
@@ -873,9 +870,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFieldType OGR_Fld_GetType(OGRFieldDefnH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_Fld_GetType$descriptor() {
         return OGR_Fld_GetType.DESC;
@@ -883,9 +880,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFieldType OGR_Fld_GetType(OGRFieldDefnH)
-     * }
+     *}
      */
     public static MethodHandle OGR_Fld_GetType$handle() {
         return OGR_Fld_GetType.HANDLE;
@@ -893,18 +890,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFieldType OGR_Fld_GetType(OGRFieldDefnH)
-     * }
+     *}
      */
     public static MemorySegment OGR_Fld_GetType$address() {
         return OGR_Fld_GetType.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFieldType OGR_Fld_GetType(OGRFieldDefnH)
-     * }
+     *}
      */
     public static int OGR_Fld_GetType(MemorySegment x0) {
         var mh$ = OGR_Fld_GetType.HANDLE;
@@ -912,18 +909,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_Fld_GetType", x0);
             }
-            return (int)mh$.invokeExact(x0);
+            return (int) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_FD_GetFieldCount {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_FD_GetFieldCount");
@@ -933,9 +930,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_FD_GetFieldCount(OGRFeatureDefnH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_FD_GetFieldCount$descriptor() {
         return OGR_FD_GetFieldCount.DESC;
@@ -943,9 +940,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_FD_GetFieldCount(OGRFeatureDefnH)
-     * }
+     *}
      */
     public static MethodHandle OGR_FD_GetFieldCount$handle() {
         return OGR_FD_GetFieldCount.HANDLE;
@@ -953,18 +950,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_FD_GetFieldCount(OGRFeatureDefnH)
-     * }
+     *}
      */
     public static MemorySegment OGR_FD_GetFieldCount$address() {
         return OGR_FD_GetFieldCount.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_FD_GetFieldCount(OGRFeatureDefnH)
-     * }
+     *}
      */
     public static int OGR_FD_GetFieldCount(MemorySegment x0) {
         var mh$ = OGR_FD_GetFieldCount.HANDLE;
@@ -972,19 +969,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_FD_GetFieldCount", x0);
             }
-            return (int)mh$.invokeExact(x0);
+            return (int) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_FD_GetFieldDefn {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_FD_GetFieldDefn");
@@ -994,9 +991,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFieldDefnH OGR_FD_GetFieldDefn(OGRFeatureDefnH, int)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_FD_GetFieldDefn$descriptor() {
         return OGR_FD_GetFieldDefn.DESC;
@@ -1004,9 +1001,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFieldDefnH OGR_FD_GetFieldDefn(OGRFeatureDefnH, int)
-     * }
+     *}
      */
     public static MethodHandle OGR_FD_GetFieldDefn$handle() {
         return OGR_FD_GetFieldDefn.HANDLE;
@@ -1014,18 +1011,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFieldDefnH OGR_FD_GetFieldDefn(OGRFeatureDefnH, int)
-     * }
+     *}
      */
     public static MemorySegment OGR_FD_GetFieldDefn$address() {
         return OGR_FD_GetFieldDefn.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFieldDefnH OGR_FD_GetFieldDefn(OGRFeatureDefnH, int)
-     * }
+     *}
      */
     public static MemorySegment OGR_FD_GetFieldDefn(MemorySegment x0, int x1) {
         var mh$ = OGR_FD_GetFieldDefn.HANDLE;
@@ -1033,19 +1030,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_FD_GetFieldDefn", x0, x1);
             }
-            return (MemorySegment)mh$.invokeExact(x0, x1);
+            return (MemorySegment) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_FD_GetGeomFieldIndex {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_FD_GetGeomFieldIndex");
@@ -1055,9 +1052,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_FD_GetGeomFieldIndex(OGRFeatureDefnH hFDefn, const char *pszName)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_FD_GetGeomFieldIndex$descriptor() {
         return OGR_FD_GetGeomFieldIndex.DESC;
@@ -1065,9 +1062,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_FD_GetGeomFieldIndex(OGRFeatureDefnH hFDefn, const char *pszName)
-     * }
+     *}
      */
     public static MethodHandle OGR_FD_GetGeomFieldIndex$handle() {
         return OGR_FD_GetGeomFieldIndex.HANDLE;
@@ -1075,18 +1072,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_FD_GetGeomFieldIndex(OGRFeatureDefnH hFDefn, const char *pszName)
-     * }
+     *}
      */
     public static MemorySegment OGR_FD_GetGeomFieldIndex$address() {
         return OGR_FD_GetGeomFieldIndex.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_FD_GetGeomFieldIndex(OGRFeatureDefnH hFDefn, const char *pszName)
-     * }
+     *}
      */
     public static int OGR_FD_GetGeomFieldIndex(MemorySegment hFDefn, MemorySegment pszName) {
         var mh$ = OGR_FD_GetGeomFieldIndex.HANDLE;
@@ -1094,18 +1091,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_FD_GetGeomFieldIndex", hFDefn, pszName);
             }
-            return (int)mh$.invokeExact(hFDefn, pszName);
+            return (int) mh$.invokeExact(hFDefn, pszName);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_F_Create {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_F_Create");
@@ -1115,9 +1112,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFeatureH OGR_F_Create(OGRFeatureDefnH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_F_Create$descriptor() {
         return OGR_F_Create.DESC;
@@ -1125,9 +1122,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFeatureH OGR_F_Create(OGRFeatureDefnH)
-     * }
+     *}
      */
     public static MethodHandle OGR_F_Create$handle() {
         return OGR_F_Create.HANDLE;
@@ -1135,18 +1132,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFeatureH OGR_F_Create(OGRFeatureDefnH)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_Create$address() {
         return OGR_F_Create.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFeatureH OGR_F_Create(OGRFeatureDefnH)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_Create(MemorySegment x0) {
         var mh$ = OGR_F_Create.HANDLE;
@@ -1154,17 +1151,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_F_Create", x0);
             }
-            return (MemorySegment)mh$.invokeExact(x0);
+            return (MemorySegment) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_F_Destroy {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_F_Destroy");
@@ -1174,9 +1171,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_Destroy(OGRFeatureH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_F_Destroy$descriptor() {
         return OGR_F_Destroy.DESC;
@@ -1184,9 +1181,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_Destroy(OGRFeatureH)
-     * }
+     *}
      */
     public static MethodHandle OGR_F_Destroy$handle() {
         return OGR_F_Destroy.HANDLE;
@@ -1194,18 +1191,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_Destroy(OGRFeatureH)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_Destroy$address() {
         return OGR_F_Destroy.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_Destroy(OGRFeatureH)
-     * }
+     *}
      */
     public static void OGR_F_Destroy(MemorySegment x0) {
         var mh$ = OGR_F_Destroy.HANDLE;
@@ -1215,17 +1212,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_F_SetGeometry {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_F_SetGeometry");
@@ -1235,9 +1232,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_F_SetGeometry(OGRFeatureH, OGRGeometryH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_F_SetGeometry$descriptor() {
         return OGR_F_SetGeometry.DESC;
@@ -1245,9 +1242,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_F_SetGeometry(OGRFeatureH, OGRGeometryH)
-     * }
+     *}
      */
     public static MethodHandle OGR_F_SetGeometry$handle() {
         return OGR_F_SetGeometry.HANDLE;
@@ -1255,18 +1252,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_F_SetGeometry(OGRFeatureH, OGRGeometryH)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_SetGeometry$address() {
         return OGR_F_SetGeometry.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_F_SetGeometry(OGRFeatureH, OGRGeometryH)
-     * }
+     *}
      */
     public static int OGR_F_SetGeometry(MemorySegment x0, MemorySegment x1) {
         var mh$ = OGR_F_SetGeometry.HANDLE;
@@ -1274,18 +1271,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_F_SetGeometry", x0, x1);
             }
-            return (int)mh$.invokeExact(x0, x1);
+            return (int) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_F_GetGeometryRef {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_F_GetGeometryRef");
@@ -1295,9 +1292,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRGeometryH OGR_F_GetGeometryRef(OGRFeatureH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_F_GetGeometryRef$descriptor() {
         return OGR_F_GetGeometryRef.DESC;
@@ -1305,9 +1302,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRGeometryH OGR_F_GetGeometryRef(OGRFeatureH)
-     * }
+     *}
      */
     public static MethodHandle OGR_F_GetGeometryRef$handle() {
         return OGR_F_GetGeometryRef.HANDLE;
@@ -1315,18 +1312,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRGeometryH OGR_F_GetGeometryRef(OGRFeatureH)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_GetGeometryRef$address() {
         return OGR_F_GetGeometryRef.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRGeometryH OGR_F_GetGeometryRef(OGRFeatureH)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_GetGeometryRef(MemorySegment x0) {
         var mh$ = OGR_F_GetGeometryRef.HANDLE;
@@ -1334,19 +1331,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_F_GetGeometryRef", x0);
             }
-            return (MemorySegment)mh$.invokeExact(x0);
+            return (MemorySegment) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_F_GetFieldIndex {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_F_GetFieldIndex");
@@ -1356,9 +1353,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_F_GetFieldIndex(OGRFeatureH, const char *)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_F_GetFieldIndex$descriptor() {
         return OGR_F_GetFieldIndex.DESC;
@@ -1366,9 +1363,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_F_GetFieldIndex(OGRFeatureH, const char *)
-     * }
+     *}
      */
     public static MethodHandle OGR_F_GetFieldIndex$handle() {
         return OGR_F_GetFieldIndex.HANDLE;
@@ -1376,18 +1373,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_F_GetFieldIndex(OGRFeatureH, const char *)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_GetFieldIndex$address() {
         return OGR_F_GetFieldIndex.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_F_GetFieldIndex(OGRFeatureH, const char *)
-     * }
+     *}
      */
     public static int OGR_F_GetFieldIndex(MemorySegment x0, MemorySegment x1) {
         var mh$ = OGR_F_GetFieldIndex.HANDLE;
@@ -1395,19 +1392,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_F_GetFieldIndex", x0, x1);
             }
-            return (int)mh$.invokeExact(x0, x1);
+            return (int) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_F_IsFieldSetAndNotNull {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_F_IsFieldSetAndNotNull");
@@ -1417,9 +1414,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_F_IsFieldSetAndNotNull(OGRFeatureH, int)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_F_IsFieldSetAndNotNull$descriptor() {
         return OGR_F_IsFieldSetAndNotNull.DESC;
@@ -1427,9 +1424,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_F_IsFieldSetAndNotNull(OGRFeatureH, int)
-     * }
+     *}
      */
     public static MethodHandle OGR_F_IsFieldSetAndNotNull$handle() {
         return OGR_F_IsFieldSetAndNotNull.HANDLE;
@@ -1437,18 +1434,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_F_IsFieldSetAndNotNull(OGRFeatureH, int)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_IsFieldSetAndNotNull$address() {
         return OGR_F_IsFieldSetAndNotNull.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_F_IsFieldSetAndNotNull(OGRFeatureH, int)
-     * }
+     *}
      */
     public static int OGR_F_IsFieldSetAndNotNull(MemorySegment x0, int x1) {
         var mh$ = OGR_F_IsFieldSetAndNotNull.HANDLE;
@@ -1456,18 +1453,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_F_IsFieldSetAndNotNull", x0, x1);
             }
-            return (int)mh$.invokeExact(x0, x1);
+            return (int) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_F_SetFieldNull {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_F_SetFieldNull");
@@ -1477,9 +1474,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_SetFieldNull(OGRFeatureH, int)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_F_SetFieldNull$descriptor() {
         return OGR_F_SetFieldNull.DESC;
@@ -1487,9 +1484,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_SetFieldNull(OGRFeatureH, int)
-     * }
+     *}
      */
     public static MethodHandle OGR_F_SetFieldNull$handle() {
         return OGR_F_SetFieldNull.HANDLE;
@@ -1497,18 +1494,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_SetFieldNull(OGRFeatureH, int)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_SetFieldNull$address() {
         return OGR_F_SetFieldNull.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_SetFieldNull(OGRFeatureH, int)
-     * }
+     *}
      */
     public static void OGR_F_SetFieldNull(MemorySegment x0, int x1) {
         var mh$ = OGR_F_SetFieldNull.HANDLE;
@@ -1518,17 +1515,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_F_GetFieldAsInteger64 {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_LONG_LONG,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT
+                GdalGenerated.C_LONG_LONG,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_F_GetFieldAsInteger64");
@@ -1538,9 +1535,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GIntBig OGR_F_GetFieldAsInteger64(OGRFeatureH, int)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_F_GetFieldAsInteger64$descriptor() {
         return OGR_F_GetFieldAsInteger64.DESC;
@@ -1548,9 +1545,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GIntBig OGR_F_GetFieldAsInteger64(OGRFeatureH, int)
-     * }
+     *}
      */
     public static MethodHandle OGR_F_GetFieldAsInteger64$handle() {
         return OGR_F_GetFieldAsInteger64.HANDLE;
@@ -1558,18 +1555,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GIntBig OGR_F_GetFieldAsInteger64(OGRFeatureH, int)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_GetFieldAsInteger64$address() {
         return OGR_F_GetFieldAsInteger64.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GIntBig OGR_F_GetFieldAsInteger64(OGRFeatureH, int)
-     * }
+     *}
      */
     public static long OGR_F_GetFieldAsInteger64(MemorySegment x0, int x1) {
         var mh$ = OGR_F_GetFieldAsInteger64.HANDLE;
@@ -1577,19 +1574,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_F_GetFieldAsInteger64", x0, x1);
             }
-            return (long)mh$.invokeExact(x0, x1);
+            return (long) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_F_GetFieldAsDouble {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_DOUBLE,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT
+                GdalGenerated.C_DOUBLE,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_F_GetFieldAsDouble");
@@ -1599,9 +1596,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * double OGR_F_GetFieldAsDouble(OGRFeatureH, int)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_F_GetFieldAsDouble$descriptor() {
         return OGR_F_GetFieldAsDouble.DESC;
@@ -1609,9 +1606,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * double OGR_F_GetFieldAsDouble(OGRFeatureH, int)
-     * }
+     *}
      */
     public static MethodHandle OGR_F_GetFieldAsDouble$handle() {
         return OGR_F_GetFieldAsDouble.HANDLE;
@@ -1619,18 +1616,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * double OGR_F_GetFieldAsDouble(OGRFeatureH, int)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_GetFieldAsDouble$address() {
         return OGR_F_GetFieldAsDouble.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * double OGR_F_GetFieldAsDouble(OGRFeatureH, int)
-     * }
+     *}
      */
     public static double OGR_F_GetFieldAsDouble(MemorySegment x0, int x1) {
         var mh$ = OGR_F_GetFieldAsDouble.HANDLE;
@@ -1638,19 +1635,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_F_GetFieldAsDouble", x0, x1);
             }
-            return (double)mh$.invokeExact(x0, x1);
+            return (double) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_F_GetFieldAsString {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_F_GetFieldAsString");
@@ -1660,9 +1657,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OGR_F_GetFieldAsString(OGRFeatureH, int)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_F_GetFieldAsString$descriptor() {
         return OGR_F_GetFieldAsString.DESC;
@@ -1670,9 +1667,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OGR_F_GetFieldAsString(OGRFeatureH, int)
-     * }
+     *}
      */
     public static MethodHandle OGR_F_GetFieldAsString$handle() {
         return OGR_F_GetFieldAsString.HANDLE;
@@ -1680,18 +1677,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OGR_F_GetFieldAsString(OGRFeatureH, int)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_GetFieldAsString$address() {
         return OGR_F_GetFieldAsString.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OGR_F_GetFieldAsString(OGRFeatureH, int)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_GetFieldAsString(MemorySegment x0, int x1) {
         var mh$ = OGR_F_GetFieldAsString.HANDLE;
@@ -1699,19 +1696,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_F_GetFieldAsString", x0, x1);
             }
-            return (MemorySegment)mh$.invokeExact(x0, x1);
+            return (MemorySegment) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_F_SetFieldInteger64 {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT,
-            GdalGenerated.C_LONG_LONG
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT,
+                GdalGenerated.C_LONG_LONG
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_F_SetFieldInteger64");
@@ -1721,9 +1718,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_SetFieldInteger64(OGRFeatureH, int, GIntBig)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_F_SetFieldInteger64$descriptor() {
         return OGR_F_SetFieldInteger64.DESC;
@@ -1731,9 +1728,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_SetFieldInteger64(OGRFeatureH, int, GIntBig)
-     * }
+     *}
      */
     public static MethodHandle OGR_F_SetFieldInteger64$handle() {
         return OGR_F_SetFieldInteger64.HANDLE;
@@ -1741,18 +1738,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_SetFieldInteger64(OGRFeatureH, int, GIntBig)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_SetFieldInteger64$address() {
         return OGR_F_SetFieldInteger64.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_SetFieldInteger64(OGRFeatureH, int, GIntBig)
-     * }
+     *}
      */
     public static void OGR_F_SetFieldInteger64(MemorySegment x0, int x1, long x2) {
         var mh$ = OGR_F_SetFieldInteger64.HANDLE;
@@ -1762,17 +1759,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(x0, x1, x2);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_F_SetFieldDouble {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT,
-            GdalGenerated.C_DOUBLE
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT,
+                GdalGenerated.C_DOUBLE
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_F_SetFieldDouble");
@@ -1782,9 +1779,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_SetFieldDouble(OGRFeatureH, int, double)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_F_SetFieldDouble$descriptor() {
         return OGR_F_SetFieldDouble.DESC;
@@ -1792,9 +1789,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_SetFieldDouble(OGRFeatureH, int, double)
-     * }
+     *}
      */
     public static MethodHandle OGR_F_SetFieldDouble$handle() {
         return OGR_F_SetFieldDouble.HANDLE;
@@ -1802,18 +1799,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_SetFieldDouble(OGRFeatureH, int, double)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_SetFieldDouble$address() {
         return OGR_F_SetFieldDouble.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_SetFieldDouble(OGRFeatureH, int, double)
-     * }
+     *}
      */
     public static void OGR_F_SetFieldDouble(MemorySegment x0, int x1, double x2) {
         var mh$ = OGR_F_SetFieldDouble.HANDLE;
@@ -1823,17 +1820,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(x0, x1, x2);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_F_SetFieldString {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_F_SetFieldString");
@@ -1843,9 +1840,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_SetFieldString(OGRFeatureH, int, const char *)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_F_SetFieldString$descriptor() {
         return OGR_F_SetFieldString.DESC;
@@ -1853,9 +1850,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_SetFieldString(OGRFeatureH, int, const char *)
-     * }
+     *}
      */
     public static MethodHandle OGR_F_SetFieldString$handle() {
         return OGR_F_SetFieldString.HANDLE;
@@ -1863,18 +1860,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_SetFieldString(OGRFeatureH, int, const char *)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_SetFieldString$address() {
         return OGR_F_SetFieldString.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_F_SetFieldString(OGRFeatureH, int, const char *)
-     * }
+     *}
      */
     public static void OGR_F_SetFieldString(MemorySegment x0, int x1, MemorySegment x2) {
         var mh$ = OGR_F_SetFieldString.HANDLE;
@@ -1884,18 +1881,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(x0, x1, x2);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_F_SetGeomField {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_F_SetGeomField");
@@ -1905,9 +1902,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_F_SetGeomField(OGRFeatureH hFeat, int iField, OGRGeometryH hGeom)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_F_SetGeomField$descriptor() {
         return OGR_F_SetGeomField.DESC;
@@ -1915,9 +1912,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_F_SetGeomField(OGRFeatureH hFeat, int iField, OGRGeometryH hGeom)
-     * }
+     *}
      */
     public static MethodHandle OGR_F_SetGeomField$handle() {
         return OGR_F_SetGeomField.HANDLE;
@@ -1925,18 +1922,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_F_SetGeomField(OGRFeatureH hFeat, int iField, OGRGeometryH hGeom)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_SetGeomField$address() {
         return OGR_F_SetGeomField.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_F_SetGeomField(OGRFeatureH hFeat, int iField, OGRGeometryH hGeom)
-     * }
+     *}
      */
     public static int OGR_F_SetGeomField(MemorySegment hFeat, int iField, MemorySegment hGeom) {
         var mh$ = OGR_F_SetGeomField.HANDLE;
@@ -1944,18 +1941,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_F_SetGeomField", hFeat, iField, hGeom);
             }
-            return (int)mh$.invokeExact(hFeat, iField, hGeom);
+            return (int) mh$.invokeExact(hFeat, iField, hGeom);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_F_GetFID {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_LONG_LONG,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_LONG_LONG,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_F_GetFID");
@@ -1965,9 +1962,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GIntBig OGR_F_GetFID(OGRFeatureH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_F_GetFID$descriptor() {
         return OGR_F_GetFID.DESC;
@@ -1975,9 +1972,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GIntBig OGR_F_GetFID(OGRFeatureH)
-     * }
+     *}
      */
     public static MethodHandle OGR_F_GetFID$handle() {
         return OGR_F_GetFID.HANDLE;
@@ -1985,18 +1982,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GIntBig OGR_F_GetFID(OGRFeatureH)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_GetFID$address() {
         return OGR_F_GetFID.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GIntBig OGR_F_GetFID(OGRFeatureH)
-     * }
+     *}
      */
     public static long OGR_F_GetFID(MemorySegment x0) {
         var mh$ = OGR_F_GetFID.HANDLE;
@@ -2004,19 +2001,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_F_GetFID", x0);
             }
-            return (long)mh$.invokeExact(x0);
+            return (long) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_F_SetFID {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_LONG_LONG
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_LONG_LONG
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_F_SetFID");
@@ -2026,9 +2023,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_F_SetFID(OGRFeatureH, GIntBig)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_F_SetFID$descriptor() {
         return OGR_F_SetFID.DESC;
@@ -2036,9 +2033,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_F_SetFID(OGRFeatureH, GIntBig)
-     * }
+     *}
      */
     public static MethodHandle OGR_F_SetFID$handle() {
         return OGR_F_SetFID.HANDLE;
@@ -2046,18 +2043,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_F_SetFID(OGRFeatureH, GIntBig)
-     * }
+     *}
      */
     public static MemorySegment OGR_F_SetFID$address() {
         return OGR_F_SetFID.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_F_SetFID(OGRFeatureH, GIntBig)
-     * }
+     *}
      */
     public static int OGR_F_SetFID(MemorySegment x0, long x1) {
         var mh$ = OGR_F_SetFID.HANDLE;
@@ -2065,18 +2062,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_F_SetFID", x0, x1);
             }
-            return (int)mh$.invokeExact(x0, x1);
+            return (int) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_L_GetName {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_L_GetName");
@@ -2086,9 +2083,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OGR_L_GetName(OGRLayerH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_L_GetName$descriptor() {
         return OGR_L_GetName.DESC;
@@ -2096,9 +2093,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OGR_L_GetName(OGRLayerH)
-     * }
+     *}
      */
     public static MethodHandle OGR_L_GetName$handle() {
         return OGR_L_GetName.HANDLE;
@@ -2106,18 +2103,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OGR_L_GetName(OGRLayerH)
-     * }
+     *}
      */
     public static MemorySegment OGR_L_GetName$address() {
         return OGR_L_GetName.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OGR_L_GetName(OGRLayerH)
-     * }
+     *}
      */
     public static MemorySegment OGR_L_GetName(MemorySegment x0) {
         var mh$ = OGR_L_GetName.HANDLE;
@@ -2125,18 +2122,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_L_GetName", x0);
             }
-            return (MemorySegment)mh$.invokeExact(x0);
+            return (MemorySegment) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_L_GetGeomType {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_L_GetGeomType");
@@ -2146,9 +2143,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRwkbGeometryType OGR_L_GetGeomType(OGRLayerH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_L_GetGeomType$descriptor() {
         return OGR_L_GetGeomType.DESC;
@@ -2156,9 +2153,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRwkbGeometryType OGR_L_GetGeomType(OGRLayerH)
-     * }
+     *}
      */
     public static MethodHandle OGR_L_GetGeomType$handle() {
         return OGR_L_GetGeomType.HANDLE;
@@ -2166,18 +2163,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRwkbGeometryType OGR_L_GetGeomType(OGRLayerH)
-     * }
+     *}
      */
     public static MemorySegment OGR_L_GetGeomType$address() {
         return OGR_L_GetGeomType.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRwkbGeometryType OGR_L_GetGeomType(OGRLayerH)
-     * }
+     *}
      */
     public static int OGR_L_GetGeomType(MemorySegment x0) {
         var mh$ = OGR_L_GetGeomType.HANDLE;
@@ -2185,18 +2182,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_L_GetGeomType", x0);
             }
-            return (int)mh$.invokeExact(x0);
+            return (int) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_L_SetSpatialFilter {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_L_SetSpatialFilter");
@@ -2206,9 +2203,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_L_SetSpatialFilter(OGRLayerH, OGRGeometryH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_L_SetSpatialFilter$descriptor() {
         return OGR_L_SetSpatialFilter.DESC;
@@ -2216,9 +2213,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_L_SetSpatialFilter(OGRLayerH, OGRGeometryH)
-     * }
+     *}
      */
     public static MethodHandle OGR_L_SetSpatialFilter$handle() {
         return OGR_L_SetSpatialFilter.HANDLE;
@@ -2226,18 +2223,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_L_SetSpatialFilter(OGRLayerH, OGRGeometryH)
-     * }
+     *}
      */
     public static MemorySegment OGR_L_SetSpatialFilter$address() {
         return OGR_L_SetSpatialFilter.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_L_SetSpatialFilter(OGRLayerH, OGRGeometryH)
-     * }
+     *}
      */
     public static void OGR_L_SetSpatialFilter(MemorySegment x0, MemorySegment x1) {
         var mh$ = OGR_L_SetSpatialFilter.HANDLE;
@@ -2247,19 +2244,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_L_SetSpatialFilterRect {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_DOUBLE,
-            GdalGenerated.C_DOUBLE,
-            GdalGenerated.C_DOUBLE,
-            GdalGenerated.C_DOUBLE
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_DOUBLE,
+                GdalGenerated.C_DOUBLE,
+                GdalGenerated.C_DOUBLE,
+                GdalGenerated.C_DOUBLE
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_L_SetSpatialFilterRect");
@@ -2269,9 +2266,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_L_SetSpatialFilterRect(OGRLayerH, double, double, double, double)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_L_SetSpatialFilterRect$descriptor() {
         return OGR_L_SetSpatialFilterRect.DESC;
@@ -2279,9 +2276,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_L_SetSpatialFilterRect(OGRLayerH, double, double, double, double)
-     * }
+     *}
      */
     public static MethodHandle OGR_L_SetSpatialFilterRect$handle() {
         return OGR_L_SetSpatialFilterRect.HANDLE;
@@ -2289,18 +2286,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_L_SetSpatialFilterRect(OGRLayerH, double, double, double, double)
-     * }
+     *}
      */
     public static MemorySegment OGR_L_SetSpatialFilterRect$address() {
         return OGR_L_SetSpatialFilterRect.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_L_SetSpatialFilterRect(OGRLayerH, double, double, double, double)
-     * }
+     *}
      */
     public static void OGR_L_SetSpatialFilterRect(MemorySegment x0, double x1, double x2, double x3, double x4) {
         var mh$ = OGR_L_SetSpatialFilterRect.HANDLE;
@@ -2310,17 +2307,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(x0, x1, x2, x3, x4);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_L_SetAttributeFilter {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_L_SetAttributeFilter");
@@ -2330,9 +2327,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_L_SetAttributeFilter(OGRLayerH, const char *)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_L_SetAttributeFilter$descriptor() {
         return OGR_L_SetAttributeFilter.DESC;
@@ -2340,9 +2337,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_L_SetAttributeFilter(OGRLayerH, const char *)
-     * }
+     *}
      */
     public static MethodHandle OGR_L_SetAttributeFilter$handle() {
         return OGR_L_SetAttributeFilter.HANDLE;
@@ -2350,18 +2347,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_L_SetAttributeFilter(OGRLayerH, const char *)
-     * }
+     *}
      */
     public static MemorySegment OGR_L_SetAttributeFilter$address() {
         return OGR_L_SetAttributeFilter.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_L_SetAttributeFilter(OGRLayerH, const char *)
-     * }
+     *}
      */
     public static int OGR_L_SetAttributeFilter(MemorySegment x0, MemorySegment x1) {
         var mh$ = OGR_L_SetAttributeFilter.HANDLE;
@@ -2369,17 +2366,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_L_SetAttributeFilter", x0, x1);
             }
-            return (int)mh$.invokeExact(x0, x1);
+            return (int) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_L_ResetReading {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_L_ResetReading");
@@ -2389,9 +2386,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_L_ResetReading(OGRLayerH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_L_ResetReading$descriptor() {
         return OGR_L_ResetReading.DESC;
@@ -2399,9 +2396,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_L_ResetReading(OGRLayerH)
-     * }
+     *}
      */
     public static MethodHandle OGR_L_ResetReading$handle() {
         return OGR_L_ResetReading.HANDLE;
@@ -2409,18 +2406,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_L_ResetReading(OGRLayerH)
-     * }
+     *}
      */
     public static MemorySegment OGR_L_ResetReading$address() {
         return OGR_L_ResetReading.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void OGR_L_ResetReading(OGRLayerH)
-     * }
+     *}
      */
     public static void OGR_L_ResetReading(MemorySegment x0) {
         var mh$ = OGR_L_ResetReading.HANDLE;
@@ -2430,16 +2427,16 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_L_GetNextFeature {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_L_GetNextFeature");
@@ -2449,9 +2446,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFeatureH OGR_L_GetNextFeature(OGRLayerH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_L_GetNextFeature$descriptor() {
         return OGR_L_GetNextFeature.DESC;
@@ -2459,9 +2456,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFeatureH OGR_L_GetNextFeature(OGRLayerH)
-     * }
+     *}
      */
     public static MethodHandle OGR_L_GetNextFeature$handle() {
         return OGR_L_GetNextFeature.HANDLE;
@@ -2469,18 +2466,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFeatureH OGR_L_GetNextFeature(OGRLayerH)
-     * }
+     *}
      */
     public static MemorySegment OGR_L_GetNextFeature$address() {
         return OGR_L_GetNextFeature.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFeatureH OGR_L_GetNextFeature(OGRLayerH)
-     * }
+     *}
      */
     public static MemorySegment OGR_L_GetNextFeature(MemorySegment x0) {
         var mh$ = OGR_L_GetNextFeature.HANDLE;
@@ -2488,19 +2485,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_L_GetNextFeature", x0);
             }
-            return (MemorySegment)mh$.invokeExact(x0);
+            return (MemorySegment) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_L_CreateFeature {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_L_CreateFeature");
@@ -2510,9 +2507,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_L_CreateFeature(OGRLayerH, OGRFeatureH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_L_CreateFeature$descriptor() {
         return OGR_L_CreateFeature.DESC;
@@ -2520,9 +2517,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_L_CreateFeature(OGRLayerH, OGRFeatureH)
-     * }
+     *}
      */
     public static MethodHandle OGR_L_CreateFeature$handle() {
         return OGR_L_CreateFeature.HANDLE;
@@ -2530,18 +2527,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_L_CreateFeature(OGRLayerH, OGRFeatureH)
-     * }
+     *}
      */
     public static MemorySegment OGR_L_CreateFeature$address() {
         return OGR_L_CreateFeature.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_L_CreateFeature(OGRLayerH, OGRFeatureH)
-     * }
+     *}
      */
     public static int OGR_L_CreateFeature(MemorySegment x0, MemorySegment x1) {
         var mh$ = OGR_L_CreateFeature.HANDLE;
@@ -2549,18 +2546,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_L_CreateFeature", x0, x1);
             }
-            return (int)mh$.invokeExact(x0, x1);
+            return (int) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_L_GetLayerDefn {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_L_GetLayerDefn");
@@ -2570,9 +2567,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFeatureDefnH OGR_L_GetLayerDefn(OGRLayerH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_L_GetLayerDefn$descriptor() {
         return OGR_L_GetLayerDefn.DESC;
@@ -2580,9 +2577,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFeatureDefnH OGR_L_GetLayerDefn(OGRLayerH)
-     * }
+     *}
      */
     public static MethodHandle OGR_L_GetLayerDefn$handle() {
         return OGR_L_GetLayerDefn.HANDLE;
@@ -2590,18 +2587,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFeatureDefnH OGR_L_GetLayerDefn(OGRLayerH)
-     * }
+     *}
      */
     public static MemorySegment OGR_L_GetLayerDefn$address() {
         return OGR_L_GetLayerDefn.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRFeatureDefnH OGR_L_GetLayerDefn(OGRLayerH)
-     * }
+     *}
      */
     public static MemorySegment OGR_L_GetLayerDefn(MemorySegment x0) {
         var mh$ = OGR_L_GetLayerDefn.HANDLE;
@@ -2609,20 +2606,20 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_L_GetLayerDefn", x0);
             }
-            return (MemorySegment)mh$.invokeExact(x0);
+            return (MemorySegment) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_L_CreateField {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_L_CreateField");
@@ -2632,9 +2629,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_L_CreateField(OGRLayerH, OGRFieldDefnH, int)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_L_CreateField$descriptor() {
         return OGR_L_CreateField.DESC;
@@ -2642,9 +2639,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_L_CreateField(OGRLayerH, OGRFieldDefnH, int)
-     * }
+     *}
      */
     public static MethodHandle OGR_L_CreateField$handle() {
         return OGR_L_CreateField.HANDLE;
@@ -2652,18 +2649,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_L_CreateField(OGRLayerH, OGRFieldDefnH, int)
-     * }
+     *}
      */
     public static MemorySegment OGR_L_CreateField$address() {
         return OGR_L_CreateField.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_L_CreateField(OGRLayerH, OGRFieldDefnH, int)
-     * }
+     *}
      */
     public static int OGR_L_CreateField(MemorySegment x0, MemorySegment x1, int x2) {
         var mh$ = OGR_L_CreateField.HANDLE;
@@ -2671,19 +2668,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_L_CreateField", x0, x1, x2);
             }
-            return (int)mh$.invokeExact(x0, x1, x2);
+            return (int) mh$.invokeExact(x0, x1, x2);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_L_SetIgnoredFields {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_L_SetIgnoredFields");
@@ -2693,9 +2690,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_L_SetIgnoredFields(OGRLayerH, const char **)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_L_SetIgnoredFields$descriptor() {
         return OGR_L_SetIgnoredFields.DESC;
@@ -2703,9 +2700,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_L_SetIgnoredFields(OGRLayerH, const char **)
-     * }
+     *}
      */
     public static MethodHandle OGR_L_SetIgnoredFields$handle() {
         return OGR_L_SetIgnoredFields.HANDLE;
@@ -2713,18 +2710,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_L_SetIgnoredFields(OGRLayerH, const char **)
-     * }
+     *}
      */
     public static MemorySegment OGR_L_SetIgnoredFields$address() {
         return OGR_L_SetIgnoredFields.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_L_SetIgnoredFields(OGRLayerH, const char **)
-     * }
+     *}
      */
     public static int OGR_L_SetIgnoredFields(MemorySegment x0, MemorySegment x1) {
         var mh$ = OGR_L_SetIgnoredFields.HANDLE;
@@ -2732,19 +2729,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_L_SetIgnoredFields", x0, x1);
             }
-            return (int)mh$.invokeExact(x0, x1);
+            return (int) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_DS_DeleteLayer {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_DS_DeleteLayer");
@@ -2754,9 +2751,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_DS_DeleteLayer(OGRDataSourceH, int)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_DS_DeleteLayer$descriptor() {
         return OGR_DS_DeleteLayer.DESC;
@@ -2764,9 +2761,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_DS_DeleteLayer(OGRDataSourceH, int)
-     * }
+     *}
      */
     public static MethodHandle OGR_DS_DeleteLayer$handle() {
         return OGR_DS_DeleteLayer.HANDLE;
@@ -2774,18 +2771,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_DS_DeleteLayer(OGRDataSourceH, int)
-     * }
+     *}
      */
     public static MemorySegment OGR_DS_DeleteLayer$address() {
         return OGR_DS_DeleteLayer.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_DS_DeleteLayer(OGRDataSourceH, int)
-     * }
+     *}
      */
     public static int OGR_DS_DeleteLayer(MemorySegment x0, int x1) {
         var mh$ = OGR_DS_DeleteLayer.HANDLE;
@@ -2793,22 +2790,22 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_DS_DeleteLayer", x0, x1);
             }
-            return (int)mh$.invokeExact(x0, x1);
+            return (int) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_DS_CreateLayer {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_DS_CreateLayer");
@@ -2818,9 +2815,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRLayerH OGR_DS_CreateLayer(OGRDataSourceH, const char *, OGRSpatialReferenceH, OGRwkbGeometryType, char **)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_DS_CreateLayer$descriptor() {
         return OGR_DS_CreateLayer.DESC;
@@ -2828,9 +2825,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRLayerH OGR_DS_CreateLayer(OGRDataSourceH, const char *, OGRSpatialReferenceH, OGRwkbGeometryType, char **)
-     * }
+     *}
      */
     public static MethodHandle OGR_DS_CreateLayer$handle() {
         return OGR_DS_CreateLayer.HANDLE;
@@ -2838,18 +2835,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRLayerH OGR_DS_CreateLayer(OGRDataSourceH, const char *, OGRSpatialReferenceH, OGRwkbGeometryType, char **)
-     * }
+     *}
      */
     public static MemorySegment OGR_DS_CreateLayer$address() {
         return OGR_DS_CreateLayer.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRLayerH OGR_DS_CreateLayer(OGRDataSourceH, const char *, OGRSpatialReferenceH, OGRwkbGeometryType, char **)
-     * }
+     *}
      */
     public static MemorySegment OGR_DS_CreateLayer(MemorySegment x0, MemorySegment x1, MemorySegment x2, int x3, MemorySegment x4) {
         var mh$ = OGR_DS_CreateLayer.HANDLE;
@@ -2857,18 +2854,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_DS_CreateLayer", x0, x1, x2, x3, x4);
             }
-            return (MemorySegment)mh$.invokeExact(x0, x1, x2, x3, x4);
+            return (MemorySegment) mh$.invokeExact(x0, x1, x2, x3, x4);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_Dr_GetName {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_Dr_GetName");
@@ -2878,9 +2875,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OGR_Dr_GetName(OGRSFDriverH)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_Dr_GetName$descriptor() {
         return OGR_Dr_GetName.DESC;
@@ -2888,9 +2885,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OGR_Dr_GetName(OGRSFDriverH)
-     * }
+     *}
      */
     public static MethodHandle OGR_Dr_GetName$handle() {
         return OGR_Dr_GetName.HANDLE;
@@ -2898,18 +2895,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OGR_Dr_GetName(OGRSFDriverH)
-     * }
+     *}
      */
     public static MemorySegment OGR_Dr_GetName$address() {
         return OGR_Dr_GetName.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OGR_Dr_GetName(OGRSFDriverH)
-     * }
+     *}
      */
     public static MemorySegment OGR_Dr_GetName(MemorySegment x0) {
         var mh$ = OGR_Dr_GetName.HANDLE;
@@ -2917,19 +2914,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_Dr_GetName", x0);
             }
-            return (MemorySegment)mh$.invokeExact(x0);
+            return (MemorySegment) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_Dr_TestCapability {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_Dr_TestCapability");
@@ -2939,9 +2936,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_Dr_TestCapability(OGRSFDriverH, const char *)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_Dr_TestCapability$descriptor() {
         return OGR_Dr_TestCapability.DESC;
@@ -2949,9 +2946,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_Dr_TestCapability(OGRSFDriverH, const char *)
-     * }
+     *}
      */
     public static MethodHandle OGR_Dr_TestCapability$handle() {
         return OGR_Dr_TestCapability.HANDLE;
@@ -2959,18 +2956,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_Dr_TestCapability(OGRSFDriverH, const char *)
-     * }
+     *}
      */
     public static MemorySegment OGR_Dr_TestCapability$address() {
         return OGR_Dr_TestCapability.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGR_Dr_TestCapability(OGRSFDriverH, const char *)
-     * }
+     *}
      */
     public static int OGR_Dr_TestCapability(MemorySegment x0, MemorySegment x1) {
         var mh$ = OGR_Dr_TestCapability.HANDLE;
@@ -2978,20 +2975,20 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_Dr_TestCapability", x0, x1);
             }
-            return (int)mh$.invokeExact(x0, x1);
+            return (int) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_Dr_CreateDataSource {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_Dr_CreateDataSource");
@@ -3001,9 +2998,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRDataSourceH OGR_Dr_CreateDataSource(OGRSFDriverH, const char *, char **)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_Dr_CreateDataSource$descriptor() {
         return OGR_Dr_CreateDataSource.DESC;
@@ -3011,9 +3008,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRDataSourceH OGR_Dr_CreateDataSource(OGRSFDriverH, const char *, char **)
-     * }
+     *}
      */
     public static MethodHandle OGR_Dr_CreateDataSource$handle() {
         return OGR_Dr_CreateDataSource.HANDLE;
@@ -3021,18 +3018,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRDataSourceH OGR_Dr_CreateDataSource(OGRSFDriverH, const char *, char **)
-     * }
+     *}
      */
     public static MemorySegment OGR_Dr_CreateDataSource$address() {
         return OGR_Dr_CreateDataSource.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRDataSourceH OGR_Dr_CreateDataSource(OGRSFDriverH, const char *, char **)
-     * }
+     *}
      */
     public static MemorySegment OGR_Dr_CreateDataSource(MemorySegment x0, MemorySegment x1, MemorySegment x2) {
         var mh$ = OGR_Dr_CreateDataSource.HANDLE;
@@ -3040,19 +3037,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_Dr_CreateDataSource", x0, x1, x2);
             }
-            return (MemorySegment)mh$.invokeExact(x0, x1, x2);
+            return (MemorySegment) mh$.invokeExact(x0, x1, x2);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGR_Dr_DeleteDataSource {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGR_Dr_DeleteDataSource");
@@ -3062,9 +3059,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_Dr_DeleteDataSource(OGRSFDriverH, const char *)
-     * }
+     *}
      */
     public static FunctionDescriptor OGR_Dr_DeleteDataSource$descriptor() {
         return OGR_Dr_DeleteDataSource.DESC;
@@ -3072,9 +3069,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_Dr_DeleteDataSource(OGRSFDriverH, const char *)
-     * }
+     *}
      */
     public static MethodHandle OGR_Dr_DeleteDataSource$handle() {
         return OGR_Dr_DeleteDataSource.HANDLE;
@@ -3082,18 +3079,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_Dr_DeleteDataSource(OGRSFDriverH, const char *)
-     * }
+     *}
      */
     public static MemorySegment OGR_Dr_DeleteDataSource$address() {
         return OGR_Dr_DeleteDataSource.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRErr OGR_Dr_DeleteDataSource(OGRSFDriverH, const char *)
-     * }
+     *}
      */
     public static int OGR_Dr_DeleteDataSource(MemorySegment x0, MemorySegment x1) {
         var mh$ = OGR_Dr_DeleteDataSource.HANDLE;
@@ -3101,17 +3098,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGR_Dr_DeleteDataSource", x0, x1);
             }
-            return (int)mh$.invokeExact(x0, x1);
+            return (int) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGRGetDriverCount {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT    );
+                GdalGenerated.C_INT);
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGRGetDriverCount");
 
@@ -3120,9 +3117,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGRGetDriverCount()
-     * }
+     *}
      */
     public static FunctionDescriptor OGRGetDriverCount$descriptor() {
         return OGRGetDriverCount.DESC;
@@ -3130,9 +3127,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGRGetDriverCount()
-     * }
+     *}
      */
     public static MethodHandle OGRGetDriverCount$handle() {
         return OGRGetDriverCount.HANDLE;
@@ -3140,18 +3137,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGRGetDriverCount()
-     * }
+     *}
      */
     public static MemorySegment OGRGetDriverCount$address() {
         return OGRGetDriverCount.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int OGRGetDriverCount()
-     * }
+     *}
      */
     public static int OGRGetDriverCount() {
         var mh$ = OGRGetDriverCount.HANDLE;
@@ -3159,18 +3156,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGRGetDriverCount");
             }
-            return (int)mh$.invokeExact();
+            return (int) mh$.invokeExact();
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGRGetDriver {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGRGetDriver");
@@ -3180,9 +3177,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRSFDriverH OGRGetDriver(int)
-     * }
+     *}
      */
     public static FunctionDescriptor OGRGetDriver$descriptor() {
         return OGRGetDriver.DESC;
@@ -3190,9 +3187,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRSFDriverH OGRGetDriver(int)
-     * }
+     *}
      */
     public static MethodHandle OGRGetDriver$handle() {
         return OGRGetDriver.HANDLE;
@@ -3200,18 +3197,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRSFDriverH OGRGetDriver(int)
-     * }
+     *}
      */
     public static MemorySegment OGRGetDriver$address() {
         return OGRGetDriver.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRSFDriverH OGRGetDriver(int)
-     * }
+     *}
      */
     public static MemorySegment OGRGetDriver(int x0) {
         var mh$ = OGRGetDriver.HANDLE;
@@ -3219,18 +3216,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGRGetDriver", x0);
             }
-            return (MemorySegment)mh$.invokeExact(x0);
+            return (MemorySegment) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OGRGetDriverByName {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OGRGetDriverByName");
@@ -3240,9 +3237,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRSFDriverH OGRGetDriverByName(const char *)
-     * }
+     *}
      */
     public static FunctionDescriptor OGRGetDriverByName$descriptor() {
         return OGRGetDriverByName.DESC;
@@ -3250,9 +3247,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRSFDriverH OGRGetDriverByName(const char *)
-     * }
+     *}
      */
     public static MethodHandle OGRGetDriverByName$handle() {
         return OGRGetDriverByName.HANDLE;
@@ -3260,18 +3257,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRSFDriverH OGRGetDriverByName(const char *)
-     * }
+     *}
      */
     public static MemorySegment OGRGetDriverByName$address() {
         return OGRGetDriverByName.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRSFDriverH OGRGetDriverByName(const char *)
-     * }
+     *}
      */
     public static MemorySegment OGRGetDriverByName(MemorySegment x0) {
         var mh$ = OGRGetDriverByName.HANDLE;
@@ -3279,16 +3276,16 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OGRGetDriverByName", x0);
             }
-            return (MemorySegment)mh$.invokeExact(x0);
+            return (MemorySegment) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALAllRegister {
-        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(    );
+        public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid();
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALAllRegister");
 
@@ -3297,9 +3294,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALAllRegister()
-     * }
+     *}
      */
     public static FunctionDescriptor GDALAllRegister$descriptor() {
         return GDALAllRegister.DESC;
@@ -3307,9 +3304,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALAllRegister()
-     * }
+     *}
      */
     public static MethodHandle GDALAllRegister$handle() {
         return GDALAllRegister.HANDLE;
@@ -3317,18 +3314,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALAllRegister()
-     * }
+     *}
      */
     public static MemorySegment GDALAllRegister$address() {
         return GDALAllRegister.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALAllRegister()
-     * }
+     *}
      */
     public static void GDALAllRegister() {
         var mh$ = GDALAllRegister.HANDLE;
@@ -3338,20 +3335,20 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact();
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALOpenEx {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALOpenEx");
@@ -3361,9 +3358,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALDatasetH GDALOpenEx(const char *pszFilename, unsigned int nOpenFlags, const char *const *papszAllowedDrivers, const char *const *papszOpenOptions, const char *const *papszSiblingFiles)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALOpenEx$descriptor() {
         return GDALOpenEx.DESC;
@@ -3371,9 +3368,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALDatasetH GDALOpenEx(const char *pszFilename, unsigned int nOpenFlags, const char *const *papszAllowedDrivers, const char *const *papszOpenOptions, const char *const *papszSiblingFiles)
-     * }
+     *}
      */
     public static MethodHandle GDALOpenEx$handle() {
         return GDALOpenEx.HANDLE;
@@ -3381,18 +3378,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALDatasetH GDALOpenEx(const char *pszFilename, unsigned int nOpenFlags, const char *const *papszAllowedDrivers, const char *const *papszOpenOptions, const char *const *papszSiblingFiles)
-     * }
+     *}
      */
     public static MemorySegment GDALOpenEx$address() {
         return GDALOpenEx.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALDatasetH GDALOpenEx(const char *pszFilename, unsigned int nOpenFlags, const char *const *papszAllowedDrivers, const char *const *papszOpenOptions, const char *const *papszSiblingFiles)
-     * }
+     *}
      */
     public static MemorySegment GDALOpenEx(MemorySegment pszFilename, int nOpenFlags, MemorySegment papszAllowedDrivers, MemorySegment papszOpenOptions, MemorySegment papszSiblingFiles) {
         var mh$ = GDALOpenEx.HANDLE;
@@ -3400,18 +3397,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALOpenEx", pszFilename, nOpenFlags, papszAllowedDrivers, papszOpenOptions, papszSiblingFiles);
             }
-            return (MemorySegment)mh$.invokeExact(pszFilename, nOpenFlags, papszAllowedDrivers, papszOpenOptions, papszSiblingFiles);
+            return (MemorySegment) mh$.invokeExact(pszFilename, nOpenFlags, papszAllowedDrivers, papszOpenOptions, papszSiblingFiles);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALGetDriverByName {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALGetDriverByName");
@@ -3421,9 +3418,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALDriverH GDALGetDriverByName(const char *)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALGetDriverByName$descriptor() {
         return GDALGetDriverByName.DESC;
@@ -3431,9 +3428,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALDriverH GDALGetDriverByName(const char *)
-     * }
+     *}
      */
     public static MethodHandle GDALGetDriverByName$handle() {
         return GDALGetDriverByName.HANDLE;
@@ -3441,18 +3438,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALDriverH GDALGetDriverByName(const char *)
-     * }
+     *}
      */
     public static MemorySegment GDALGetDriverByName$address() {
         return GDALGetDriverByName.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALDriverH GDALGetDriverByName(const char *)
-     * }
+     *}
      */
     public static MemorySegment GDALGetDriverByName(MemorySegment x0) {
         var mh$ = GDALGetDriverByName.HANDLE;
@@ -3460,17 +3457,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALGetDriverByName", x0);
             }
-            return (MemorySegment)mh$.invokeExact(x0);
+            return (MemorySegment) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALGetDriverCount {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT    );
+                GdalGenerated.C_INT);
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALGetDriverCount");
 
@@ -3479,9 +3476,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int GDALGetDriverCount()
-     * }
+     *}
      */
     public static FunctionDescriptor GDALGetDriverCount$descriptor() {
         return GDALGetDriverCount.DESC;
@@ -3489,9 +3486,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int GDALGetDriverCount()
-     * }
+     *}
      */
     public static MethodHandle GDALGetDriverCount$handle() {
         return GDALGetDriverCount.HANDLE;
@@ -3499,18 +3496,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int GDALGetDriverCount()
-     * }
+     *}
      */
     public static MemorySegment GDALGetDriverCount$address() {
         return GDALGetDriverCount.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int GDALGetDriverCount()
-     * }
+     *}
      */
     public static int GDALGetDriverCount() {
         var mh$ = GDALGetDriverCount.HANDLE;
@@ -3518,18 +3515,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALGetDriverCount");
             }
-            return (int)mh$.invokeExact();
+            return (int) mh$.invokeExact();
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALGetDriver {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALGetDriver");
@@ -3539,9 +3536,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALDriverH GDALGetDriver(int)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALGetDriver$descriptor() {
         return GDALGetDriver.DESC;
@@ -3549,9 +3546,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALDriverH GDALGetDriver(int)
-     * }
+     *}
      */
     public static MethodHandle GDALGetDriver$handle() {
         return GDALGetDriver.HANDLE;
@@ -3559,18 +3556,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALDriverH GDALGetDriver(int)
-     * }
+     *}
      */
     public static MemorySegment GDALGetDriver$address() {
         return GDALGetDriver.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALDriverH GDALGetDriver(int)
-     * }
+     *}
      */
     public static MemorySegment GDALGetDriver(int x0) {
         var mh$ = GDALGetDriver.HANDLE;
@@ -3578,18 +3575,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALGetDriver", x0);
             }
-            return (MemorySegment)mh$.invokeExact(x0);
+            return (MemorySegment) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALGetDriverShortName {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALGetDriverShortName");
@@ -3599,9 +3596,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *GDALGetDriverShortName(GDALDriverH)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALGetDriverShortName$descriptor() {
         return GDALGetDriverShortName.DESC;
@@ -3609,9 +3606,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *GDALGetDriverShortName(GDALDriverH)
-     * }
+     *}
      */
     public static MethodHandle GDALGetDriverShortName$handle() {
         return GDALGetDriverShortName.HANDLE;
@@ -3619,18 +3616,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *GDALGetDriverShortName(GDALDriverH)
-     * }
+     *}
      */
     public static MemorySegment GDALGetDriverShortName$address() {
         return GDALGetDriverShortName.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *GDALGetDriverShortName(GDALDriverH)
-     * }
+     *}
      */
     public static MemorySegment GDALGetDriverShortName(MemorySegment x0) {
         var mh$ = GDALGetDriverShortName.HANDLE;
@@ -3638,18 +3635,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALGetDriverShortName", x0);
             }
-            return (MemorySegment)mh$.invokeExact(x0);
+            return (MemorySegment) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALGetDriverLongName {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALGetDriverLongName");
@@ -3659,9 +3656,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *GDALGetDriverLongName(GDALDriverH)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALGetDriverLongName$descriptor() {
         return GDALGetDriverLongName.DESC;
@@ -3669,9 +3666,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *GDALGetDriverLongName(GDALDriverH)
-     * }
+     *}
      */
     public static MethodHandle GDALGetDriverLongName$handle() {
         return GDALGetDriverLongName.HANDLE;
@@ -3679,18 +3676,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *GDALGetDriverLongName(GDALDriverH)
-     * }
+     *}
      */
     public static MemorySegment GDALGetDriverLongName$address() {
         return GDALGetDriverLongName.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *GDALGetDriverLongName(GDALDriverH)
-     * }
+     *}
      */
     public static MemorySegment GDALGetDriverLongName(MemorySegment x0) {
         var mh$ = GDALGetDriverLongName.HANDLE;
@@ -3698,20 +3695,20 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALGetDriverLongName", x0);
             }
-            return (MemorySegment)mh$.invokeExact(x0);
+            return (MemorySegment) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALGetMetadataItem {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALGetMetadataItem");
@@ -3721,9 +3718,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *GDALGetMetadataItem(GDALMajorObjectH, const char *, const char *)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALGetMetadataItem$descriptor() {
         return GDALGetMetadataItem.DESC;
@@ -3731,9 +3728,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *GDALGetMetadataItem(GDALMajorObjectH, const char *, const char *)
-     * }
+     *}
      */
     public static MethodHandle GDALGetMetadataItem$handle() {
         return GDALGetMetadataItem.HANDLE;
@@ -3741,18 +3738,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *GDALGetMetadataItem(GDALMajorObjectH, const char *, const char *)
-     * }
+     *}
      */
     public static MemorySegment GDALGetMetadataItem$address() {
         return GDALGetMetadataItem.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *GDALGetMetadataItem(GDALMajorObjectH, const char *, const char *)
-     * }
+     *}
      */
     public static MemorySegment GDALGetMetadataItem(MemorySegment x0, MemorySegment x1, MemorySegment x2) {
         var mh$ = GDALGetMetadataItem.HANDLE;
@@ -3760,18 +3757,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALGetMetadataItem", x0, x1, x2);
             }
-            return (MemorySegment)mh$.invokeExact(x0, x1, x2);
+            return (MemorySegment) mh$.invokeExact(x0, x1, x2);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALClose {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALClose");
@@ -3781,9 +3778,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * CPLErr GDALClose(GDALDatasetH)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALClose$descriptor() {
         return GDALClose.DESC;
@@ -3791,9 +3788,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * CPLErr GDALClose(GDALDatasetH)
-     * }
+     *}
      */
     public static MethodHandle GDALClose$handle() {
         return GDALClose.HANDLE;
@@ -3801,18 +3798,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * CPLErr GDALClose(GDALDatasetH)
-     * }
+     *}
      */
     public static MemorySegment GDALClose$address() {
         return GDALClose.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * CPLErr GDALClose(GDALDatasetH)
-     * }
+     *}
      */
     public static int GDALClose(MemorySegment x0) {
         var mh$ = GDALClose.HANDLE;
@@ -3820,18 +3817,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALClose", x0);
             }
-            return (int)mh$.invokeExact(x0);
+            return (int) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALReleaseDataset {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALReleaseDataset");
@@ -3841,9 +3838,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int GDALReleaseDataset(GDALDatasetH)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALReleaseDataset$descriptor() {
         return GDALReleaseDataset.DESC;
@@ -3851,9 +3848,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int GDALReleaseDataset(GDALDatasetH)
-     * }
+     *}
      */
     public static MethodHandle GDALReleaseDataset$handle() {
         return GDALReleaseDataset.HANDLE;
@@ -3861,18 +3858,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int GDALReleaseDataset(GDALDatasetH)
-     * }
+     *}
      */
     public static MemorySegment GDALReleaseDataset$address() {
         return GDALReleaseDataset.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int GDALReleaseDataset(GDALDatasetH)
-     * }
+     *}
      */
     public static int GDALReleaseDataset(MemorySegment x0) {
         var mh$ = GDALReleaseDataset.HANDLE;
@@ -3880,18 +3877,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALReleaseDataset", x0);
             }
-            return (int)mh$.invokeExact(x0);
+            return (int) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALDatasetGetLayerCount {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALDatasetGetLayerCount");
@@ -3901,9 +3898,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int GDALDatasetGetLayerCount(GDALDatasetH)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALDatasetGetLayerCount$descriptor() {
         return GDALDatasetGetLayerCount.DESC;
@@ -3911,9 +3908,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int GDALDatasetGetLayerCount(GDALDatasetH)
-     * }
+     *}
      */
     public static MethodHandle GDALDatasetGetLayerCount$handle() {
         return GDALDatasetGetLayerCount.HANDLE;
@@ -3921,18 +3918,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int GDALDatasetGetLayerCount(GDALDatasetH)
-     * }
+     *}
      */
     public static MemorySegment GDALDatasetGetLayerCount$address() {
         return GDALDatasetGetLayerCount.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int GDALDatasetGetLayerCount(GDALDatasetH)
-     * }
+     *}
      */
     public static int GDALDatasetGetLayerCount(MemorySegment x0) {
         var mh$ = GDALDatasetGetLayerCount.HANDLE;
@@ -3940,19 +3937,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALDatasetGetLayerCount", x0);
             }
-            return (int)mh$.invokeExact(x0);
+            return (int) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALDatasetGetLayer {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALDatasetGetLayer");
@@ -3962,9 +3959,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRLayerH GDALDatasetGetLayer(GDALDatasetH, int)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALDatasetGetLayer$descriptor() {
         return GDALDatasetGetLayer.DESC;
@@ -3972,9 +3969,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRLayerH GDALDatasetGetLayer(GDALDatasetH, int)
-     * }
+     *}
      */
     public static MethodHandle GDALDatasetGetLayer$handle() {
         return GDALDatasetGetLayer.HANDLE;
@@ -3982,18 +3979,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRLayerH GDALDatasetGetLayer(GDALDatasetH, int)
-     * }
+     *}
      */
     public static MemorySegment GDALDatasetGetLayer$address() {
         return GDALDatasetGetLayer.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRLayerH GDALDatasetGetLayer(GDALDatasetH, int)
-     * }
+     *}
      */
     public static MemorySegment GDALDatasetGetLayer(MemorySegment x0, int x1) {
         var mh$ = GDALDatasetGetLayer.HANDLE;
@@ -4001,19 +3998,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALDatasetGetLayer", x0, x1);
             }
-            return (MemorySegment)mh$.invokeExact(x0, x1);
+            return (MemorySegment) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALDatasetGetLayerByName {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALDatasetGetLayerByName");
@@ -4023,9 +4020,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRLayerH GDALDatasetGetLayerByName(GDALDatasetH, const char *)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALDatasetGetLayerByName$descriptor() {
         return GDALDatasetGetLayerByName.DESC;
@@ -4033,9 +4030,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRLayerH GDALDatasetGetLayerByName(GDALDatasetH, const char *)
-     * }
+     *}
      */
     public static MethodHandle GDALDatasetGetLayerByName$handle() {
         return GDALDatasetGetLayerByName.HANDLE;
@@ -4043,18 +4040,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRLayerH GDALDatasetGetLayerByName(GDALDatasetH, const char *)
-     * }
+     *}
      */
     public static MemorySegment GDALDatasetGetLayerByName$address() {
         return GDALDatasetGetLayerByName.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * OGRLayerH GDALDatasetGetLayerByName(GDALDatasetH, const char *)
-     * }
+     *}
      */
     public static MemorySegment GDALDatasetGetLayerByName(MemorySegment x0, MemorySegment x1) {
         var mh$ = GDALDatasetGetLayerByName.HANDLE;
@@ -4062,17 +4059,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALDatasetGetLayerByName", x0, x1);
             }
-            return (MemorySegment)mh$.invokeExact(x0, x1);
+            return (MemorySegment) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALGetGlobalAlgorithmRegistry {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER    );
+                GdalGenerated.C_POINTER);
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALGetGlobalAlgorithmRegistry");
 
@@ -4081,9 +4078,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmRegistryH GDALGetGlobalAlgorithmRegistry()
-     * }
+     *}
      */
     public static FunctionDescriptor GDALGetGlobalAlgorithmRegistry$descriptor() {
         return GDALGetGlobalAlgorithmRegistry.DESC;
@@ -4091,9 +4088,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmRegistryH GDALGetGlobalAlgorithmRegistry()
-     * }
+     *}
      */
     public static MethodHandle GDALGetGlobalAlgorithmRegistry$handle() {
         return GDALGetGlobalAlgorithmRegistry.HANDLE;
@@ -4101,18 +4098,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmRegistryH GDALGetGlobalAlgorithmRegistry()
-     * }
+     *}
      */
     public static MemorySegment GDALGetGlobalAlgorithmRegistry$address() {
         return GDALGetGlobalAlgorithmRegistry.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmRegistryH GDALGetGlobalAlgorithmRegistry()
-     * }
+     *}
      */
     public static MemorySegment GDALGetGlobalAlgorithmRegistry() {
         var mh$ = GDALGetGlobalAlgorithmRegistry.HANDLE;
@@ -4120,17 +4117,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALGetGlobalAlgorithmRegistry");
             }
-            return (MemorySegment)mh$.invokeExact();
+            return (MemorySegment) mh$.invokeExact();
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALAlgorithmRegistryRelease {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALAlgorithmRegistryRelease");
@@ -4140,9 +4137,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALAlgorithmRegistryRelease(GDALAlgorithmRegistryH)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALAlgorithmRegistryRelease$descriptor() {
         return GDALAlgorithmRegistryRelease.DESC;
@@ -4150,9 +4147,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALAlgorithmRegistryRelease(GDALAlgorithmRegistryH)
-     * }
+     *}
      */
     public static MethodHandle GDALAlgorithmRegistryRelease$handle() {
         return GDALAlgorithmRegistryRelease.HANDLE;
@@ -4160,18 +4157,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALAlgorithmRegistryRelease(GDALAlgorithmRegistryH)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmRegistryRelease$address() {
         return GDALAlgorithmRegistryRelease.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALAlgorithmRegistryRelease(GDALAlgorithmRegistryH)
-     * }
+     *}
      */
     public static void GDALAlgorithmRegistryRelease(MemorySegment x0) {
         var mh$ = GDALAlgorithmRegistryRelease.HANDLE;
@@ -4181,17 +4178,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALAlgorithmRegistryInstantiateAlgFromPath {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALAlgorithmRegistryInstantiateAlgFromPath");
@@ -4201,9 +4198,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmH GDALAlgorithmRegistryInstantiateAlgFromPath(GDALAlgorithmRegistryH, const char *const *papszAlgPath)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALAlgorithmRegistryInstantiateAlgFromPath$descriptor() {
         return GDALAlgorithmRegistryInstantiateAlgFromPath.DESC;
@@ -4211,9 +4208,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmH GDALAlgorithmRegistryInstantiateAlgFromPath(GDALAlgorithmRegistryH, const char *const *papszAlgPath)
-     * }
+     *}
      */
     public static MethodHandle GDALAlgorithmRegistryInstantiateAlgFromPath$handle() {
         return GDALAlgorithmRegistryInstantiateAlgFromPath.HANDLE;
@@ -4221,18 +4218,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmH GDALAlgorithmRegistryInstantiateAlgFromPath(GDALAlgorithmRegistryH, const char *const *papszAlgPath)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmRegistryInstantiateAlgFromPath$address() {
         return GDALAlgorithmRegistryInstantiateAlgFromPath.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmH GDALAlgorithmRegistryInstantiateAlgFromPath(GDALAlgorithmRegistryH, const char *const *papszAlgPath)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmRegistryInstantiateAlgFromPath(MemorySegment x0, MemorySegment papszAlgPath) {
         var mh$ = GDALAlgorithmRegistryInstantiateAlgFromPath.HANDLE;
@@ -4240,17 +4237,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALAlgorithmRegistryInstantiateAlgFromPath", x0, papszAlgPath);
             }
-            return (MemorySegment)mh$.invokeExact(x0, papszAlgPath);
+            return (MemorySegment) mh$.invokeExact(x0, papszAlgPath);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALAlgorithmRelease {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALAlgorithmRelease");
@@ -4260,9 +4257,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALAlgorithmRelease(GDALAlgorithmH)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALAlgorithmRelease$descriptor() {
         return GDALAlgorithmRelease.DESC;
@@ -4270,9 +4267,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALAlgorithmRelease(GDALAlgorithmH)
-     * }
+     *}
      */
     public static MethodHandle GDALAlgorithmRelease$handle() {
         return GDALAlgorithmRelease.HANDLE;
@@ -4280,18 +4277,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALAlgorithmRelease(GDALAlgorithmH)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmRelease$address() {
         return GDALAlgorithmRelease.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALAlgorithmRelease(GDALAlgorithmH)
-     * }
+     *}
      */
     public static void GDALAlgorithmRelease(MemorySegment x0) {
         var mh$ = GDALAlgorithmRelease.HANDLE;
@@ -4301,17 +4298,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALAlgorithmParseCommandLineArguments {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_BOOL,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_BOOL,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALAlgorithmParseCommandLineArguments");
@@ -4321,9 +4318,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * bool GDALAlgorithmParseCommandLineArguments(GDALAlgorithmH, CSLConstList papszArgs)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALAlgorithmParseCommandLineArguments$descriptor() {
         return GDALAlgorithmParseCommandLineArguments.DESC;
@@ -4331,9 +4328,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * bool GDALAlgorithmParseCommandLineArguments(GDALAlgorithmH, CSLConstList papszArgs)
-     * }
+     *}
      */
     public static MethodHandle GDALAlgorithmParseCommandLineArguments$handle() {
         return GDALAlgorithmParseCommandLineArguments.HANDLE;
@@ -4341,18 +4338,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * bool GDALAlgorithmParseCommandLineArguments(GDALAlgorithmH, CSLConstList papszArgs)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmParseCommandLineArguments$address() {
         return GDALAlgorithmParseCommandLineArguments.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * bool GDALAlgorithmParseCommandLineArguments(GDALAlgorithmH, CSLConstList papszArgs)
-     * }
+     *}
      */
     public static boolean GDALAlgorithmParseCommandLineArguments(MemorySegment x0, MemorySegment papszArgs) {
         var mh$ = GDALAlgorithmParseCommandLineArguments.HANDLE;
@@ -4360,18 +4357,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALAlgorithmParseCommandLineArguments", x0, papszArgs);
             }
-            return (boolean)mh$.invokeExact(x0, papszArgs);
+            return (boolean) mh$.invokeExact(x0, papszArgs);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALAlgorithmGetActualAlgorithm {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALAlgorithmGetActualAlgorithm");
@@ -4381,9 +4378,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmH GDALAlgorithmGetActualAlgorithm(GDALAlgorithmH)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALAlgorithmGetActualAlgorithm$descriptor() {
         return GDALAlgorithmGetActualAlgorithm.DESC;
@@ -4391,9 +4388,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmH GDALAlgorithmGetActualAlgorithm(GDALAlgorithmH)
-     * }
+     *}
      */
     public static MethodHandle GDALAlgorithmGetActualAlgorithm$handle() {
         return GDALAlgorithmGetActualAlgorithm.HANDLE;
@@ -4401,18 +4398,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmH GDALAlgorithmGetActualAlgorithm(GDALAlgorithmH)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmGetActualAlgorithm$address() {
         return GDALAlgorithmGetActualAlgorithm.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmH GDALAlgorithmGetActualAlgorithm(GDALAlgorithmH)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmGetActualAlgorithm(MemorySegment x0) {
         var mh$ = GDALAlgorithmGetActualAlgorithm.HANDLE;
@@ -4420,20 +4417,20 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALAlgorithmGetActualAlgorithm", x0);
             }
-            return (MemorySegment)mh$.invokeExact(x0);
+            return (MemorySegment) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALAlgorithmRun {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_BOOL,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_BOOL,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALAlgorithmRun");
@@ -4443,9 +4440,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * bool GDALAlgorithmRun(GDALAlgorithmH, GDALProgressFunc pfnProgress, void *pProgressData)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALAlgorithmRun$descriptor() {
         return GDALAlgorithmRun.DESC;
@@ -4453,9 +4450,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * bool GDALAlgorithmRun(GDALAlgorithmH, GDALProgressFunc pfnProgress, void *pProgressData)
-     * }
+     *}
      */
     public static MethodHandle GDALAlgorithmRun$handle() {
         return GDALAlgorithmRun.HANDLE;
@@ -4463,18 +4460,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * bool GDALAlgorithmRun(GDALAlgorithmH, GDALProgressFunc pfnProgress, void *pProgressData)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmRun$address() {
         return GDALAlgorithmRun.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * bool GDALAlgorithmRun(GDALAlgorithmH, GDALProgressFunc pfnProgress, void *pProgressData)
-     * }
+     *}
      */
     public static boolean GDALAlgorithmRun(MemorySegment x0, MemorySegment pfnProgress, MemorySegment pProgressData) {
         var mh$ = GDALAlgorithmRun.HANDLE;
@@ -4482,18 +4479,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALAlgorithmRun", x0, pfnProgress, pProgressData);
             }
-            return (boolean)mh$.invokeExact(x0, pfnProgress, pProgressData);
+            return (boolean) mh$.invokeExact(x0, pfnProgress, pProgressData);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALAlgorithmFinalize {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_BOOL,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_BOOL,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALAlgorithmFinalize");
@@ -4503,9 +4500,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * bool GDALAlgorithmFinalize(GDALAlgorithmH)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALAlgorithmFinalize$descriptor() {
         return GDALAlgorithmFinalize.DESC;
@@ -4513,9 +4510,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * bool GDALAlgorithmFinalize(GDALAlgorithmH)
-     * }
+     *}
      */
     public static MethodHandle GDALAlgorithmFinalize$handle() {
         return GDALAlgorithmFinalize.HANDLE;
@@ -4523,18 +4520,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * bool GDALAlgorithmFinalize(GDALAlgorithmH)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmFinalize$address() {
         return GDALAlgorithmFinalize.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * bool GDALAlgorithmFinalize(GDALAlgorithmH)
-     * }
+     *}
      */
     public static boolean GDALAlgorithmFinalize(MemorySegment x0) {
         var mh$ = GDALAlgorithmFinalize.HANDLE;
@@ -4542,18 +4539,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALAlgorithmFinalize", x0);
             }
-            return (boolean)mh$.invokeExact(x0);
+            return (boolean) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALAlgorithmGetArgNames {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALAlgorithmGetArgNames");
@@ -4563,9 +4560,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * char **GDALAlgorithmGetArgNames(GDALAlgorithmH)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALAlgorithmGetArgNames$descriptor() {
         return GDALAlgorithmGetArgNames.DESC;
@@ -4573,9 +4570,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * char **GDALAlgorithmGetArgNames(GDALAlgorithmH)
-     * }
+     *}
      */
     public static MethodHandle GDALAlgorithmGetArgNames$handle() {
         return GDALAlgorithmGetArgNames.HANDLE;
@@ -4583,18 +4580,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * char **GDALAlgorithmGetArgNames(GDALAlgorithmH)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmGetArgNames$address() {
         return GDALAlgorithmGetArgNames.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * char **GDALAlgorithmGetArgNames(GDALAlgorithmH)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmGetArgNames(MemorySegment x0) {
         var mh$ = GDALAlgorithmGetArgNames.HANDLE;
@@ -4602,19 +4599,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALAlgorithmGetArgNames", x0);
             }
-            return (MemorySegment)mh$.invokeExact(x0);
+            return (MemorySegment) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALAlgorithmGetArg {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALAlgorithmGetArg");
@@ -4624,9 +4621,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmArgH GDALAlgorithmGetArg(GDALAlgorithmH, const char *pszArgName)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALAlgorithmGetArg$descriptor() {
         return GDALAlgorithmGetArg.DESC;
@@ -4634,9 +4631,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmArgH GDALAlgorithmGetArg(GDALAlgorithmH, const char *pszArgName)
-     * }
+     *}
      */
     public static MethodHandle GDALAlgorithmGetArg$handle() {
         return GDALAlgorithmGetArg.HANDLE;
@@ -4644,18 +4641,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmArgH GDALAlgorithmGetArg(GDALAlgorithmH, const char *pszArgName)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmGetArg$address() {
         return GDALAlgorithmGetArg.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmArgH GDALAlgorithmGetArg(GDALAlgorithmH, const char *pszArgName)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmGetArg(MemorySegment x0, MemorySegment pszArgName) {
         var mh$ = GDALAlgorithmGetArg.HANDLE;
@@ -4663,17 +4660,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALAlgorithmGetArg", x0, pszArgName);
             }
-            return (MemorySegment)mh$.invokeExact(x0, pszArgName);
+            return (MemorySegment) mh$.invokeExact(x0, pszArgName);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALAlgorithmArgRelease {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALAlgorithmArgRelease");
@@ -4683,9 +4680,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALAlgorithmArgRelease(GDALAlgorithmArgH)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALAlgorithmArgRelease$descriptor() {
         return GDALAlgorithmArgRelease.DESC;
@@ -4693,9 +4690,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALAlgorithmArgRelease(GDALAlgorithmArgH)
-     * }
+     *}
      */
     public static MethodHandle GDALAlgorithmArgRelease$handle() {
         return GDALAlgorithmArgRelease.HANDLE;
@@ -4703,18 +4700,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALAlgorithmArgRelease(GDALAlgorithmArgH)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmArgRelease$address() {
         return GDALAlgorithmArgRelease.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALAlgorithmArgRelease(GDALAlgorithmArgH)
-     * }
+     *}
      */
     public static void GDALAlgorithmArgRelease(MemorySegment x0) {
         var mh$ = GDALAlgorithmArgRelease.HANDLE;
@@ -4724,16 +4721,16 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALAlgorithmArgGetType {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALAlgorithmArgGetType");
@@ -4743,9 +4740,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmArgType GDALAlgorithmArgGetType(GDALAlgorithmArgH)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALAlgorithmArgGetType$descriptor() {
         return GDALAlgorithmArgGetType.DESC;
@@ -4753,9 +4750,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmArgType GDALAlgorithmArgGetType(GDALAlgorithmArgH)
-     * }
+     *}
      */
     public static MethodHandle GDALAlgorithmArgGetType$handle() {
         return GDALAlgorithmArgGetType.HANDLE;
@@ -4763,18 +4760,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmArgType GDALAlgorithmArgGetType(GDALAlgorithmArgH)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmArgGetType$address() {
         return GDALAlgorithmArgGetType.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALAlgorithmArgType GDALAlgorithmArgGetType(GDALAlgorithmArgH)
-     * }
+     *}
      */
     public static int GDALAlgorithmArgGetType(MemorySegment x0) {
         var mh$ = GDALAlgorithmArgGetType.HANDLE;
@@ -4782,18 +4779,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALAlgorithmArgGetType", x0);
             }
-            return (int)mh$.invokeExact(x0);
+            return (int) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALAlgorithmArgIsOutput {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_BOOL,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_BOOL,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALAlgorithmArgIsOutput");
@@ -4803,9 +4800,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * bool GDALAlgorithmArgIsOutput(GDALAlgorithmArgH)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALAlgorithmArgIsOutput$descriptor() {
         return GDALAlgorithmArgIsOutput.DESC;
@@ -4813,9 +4810,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * bool GDALAlgorithmArgIsOutput(GDALAlgorithmArgH)
-     * }
+     *}
      */
     public static MethodHandle GDALAlgorithmArgIsOutput$handle() {
         return GDALAlgorithmArgIsOutput.HANDLE;
@@ -4823,18 +4820,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * bool GDALAlgorithmArgIsOutput(GDALAlgorithmArgH)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmArgIsOutput$address() {
         return GDALAlgorithmArgIsOutput.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * bool GDALAlgorithmArgIsOutput(GDALAlgorithmArgH)
-     * }
+     *}
      */
     public static boolean GDALAlgorithmArgIsOutput(MemorySegment x0) {
         var mh$ = GDALAlgorithmArgIsOutput.HANDLE;
@@ -4842,18 +4839,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALAlgorithmArgIsOutput", x0);
             }
-            return (boolean)mh$.invokeExact(x0);
+            return (boolean) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALAlgorithmArgGetAsString {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALAlgorithmArgGetAsString");
@@ -4863,9 +4860,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *GDALAlgorithmArgGetAsString(GDALAlgorithmArgH)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALAlgorithmArgGetAsString$descriptor() {
         return GDALAlgorithmArgGetAsString.DESC;
@@ -4873,9 +4870,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *GDALAlgorithmArgGetAsString(GDALAlgorithmArgH)
-     * }
+     *}
      */
     public static MethodHandle GDALAlgorithmArgGetAsString$handle() {
         return GDALAlgorithmArgGetAsString.HANDLE;
@@ -4883,18 +4880,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *GDALAlgorithmArgGetAsString(GDALAlgorithmArgH)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmArgGetAsString$address() {
         return GDALAlgorithmArgGetAsString.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *GDALAlgorithmArgGetAsString(GDALAlgorithmArgH)
-     * }
+     *}
      */
     public static MemorySegment GDALAlgorithmArgGetAsString(MemorySegment x0) {
         var mh$ = GDALAlgorithmArgGetAsString.HANDLE;
@@ -4902,19 +4899,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALAlgorithmArgGetAsString", x0);
             }
-            return (MemorySegment)mh$.invokeExact(x0);
+            return (MemorySegment) mh$.invokeExact(x0);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALVectorTranslateOptionsNew {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALVectorTranslateOptionsNew");
@@ -4924,9 +4921,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALVectorTranslateOptions *GDALVectorTranslateOptionsNew(char **papszArgv, GDALVectorTranslateOptionsForBinary *psOptionsForBinary)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALVectorTranslateOptionsNew$descriptor() {
         return GDALVectorTranslateOptionsNew.DESC;
@@ -4934,9 +4931,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALVectorTranslateOptions *GDALVectorTranslateOptionsNew(char **papszArgv, GDALVectorTranslateOptionsForBinary *psOptionsForBinary)
-     * }
+     *}
      */
     public static MethodHandle GDALVectorTranslateOptionsNew$handle() {
         return GDALVectorTranslateOptionsNew.HANDLE;
@@ -4944,18 +4941,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALVectorTranslateOptions *GDALVectorTranslateOptionsNew(char **papszArgv, GDALVectorTranslateOptionsForBinary *psOptionsForBinary)
-     * }
+     *}
      */
     public static MemorySegment GDALVectorTranslateOptionsNew$address() {
         return GDALVectorTranslateOptionsNew.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALVectorTranslateOptions *GDALVectorTranslateOptionsNew(char **papszArgv, GDALVectorTranslateOptionsForBinary *psOptionsForBinary)
-     * }
+     *}
      */
     public static MemorySegment GDALVectorTranslateOptionsNew(MemorySegment papszArgv, MemorySegment psOptionsForBinary) {
         var mh$ = GDALVectorTranslateOptionsNew.HANDLE;
@@ -4963,17 +4960,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALVectorTranslateOptionsNew", papszArgv, psOptionsForBinary);
             }
-            return (MemorySegment)mh$.invokeExact(papszArgv, psOptionsForBinary);
+            return (MemorySegment) mh$.invokeExact(papszArgv, psOptionsForBinary);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALVectorTranslateOptionsFree {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALVectorTranslateOptionsFree");
@@ -4983,9 +4980,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALVectorTranslateOptionsFree(GDALVectorTranslateOptions *psOptions)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALVectorTranslateOptionsFree$descriptor() {
         return GDALVectorTranslateOptionsFree.DESC;
@@ -4993,9 +4990,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALVectorTranslateOptionsFree(GDALVectorTranslateOptions *psOptions)
-     * }
+     *}
      */
     public static MethodHandle GDALVectorTranslateOptionsFree$handle() {
         return GDALVectorTranslateOptionsFree.HANDLE;
@@ -5003,18 +5000,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALVectorTranslateOptionsFree(GDALVectorTranslateOptions *psOptions)
-     * }
+     *}
      */
     public static MemorySegment GDALVectorTranslateOptionsFree$address() {
         return GDALVectorTranslateOptionsFree.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALVectorTranslateOptionsFree(GDALVectorTranslateOptions *psOptions)
-     * }
+     *}
      */
     public static void GDALVectorTranslateOptionsFree(MemorySegment psOptions) {
         var mh$ = GDALVectorTranslateOptionsFree.HANDLE;
@@ -5024,17 +5021,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(psOptions);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALVectorTranslateOptionsSetProgress {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALVectorTranslateOptionsSetProgress");
@@ -5044,9 +5041,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALVectorTranslateOptionsSetProgress(GDALVectorTranslateOptions *psOptions, GDALProgressFunc pfnProgress, void *pProgressData)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALVectorTranslateOptionsSetProgress$descriptor() {
         return GDALVectorTranslateOptionsSetProgress.DESC;
@@ -5054,9 +5051,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALVectorTranslateOptionsSetProgress(GDALVectorTranslateOptions *psOptions, GDALProgressFunc pfnProgress, void *pProgressData)
-     * }
+     *}
      */
     public static MethodHandle GDALVectorTranslateOptionsSetProgress$handle() {
         return GDALVectorTranslateOptionsSetProgress.HANDLE;
@@ -5064,18 +5061,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALVectorTranslateOptionsSetProgress(GDALVectorTranslateOptions *psOptions, GDALProgressFunc pfnProgress, void *pProgressData)
-     * }
+     *}
      */
     public static MemorySegment GDALVectorTranslateOptionsSetProgress$address() {
         return GDALVectorTranslateOptionsSetProgress.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void GDALVectorTranslateOptionsSetProgress(GDALVectorTranslateOptions *psOptions, GDALProgressFunc pfnProgress, void *pProgressData)
-     * }
+     *}
      */
     public static void GDALVectorTranslateOptionsSetProgress(MemorySegment psOptions, MemorySegment pfnProgress, MemorySegment pProgressData) {
         var mh$ = GDALVectorTranslateOptionsSetProgress.HANDLE;
@@ -5085,21 +5082,21 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(psOptions, pfnProgress, pProgressData);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class GDALVectorTranslate {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("GDALVectorTranslate");
@@ -5109,9 +5106,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALDatasetH GDALVectorTranslate(const char *pszDest, GDALDatasetH hDstDS, int nSrcCount, GDALDatasetH *pahSrcDS, const GDALVectorTranslateOptions *psOptions, int *pbUsageError)
-     * }
+     *}
      */
     public static FunctionDescriptor GDALVectorTranslate$descriptor() {
         return GDALVectorTranslate.DESC;
@@ -5119,9 +5116,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALDatasetH GDALVectorTranslate(const char *pszDest, GDALDatasetH hDstDS, int nSrcCount, GDALDatasetH *pahSrcDS, const GDALVectorTranslateOptions *psOptions, int *pbUsageError)
-     * }
+     *}
      */
     public static MethodHandle GDALVectorTranslate$handle() {
         return GDALVectorTranslate.HANDLE;
@@ -5129,18 +5126,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALDatasetH GDALVectorTranslate(const char *pszDest, GDALDatasetH hDstDS, int nSrcCount, GDALDatasetH *pahSrcDS, const GDALVectorTranslateOptions *psOptions, int *pbUsageError)
-     * }
+     *}
      */
     public static MemorySegment GDALVectorTranslate$address() {
         return GDALVectorTranslate.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * GDALDatasetH GDALVectorTranslate(const char *pszDest, GDALDatasetH hDstDS, int nSrcCount, GDALDatasetH *pahSrcDS, const GDALVectorTranslateOptions *psOptions, int *pbUsageError)
-     * }
+     *}
      */
     public static MemorySegment GDALVectorTranslate(MemorySegment pszDest, MemorySegment hDstDS, int nSrcCount, MemorySegment pahSrcDS, MemorySegment psOptions, MemorySegment pbUsageError) {
         var mh$ = GDALVectorTranslate.HANDLE;
@@ -5148,19 +5145,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("GDALVectorTranslate", pszDest, hDstDS, nSrcCount, pahSrcDS, psOptions, pbUsageError);
             }
-            return (MemorySegment)mh$.invokeExact(pszDest, hDstDS, nSrcCount, pahSrcDS, psOptions, pbUsageError);
+            return (MemorySegment) mh$.invokeExact(pszDest, hDstDS, nSrcCount, pahSrcDS, psOptions, pbUsageError);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class OSRGetAuthorityCode {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("OSRGetAuthorityCode");
@@ -5170,9 +5167,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OSRGetAuthorityCode(OGRSpatialReferenceH hSRS, const char *pszTargetKey)
-     * }
+     *}
      */
     public static FunctionDescriptor OSRGetAuthorityCode$descriptor() {
         return OSRGetAuthorityCode.DESC;
@@ -5180,9 +5177,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OSRGetAuthorityCode(OGRSpatialReferenceH hSRS, const char *pszTargetKey)
-     * }
+     *}
      */
     public static MethodHandle OSRGetAuthorityCode$handle() {
         return OSRGetAuthorityCode.HANDLE;
@@ -5190,18 +5187,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OSRGetAuthorityCode(OGRSpatialReferenceH hSRS, const char *pszTargetKey)
-     * }
+     *}
      */
     public static MemorySegment OSRGetAuthorityCode$address() {
         return OSRGetAuthorityCode.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *OSRGetAuthorityCode(OGRSpatialReferenceH hSRS, const char *pszTargetKey)
-     * }
+     *}
      */
     public static MemorySegment OSRGetAuthorityCode(MemorySegment hSRS, MemorySegment pszTargetKey) {
         var mh$ = OSRGetAuthorityCode.HANDLE;
@@ -5209,19 +5206,19 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("OSRGetAuthorityCode", hSRS, pszTargetKey);
             }
-            return (MemorySegment)mh$.invokeExact(hSRS, pszTargetKey);
+            return (MemorySegment) mh$.invokeExact(hSRS, pszTargetKey);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class CPLGetThreadLocalConfigOption {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("CPLGetThreadLocalConfigOption");
@@ -5231,9 +5228,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *CPLGetThreadLocalConfigOption(const char *, const char *)
-     * }
+     *}
      */
     public static FunctionDescriptor CPLGetThreadLocalConfigOption$descriptor() {
         return CPLGetThreadLocalConfigOption.DESC;
@@ -5241,9 +5238,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *CPLGetThreadLocalConfigOption(const char *, const char *)
-     * }
+     *}
      */
     public static MethodHandle CPLGetThreadLocalConfigOption$handle() {
         return CPLGetThreadLocalConfigOption.HANDLE;
@@ -5251,18 +5248,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *CPLGetThreadLocalConfigOption(const char *, const char *)
-     * }
+     *}
      */
     public static MemorySegment CPLGetThreadLocalConfigOption$address() {
         return CPLGetThreadLocalConfigOption.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * const char *CPLGetThreadLocalConfigOption(const char *, const char *)
-     * }
+     *}
      */
     public static MemorySegment CPLGetThreadLocalConfigOption(MemorySegment x0, MemorySegment x1) {
         var mh$ = CPLGetThreadLocalConfigOption.HANDLE;
@@ -5270,18 +5267,18 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("CPLGetThreadLocalConfigOption", x0, x1);
             }
-            return (MemorySegment)mh$.invokeExact(x0, x1);
+            return (MemorySegment) mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class CPLSetConfigOption {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("CPLSetConfigOption");
@@ -5291,9 +5288,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void CPLSetConfigOption(const char *, const char *)
-     * }
+     *}
      */
     public static FunctionDescriptor CPLSetConfigOption$descriptor() {
         return CPLSetConfigOption.DESC;
@@ -5301,9 +5298,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void CPLSetConfigOption(const char *, const char *)
-     * }
+     *}
      */
     public static MethodHandle CPLSetConfigOption$handle() {
         return CPLSetConfigOption.HANDLE;
@@ -5311,18 +5308,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void CPLSetConfigOption(const char *, const char *)
-     * }
+     *}
      */
     public static MemorySegment CPLSetConfigOption$address() {
         return CPLSetConfigOption.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void CPLSetConfigOption(const char *, const char *)
-     * }
+     *}
      */
     public static void CPLSetConfigOption(MemorySegment x0, MemorySegment x1) {
         var mh$ = CPLSetConfigOption.HANDLE;
@@ -5332,16 +5329,16 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(x0, x1);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class CPLSetThreadLocalConfigOption {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("CPLSetThreadLocalConfigOption");
@@ -5351,9 +5348,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void CPLSetThreadLocalConfigOption(const char *pszKey, const char *pszValue)
-     * }
+     *}
      */
     public static FunctionDescriptor CPLSetThreadLocalConfigOption$descriptor() {
         return CPLSetThreadLocalConfigOption.DESC;
@@ -5361,9 +5358,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void CPLSetThreadLocalConfigOption(const char *pszKey, const char *pszValue)
-     * }
+     *}
      */
     public static MethodHandle CPLSetThreadLocalConfigOption$handle() {
         return CPLSetThreadLocalConfigOption.HANDLE;
@@ -5371,18 +5368,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void CPLSetThreadLocalConfigOption(const char *pszKey, const char *pszValue)
-     * }
+     *}
      */
     public static MemorySegment CPLSetThreadLocalConfigOption$address() {
         return CPLSetThreadLocalConfigOption.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void CPLSetThreadLocalConfigOption(const char *pszKey, const char *pszValue)
-     * }
+     *}
      */
     public static void CPLSetThreadLocalConfigOption(MemorySegment pszKey, MemorySegment pszValue) {
         var mh$ = CPLSetThreadLocalConfigOption.HANDLE;
@@ -5392,16 +5389,16 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(pszKey, pszValue);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class CSLCount {
         public static final FunctionDescriptor DESC = FunctionDescriptor.of(
-            GdalGenerated.C_INT,
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_INT,
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("CSLCount");
@@ -5411,9 +5408,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int CSLCount(CSLConstList papszStrList)
-     * }
+     *}
      */
     public static FunctionDescriptor CSLCount$descriptor() {
         return CSLCount.DESC;
@@ -5421,9 +5418,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int CSLCount(CSLConstList papszStrList)
-     * }
+     *}
      */
     public static MethodHandle CSLCount$handle() {
         return CSLCount.HANDLE;
@@ -5431,18 +5428,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int CSLCount(CSLConstList papszStrList)
-     * }
+     *}
      */
     public static MemorySegment CSLCount$address() {
         return CSLCount.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * int CSLCount(CSLConstList papszStrList)
-     * }
+     *}
      */
     public static int CSLCount(MemorySegment papszStrList) {
         var mh$ = CSLCount.HANDLE;
@@ -5450,17 +5447,17 @@ public class GdalGenerated extends GdalGenerated$shared {
             if (TRACE_DOWNCALLS) {
                 traceDowncall("CSLCount", papszStrList);
             }
-            return (int)mh$.invokeExact(papszStrList);
+            return (int) mh$.invokeExact(papszStrList);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 
     private static class CSLDestroy {
         public static final FunctionDescriptor DESC = FunctionDescriptor.ofVoid(
-            GdalGenerated.C_POINTER
+                GdalGenerated.C_POINTER
         );
 
         public static final MemorySegment ADDR = SYMBOL_LOOKUP.findOrThrow("CSLDestroy");
@@ -5470,9 +5467,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Function descriptor for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void CSLDestroy(char **papszStrList)
-     * }
+     *}
      */
     public static FunctionDescriptor CSLDestroy$descriptor() {
         return CSLDestroy.DESC;
@@ -5480,9 +5477,9 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Downcall method handle for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void CSLDestroy(char **papszStrList)
-     * }
+     *}
      */
     public static MethodHandle CSLDestroy$handle() {
         return CSLDestroy.HANDLE;
@@ -5490,18 +5487,18 @@ public class GdalGenerated extends GdalGenerated$shared {
 
     /**
      * Address for:
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void CSLDestroy(char **papszStrList)
-     * }
+     *}
      */
     public static MemorySegment CSLDestroy$address() {
         return CSLDestroy.ADDR;
     }
 
     /**
-     * {@snippet lang=c :
+     * {@snippet lang = c:
      * void CSLDestroy(char **papszStrList)
-     * }
+     *}
      */
     public static void CSLDestroy(MemorySegment papszStrList) {
         var mh$ = CSLDestroy.HANDLE;
@@ -5511,9 +5508,9 @@ public class GdalGenerated extends GdalGenerated$shared {
             }
             mh$.invokeExact(papszStrList);
         } catch (Error | RuntimeException ex) {
-           throw ex;
+            throw ex;
         } catch (Throwable ex$) {
-           throw new AssertionError("should not reach here", ex$);
+            throw new AssertionError("should not reach here", ex$);
         }
     }
 }

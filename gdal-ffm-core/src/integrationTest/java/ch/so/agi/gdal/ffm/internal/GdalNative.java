@@ -1,6 +1,8 @@
 package ch.so.agi.gdal.ffm.internal;
 
-/** Test-only compatibility helper for packaged-native smoke assertions. */
+/**
+ * Test-only compatibility helper for packaged-native smoke assertions.
+ */
 final class GdalNative {
     private GdalNative() {
     }

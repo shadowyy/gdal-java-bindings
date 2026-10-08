@@ -1,8 +1,8 @@
 package ch.so.agi.gdal.ffm;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CplErrorTypeTest {
     @Test

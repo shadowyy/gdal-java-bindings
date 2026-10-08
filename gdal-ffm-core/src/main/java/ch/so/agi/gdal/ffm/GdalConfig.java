@@ -22,7 +22,7 @@ public record GdalConfig(Map<String, String> options) {
      * 规范构造器，校验并归一化（键去空格、值非空、拷贝为不可变）。
      *
      * @param options config entries / 配置条目
-     * @throws NullPointerException if {@code options} or any value is {@code null} / 映射或值为 {@code null} 时抛出
+     * @throws NullPointerException     if {@code options} or any value is {@code null} / 映射或值为 {@code null} 时抛出
      * @throws IllegalArgumentException if any key is blank / 任一键为空白时抛出
      */
     public GdalConfig {
@@ -64,10 +64,10 @@ public record GdalConfig(Map<String, String> options) {
      * <p>
      * 返回新增/覆盖单个配置项后的新配置（原对象不变）。
      *
-     * @param key option key, must not be blank / 配置键，不能为空白
+     * @param key   option key, must not be blank / 配置键，不能为空白
      * @param value option value, must not be {@code null} / 配置值，不能为 {@code null}
      * @return new config, never {@code null} / 新配置，不会为 {@code null}
-     * @throws NullPointerException if any argument is {@code null} / 任一参数为 {@code null} 时抛出
+     * @throws NullPointerException     if any argument is {@code null} / 任一参数为 {@code null} 时抛出
      * @throws IllegalArgumentException if {@code key} is blank / 键为空白时抛出
      */
     public GdalConfig withConfigOption(String key, String value) {
@@ -83,8 +83,8 @@ public record GdalConfig(Map<String, String> options) {
      *
      * @param additionalOptions entries to merge, must not be {@code null} / 待合并条目，不能为 {@code null}
      * @return new config, never {@code null} / 新配置，不会为 {@code null}
-     * @throws NullPointerException if {@code additionalOptions} or any value is {@code null} /
-     *                              参数或值为 {@code null} 时抛出
+     * @throws NullPointerException     if {@code additionalOptions} or any value is {@code null} /
+     *                                  参数或值为 {@code null} 时抛出
      * @throws IllegalArgumentException if any key is blank / 任一键为空白时抛出
      */
     public GdalConfig withConfig(Map<String, String> additionalOptions) {

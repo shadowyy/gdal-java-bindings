@@ -49,7 +49,7 @@ final class CStrings {
      *
      * @param segment native pointer to check, may be {@code null} / 待检查的本地指针，可为 {@code null}
      * @return {@code true} if the pointer is null-like, otherwise {@code false} /
-     *         若指针为空则返回 {@code true}，否则返回 {@code false}
+     * 若指针为空则返回 {@code true}，否则返回 {@code false}
      */
     static boolean isNull(MemorySegment segment) {
         return segment == null || segment.equals(MemorySegment.NULL) || segment.address() == 0L;

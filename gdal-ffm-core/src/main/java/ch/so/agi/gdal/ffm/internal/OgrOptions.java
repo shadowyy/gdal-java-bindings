@@ -2,6 +2,7 @@ package ch.so.agi.gdal.ffm.internal;
 
 import ch.so.agi.gdal.ffm.OgrOpenOptions;
 import ch.so.agi.gdal.ffm.OgrReaderOptions;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -61,9 +62,9 @@ final class OgrOptions {
      *
      * @param raw raw reader options, must not be {@code null} / 原始读取选项，不能为 {@code null}
      * @return parsed reader options, never {@code null} / 解析后的读取选项，永不为 {@code null}
-     * @throws NullPointerException if {@code raw} is {@code null} / {@code raw} 为 {@code null} 时抛出
+     * @throws NullPointerException     if {@code raw} is {@code null} / {@code raw} 为 {@code null} 时抛出
      * @throws IllegalArgumentException if both bbox and WKT spatial filters are set, or values are malformed /
-     *         同时设置 BBOX 与 WKT 空间过滤或数值格式非法时抛出
+     *                                  同时设置 BBOX 与 WKT 空间过滤或数值格式非法时抛出
      */
     static ReaderOptions parseReaderOptions(Map<String, String> raw) {
         Objects.requireNonNull(raw, "raw must not be null");
@@ -200,12 +201,12 @@ final class OgrOptions {
      * <p>
      * 解析后的图层读取选项（属性过滤、空间过滤、字段投影、行数限制）。
      *
-     * @param attributeFilter OGR attribute filter, may be {@code null} / OGR 属性过滤，可为 {@code null}
-     * @param bbox bounding-box spatial filter, may be {@code null} / BBOX 空间过滤，可为 {@code null}
-     * @param spatialFilterWkt WKT spatial filter, may be {@code null} / WKT 空间过滤，可为 {@code null}
-     * @param selectedFields requested field names in order / 请求的字段名（保持顺序）
+     * @param attributeFilter         OGR attribute filter, may be {@code null} / OGR 属性过滤，可为 {@code null}
+     * @param bbox                    bounding-box spatial filter, may be {@code null} / BBOX 空间过滤，可为 {@code null}
+     * @param spatialFilterWkt        WKT spatial filter, may be {@code null} / WKT 空间过滤，可为 {@code null}
+     * @param selectedFields          requested field names in order / 请求的字段名（保持顺序）
      * @param selectedFieldsLowercase lower-cased field names for matching / 小写字段名，用于匹配
-     * @param limit max rows, may be {@code null} for unlimited / 最大行数，可为 {@code null} 表示不限
+     * @param limit                   max rows, may be {@code null} for unlimited / 最大行数，可为 {@code null} 表示不限
      */
     record ReaderOptions(
             String attributeFilter,

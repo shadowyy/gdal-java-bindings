@@ -90,8 +90,8 @@ final class NativeBundleRuntimeConfig {
      * <p>
      * 根据显式传入的环境变量与系统属性构建作用域级（线程局部）配置项（便于测试）。
      *
-     * @param bundleInfo loaded bundle info, must not be {@code null} / 已加载的 bundle 信息，不能为 {@code null}
-     * @param environment environment variables, must not be {@code null} / 环境变量，不能为 {@code null}
+     * @param bundleInfo       loaded bundle info, must not be {@code null} / 已加载的 bundle 信息，不能为 {@code null}
+     * @param environment      environment variables, must not be {@code null} / 环境变量，不能为 {@code null}
      * @param systemProperties system properties, must not be {@code null} / 系统属性，不能为 {@code null}
      * @return unmodifiable option map, never {@code null} / 不可修改的配置项映射，永不为 {@code null}
      * @throws NullPointerException if any argument is {@code null} / 任一参数为 {@code null} 时抛出
@@ -120,8 +120,8 @@ final class NativeBundleRuntimeConfig {
      * <p>
      * 解析应使用的 bundle 自带 CA 证书包；非 Unix 平台、用户已自定义或证书包缺失时返回 {@code null}。
      *
-     * @param bundleInfo loaded bundle info, must not be {@code null} / 已加载的 bundle 信息，不能为 {@code null}
-     * @param environment environment variables, must not be {@code null} / 环境变量，不能为 {@code null}
+     * @param bundleInfo       loaded bundle info, must not be {@code null} / 已加载的 bundle 信息，不能为 {@code null}
+     * @param environment      environment variables, must not be {@code null} / 环境变量，不能为 {@code null}
      * @param systemProperties system properties, must not be {@code null} / 系统属性，不能为 {@code null}
      * @return CA bundle path, or {@code null} if none applies / CA 证书包路径，不适用时为 {@code null}
      * @throws NullPointerException if any argument is {@code null} / 任一参数为 {@code null} 时抛出
@@ -163,7 +163,7 @@ final class NativeBundleRuntimeConfig {
      * <p>
      * 检查用户是否已在环境变量或系统属性中自定义 CA 证书包配置项。
      *
-     * @param environment environment variables, must not be {@code null} / 环境变量，不能为 {@code null}
+     * @param environment      environment variables, must not be {@code null} / 环境变量，不能为 {@code null}
      * @param systemProperties system properties, must not be {@code null} / 系统属性，不能为 {@code null}
      * @return {@code true} if any CA option is set to a non-blank value / 任一 CA 配置项为非空值时返回 {@code true}
      */
@@ -192,8 +192,8 @@ final class NativeBundleRuntimeConfig {
      * 路径非空时才放入映射（绝对路径形式）。
      *
      * @param options target map, must not be {@code null} / 目标映射，不能为 {@code null}
-     * @param key option name, must not be {@code null} / 配置项名，不能为 {@code null}
-     * @param value path value, may be {@code null} / 路径值，可为 {@code null}
+     * @param key     option name, must not be {@code null} / 配置项名，不能为 {@code null}
+     * @param value   path value, may be {@code null} / 路径值，可为 {@code null}
      */
     private static void putIfPresent(Map<String, Path> options, String key, Path value) {
         if (value != null) {

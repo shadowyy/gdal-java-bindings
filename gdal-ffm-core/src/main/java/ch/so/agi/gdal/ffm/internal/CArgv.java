@@ -26,12 +26,12 @@ final class CArgv {
      * <p>
      * 将 Java 字符串数组复制为 NUL 结尾的本地字符串指针数组，末尾自动补 {@code NULL} 哨兵。
      *
-     * @param args Java string arguments, may be {@code null} (treated as empty) /
-     *             Java 字符串参数，可为 {@code null}（视为空数组）
+     * @param args  Java string arguments, may be {@code null} (treated as empty) /
+     *              Java 字符串参数，可为 {@code null}（视为空数组）
      * @param arena FFM arena that owns the allocated native memory, must not be {@code null} /
      *              拥有本地内存的 FFM arena，不能为 {@code null}
      * @return native pointer to the first element of the array, lifetime bound to {@code arena} /
-     *         数组首元素的本地指针，生命周期与 {@code arena} 绑定
+     * 数组首元素的本地指针，生命周期与 {@code arena} 绑定
      * @throws IllegalArgumentException if any element of {@code args} is {@code null} /
      *                                  若 {@code args} 中任一元素为 {@code null} 则抛出
      */

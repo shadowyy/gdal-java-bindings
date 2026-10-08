@@ -6,6 +6,7 @@ import ch.so.agi.gdal.ffm.GdalException;
 import ch.so.agi.gdal.ffm.ProgressCallback;
 import ch.so.agi.gdal.ffm.RasterDriverInfo;
 import ch.so.agi.gdal.ffm.generated.GdalGenerated;
+
 import java.lang.foreign.Arena;
 import java.lang.foreign.MemorySegment;
 import java.lang.foreign.ValueLayout;
@@ -53,12 +54,12 @@ public final class GdalRuntime {
      * <p>
      * 基于本地路径执行矢量转换（GDALVectorTranslate），支持可选进度回调。
      *
-     * @param dest output dataset path, must not be {@code null} / 输出数据集路径，不能为 {@code null}
-     * @param src input dataset path, must not be {@code null} / 输入数据集路径，不能为 {@code null}
+     * @param dest     output dataset path, must not be {@code null} / 输出数据集路径，不能为 {@code null}
+     * @param src      input dataset path, must not be {@code null} / 输入数据集路径，不能为 {@code null}
      * @param progress progress callback, may be {@code null} / 进度回调，可为 {@code null}
-     * @param args extra GDALVectorTranslate CLI arguments / 透传的额外命令行参数
+     * @param args     extra GDALVectorTranslate CLI arguments / 透传的额外命令行参数
      * @throws NullPointerException if {@code dest} or {@code src} is {@code null} / 参数为 {@code null} 时抛出
-     * @throws GdalException if option creation or translation fails / 选项创建或转换失败时抛出
+     * @throws GdalException        if option creation or translation fails / 选项创建或转换失败时抛出
      */
     public static void vectorTranslate(Path dest, Path src, ProgressCallback progress, String... args) {
         vectorTranslate(DatasetRef.local(dest), DatasetRef.local(src), GdalConfig.empty(), progress, args);
@@ -71,13 +72,13 @@ public final class GdalRuntime {
      * 基于数据集引用执行矢量转换（GDALVectorTranslate）：配置项以线程级作用域生效并在调用结束后自动恢复，
      * 支持可选进度回调。
      *
-     * @param dest output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
-     * @param src input dataset reference, must not be {@code null} / 输入数据集引用，不能为 {@code null}
-     * @param config GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
+     * @param dest     output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
+     * @param src      input dataset reference, must not be {@code null} / 输入数据集引用，不能为 {@code null}
+     * @param config   GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
      * @param progress progress callback, may be {@code null} / 进度回调，可为 {@code null}
-     * @param args extra GDALVectorTranslate CLI arguments / 透传的额外命令行参数
+     * @param args     extra GDALVectorTranslate CLI arguments / 透传的额外命令行参数
      * @throws NullPointerException if {@code dest}, {@code src} or {@code config} is {@code null} / 参数为 {@code null} 时抛出
-     * @throws GdalException if option creation or translation fails / 选项创建或转换失败时抛出
+     * @throws GdalException        if option creation or translation fails / 选项创建或转换失败时抛出
      */
     public static void vectorTranslate(
             DatasetRef dest,
@@ -143,12 +144,12 @@ public final class GdalRuntime {
      * <p>
      * 返回数据集的 {@code gdal raster info} 文本输出。
      *
-     * @param src dataset reference, must not be {@code null} / 数据集引用，不能为 {@code null}
+     * @param src    dataset reference, must not be {@code null} / 数据集引用，不能为 {@code null}
      * @param config GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
-     * @param args extra CLI arguments / 透传的额外命令行参数
+     * @param args   extra CLI arguments / 透传的额外命令行参数
      * @return info output text, never {@code null} / 信息文本输出，永不为 {@code null}
      * @throws NullPointerException if {@code src} or {@code config} is {@code null} / 参数为 {@code null} 时抛出
-     * @throws GdalException if the native call fails / 本地调用失败时抛出
+     * @throws GdalException        if the native call fails / 本地调用失败时抛出
      */
     public static String rasterInfo(DatasetRef src, GdalConfig config, String... args) {
         Objects.requireNonNull(src, "src must not be null");
@@ -167,12 +168,12 @@ public final class GdalRuntime {
      * <p>
      * 返回数据集的 {@code gdal vector info} 文本输出。
      *
-     * @param src dataset reference, must not be {@code null} / 数据集引用，不能为 {@code null}
+     * @param src    dataset reference, must not be {@code null} / 数据集引用，不能为 {@code null}
      * @param config GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
-     * @param args extra CLI arguments / 透传的额外命令行参数
+     * @param args   extra CLI arguments / 透传的额外命令行参数
      * @return info output text, never {@code null} / 信息文本输出，永不为 {@code null}
      * @throws NullPointerException if {@code src} or {@code config} is {@code null} / 参数为 {@code null} 时抛出
-     * @throws GdalException if the native call fails / 本地调用失败时抛出
+     * @throws GdalException        if the native call fails / 本地调用失败时抛出
      */
     public static String vectorInfo(DatasetRef src, GdalConfig config, String... args) {
         Objects.requireNonNull(src, "src must not be null");
@@ -191,13 +192,13 @@ public final class GdalRuntime {
      * <p>
      * 通过 {@code gdal raster clip} 裁剪栅格。
      *
-     * @param dest output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
-     * @param src input dataset reference, must not be {@code null} / 输入数据集引用，不能为 {@code null}
-     * @param config GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
+     * @param dest     output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
+     * @param src      input dataset reference, must not be {@code null} / 输入数据集引用，不能为 {@code null}
+     * @param config   GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
      * @param progress progress callback, may be {@code null} / 进度回调，可为 {@code null}
-     * @param args extra CLI arguments / 透传的额外命令行参数
+     * @param args     extra CLI arguments / 透传的额外命令行参数
      * @throws NullPointerException if {@code dest}, {@code src} or {@code config} is {@code null} / 参数为 {@code null} 时抛出
-     * @throws GdalException if the native call fails / 本地调用失败时抛出
+     * @throws GdalException        if the native call fails / 本地调用失败时抛出
      */
     public static void rasterClip(
             DatasetRef dest,
@@ -218,13 +219,13 @@ public final class GdalRuntime {
      * <p>
      * 通过 {@code gdal raster convert} 转换栅格。
      *
-     * @param dest output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
-     * @param src input dataset reference, must not be {@code null} / 输入数据集引用，不能为 {@code null}
-     * @param config GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
+     * @param dest     output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
+     * @param src      input dataset reference, must not be {@code null} / 输入数据集引用，不能为 {@code null}
+     * @param config   GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
      * @param progress progress callback, may be {@code null} / 进度回调，可为 {@code null}
-     * @param args extra CLI arguments / 透传的额外命令行参数
+     * @param args     extra CLI arguments / 透传的额外命令行参数
      * @throws NullPointerException if {@code dest}, {@code src} or {@code config} is {@code null} / 参数为 {@code null} 时抛出
-     * @throws GdalException if the native call fails / 本地调用失败时抛出
+     * @throws GdalException        if the native call fails / 本地调用失败时抛出
      */
     public static void rasterConvert(
             DatasetRef dest,
@@ -245,13 +246,13 @@ public final class GdalRuntime {
      * <p>
      * 通过 {@code gdal raster reproject} 重投影栅格。
      *
-     * @param dest output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
-     * @param src input dataset reference, must not be {@code null} / 输入数据集引用，不能为 {@code null}
-     * @param config GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
+     * @param dest     output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
+     * @param src      input dataset reference, must not be {@code null} / 输入数据集引用，不能为 {@code null}
+     * @param config   GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
      * @param progress progress callback, may be {@code null} / 进度回调，可为 {@code null}
-     * @param args extra CLI arguments / 透传的额外命令行参数
+     * @param args     extra CLI arguments / 透传的额外命令行参数
      * @throws NullPointerException if {@code dest}, {@code src} or {@code config} is {@code null} / 参数为 {@code null} 时抛出
-     * @throws GdalException if the native call fails / 本地调用失败时抛出
+     * @throws GdalException        if the native call fails / 本地调用失败时抛出
      */
     public static void rasterReproject(
             DatasetRef dest,
@@ -277,13 +278,13 @@ public final class GdalRuntime {
      * <p>
      * 通过 {@code gdal raster resize} 调整栅格尺寸。
      *
-     * @param dest output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
-     * @param src input dataset reference, must not be {@code null} / 输入数据集引用，不能为 {@code null}
-     * @param config GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
+     * @param dest     output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
+     * @param src      input dataset reference, must not be {@code null} / 输入数据集引用，不能为 {@code null}
+     * @param config   GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
      * @param progress progress callback, may be {@code null} / 进度回调，可为 {@code null}
-     * @param args extra CLI arguments / 透传的额外命令行参数
+     * @param args     extra CLI arguments / 透传的额外命令行参数
      * @throws NullPointerException if {@code dest}, {@code src} or {@code config} is {@code null} / 参数为 {@code null} 时抛出
-     * @throws GdalException if the native call fails / 本地调用失败时抛出
+     * @throws GdalException        if the native call fails / 本地调用失败时抛出
      */
     public static void rasterResize(
             DatasetRef dest,
@@ -304,14 +305,14 @@ public final class GdalRuntime {
      * <p>
      * 通过 {@code gdal raster mosaic} 镶嵌多个栅格。
      *
-     * @param dest output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
-     * @param sources input dataset references, must not be {@code null} or empty / 输入数据集引用列表，不能为 {@code null} 或空
-     * @param config GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
+     * @param dest     output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
+     * @param sources  input dataset references, must not be {@code null} or empty / 输入数据集引用列表，不能为 {@code null} 或空
+     * @param config   GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
      * @param progress progress callback, may be {@code null} / 进度回调，可为 {@code null}
-     * @param args extra CLI arguments / 透传的额外命令行参数
-     * @throws NullPointerException if {@code dest}, {@code sources} or {@code config} is {@code null} / 参数为 {@code null} 时抛出
+     * @param args     extra CLI arguments / 透传的额外命令行参数
+     * @throws NullPointerException     if {@code dest}, {@code sources} or {@code config} is {@code null} / 参数为 {@code null} 时抛出
      * @throws IllegalArgumentException if {@code sources} is empty / {@code sources} 为空时抛出
-     * @throws GdalException if the native call fails / 本地调用失败时抛出
+     * @throws GdalException            if the native call fails / 本地调用失败时抛出
      */
     public static void rasterMosaic(
             DatasetRef dest,
@@ -341,14 +342,14 @@ public final class GdalRuntime {
      * <p>
      * 通过 {@code gdal raster zonal-stats} 计算分区统计。
      *
-     * @param dest output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
-     * @param src input raster reference, must not be {@code null} / 输入栅格引用，不能为 {@code null}
-     * @param zones zone dataset reference, must not be {@code null} / 分区数据集引用，不能为 {@code null}
-     * @param config GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
+     * @param dest     output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
+     * @param src      input raster reference, must not be {@code null} / 输入栅格引用，不能为 {@code null}
+     * @param zones    zone dataset reference, must not be {@code null} / 分区数据集引用，不能为 {@code null}
+     * @param config   GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
      * @param progress progress callback, may be {@code null} / 进度回调，可为 {@code null}
-     * @param args extra CLI arguments / 透传的额外命令行参数
+     * @param args     extra CLI arguments / 透传的额外命令行参数
      * @throws NullPointerException if any required argument is {@code null} / 任一必要参数为 {@code null} 时抛出
-     * @throws GdalException if the native call fails / 本地调用失败时抛出
+     * @throws GdalException        if the native call fails / 本地调用失败时抛出
      */
     public static void rasterZonalStats(
             DatasetRef dest,
@@ -376,13 +377,13 @@ public final class GdalRuntime {
      * <p>
      * 通过 {@code gdal vector rasterize} 将矢量栅格化。
      *
-     * @param dest output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
-     * @param src input dataset reference, must not be {@code null} / 输入数据集引用，不能为 {@code null}
-     * @param config GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
+     * @param dest     output dataset reference, must not be {@code null} / 输出数据集引用，不能为 {@code null}
+     * @param src      input dataset reference, must not be {@code null} / 输入数据集引用，不能为 {@code null}
+     * @param config   GDAL config, must not be {@code null} / GDAL 配置，不能为 {@code null}
      * @param progress progress callback, may be {@code null} / 进度回调，可为 {@code null}
-     * @param args extra CLI arguments / 透传的额外命令行参数
+     * @param args     extra CLI arguments / 透传的额外命令行参数
      * @throws NullPointerException if {@code dest}, {@code src} or {@code config} is {@code null} / 参数为 {@code null} 时抛出
-     * @throws GdalException if the native call fails / 本地调用失败时抛出
+     * @throws GdalException        if the native call fails / 本地调用失败时抛出
      */
     public static void vectorRasterize(
             DatasetRef dest,
@@ -460,7 +461,7 @@ public final class GdalRuntime {
      *
      * @param driverShortName driver short name, must not be {@code null} or blank / 驱动短名，不能为 {@code null} 或空
      * @return XML text, possibly empty / XML 文本，可能为空
-     * @throws NullPointerException if {@code driverShortName} is {@code null} / 参数为 {@code null} 时抛出
+     * @throws NullPointerException     if {@code driverShortName} is {@code null} / 参数为 {@code null} 时抛出
      * @throws IllegalArgumentException if blank or driver not found / 为空或驱动不存在时抛出
      */
     public static String driverCreationOptionListXml(String driverShortName) {
@@ -483,9 +484,9 @@ public final class GdalRuntime {
      * 列出某驱动创建选项的枚举可选值。
      *
      * @param driverShortName driver short name, must not be {@code null} / 驱动短名，不能为 {@code null}
-     * @param optionName option name, must not be {@code null} / 选项名，不能为 {@code null}
+     * @param optionName      option name, must not be {@code null} / 选项名，不能为 {@code null}
      * @return allowed values, possibly empty / 可选值列表，可能为空
-     * @throws NullPointerException if any argument is {@code null} / 任一参数为 {@code null} 时抛出
+     * @throws NullPointerException     if any argument is {@code null} / 任一参数为 {@code null} 时抛出
      * @throws IllegalArgumentException if the driver is unknown / 驱动未知时抛出
      */
     public static List<String> listCreationOptionEnumValues(String driverShortName, String optionName) {
@@ -500,7 +501,7 @@ public final class GdalRuntime {
      *
      * @param driverShortName driver short name, must not be {@code null} / 驱动短名，不能为 {@code null}
      * @return allowed COMPRESS values, possibly empty / 支持的压缩值，可能为空
-     * @throws NullPointerException if {@code driverShortName} is {@code null} / 参数为 {@code null} 时抛出
+     * @throws NullPointerException     if {@code driverShortName} is {@code null} / 参数为 {@code null} 时抛出
      * @throws IllegalArgumentException if the driver is unknown / 驱动未知时抛出
      */
     public static List<String> listCompressionOptions(String driverShortName) {
@@ -537,7 +538,7 @@ public final class GdalRuntime {
      * <p>
      * 按指定标志打开 GDAL 数据集句柄。
      *
-     * @param src dataset reference, must not be {@code null} / 数据集引用，不能为 {@code null}
+     * @param src   dataset reference, must not be {@code null} / 数据集引用，不能为 {@code null}
      * @param flags GDAL open flags / GDAL 打开标志
      * @param arena arena for the path string / 用于路径字符串的 Arena
      * @return native dataset handle, never null / 本地数据集句柄，永不为空
@@ -562,7 +563,7 @@ public final class GdalRuntime {
      * Resolves a writable raster driver. English + 解析可写栅格驱动。
      *
      * @param driverShortName driver short name / 驱动短名
-     * @param arena arena for transient strings / 临时字符串的 Arena
+     * @param arena           arena for transient strings / 临时字符串的 Arena
      * @return native driver handle / 本地驱动句柄
      * @throws IllegalArgumentException if not found or not writable / 不存在或不可写时抛出
      */

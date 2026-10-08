@@ -1,11 +1,12 @@
 package ch.so.agi.gdal.ffm;
 
+import org.junit.jupiter.api.Test;
+
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.Map;
-import org.junit.jupiter.api.Test;
 
 class GdalConfigTest {
     @Test

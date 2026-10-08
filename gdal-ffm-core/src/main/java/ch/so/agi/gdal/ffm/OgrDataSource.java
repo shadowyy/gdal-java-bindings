@@ -34,11 +34,11 @@ public interface OgrDataSource extends AutoCloseable {
      * 打开指定图层的顺序读取器，可附带过滤选项。
      *
      * @param layerName layer name, must not be {@code null} / 图层名，不能为 {@code null}
-     * @param options reader options, must not be {@code null} / 读取选项，不能为 {@code null}
+     * @param options   reader options, must not be {@code null} / 读取选项，不能为 {@code null}
      * @return open reader, must be closed by the caller / 已打开的读取器，调用方负责关闭
-     * @throws NullPointerException if any argument is {@code null} / 任一参数为 {@code null} 时抛出
+     * @throws NullPointerException     if any argument is {@code null} / 任一参数为 {@code null} 时抛出
      * @throws IllegalArgumentException if the layer does not exist / 图层不存在时抛出
-     * @throws GdalException if the reader cannot be opened / 读取器无法打开时抛出
+     * @throws GdalException            if the reader cannot be opened / 读取器无法打开时抛出
      * @see OgrReaderOptions for option keys / 选项键请见 {@link OgrReaderOptions}
      */
     OgrLayerReader openReader(String layerName, Map<String, String> options);
@@ -51,7 +51,7 @@ public interface OgrDataSource extends AutoCloseable {
      * @param spec layer write specification, must not be {@code null} / 图层写入规格，不能为 {@code null}
      * @return open writer, must be closed by the caller / 已打开的写入器，调用方负责关闭
      * @throws NullPointerException if {@code spec} is {@code null} / 参数为 {@code null} 时抛出
-     * @throws GdalException if the writer cannot be opened / 写入器无法打开时抛出
+     * @throws GdalException        if the writer cannot be opened / 写入器无法打开时抛出
      * @see OgrLayerWriteSpec
      */
     OgrLayerWriter openWriter(OgrLayerWriteSpec spec);
@@ -62,7 +62,7 @@ public interface OgrDataSource extends AutoCloseable {
      * 遗留写入方法，建议改用 {@link #openWriter(OgrLayerWriteSpec)}。
      *
      * @param layerName layer name / 图层名
-     * @param options legacy writer options (see {@link OgrWriterOptions}) / 遗留写入选项
+     * @param options   legacy writer options (see {@link OgrWriterOptions}) / 遗留写入选项
      * @return open writer, must be closed by the caller / 已打开的写入器，调用方负责关闭
      * @deprecated use {@link #openWriter(OgrLayerWriteSpec)} instead / 请改用新方法
      */

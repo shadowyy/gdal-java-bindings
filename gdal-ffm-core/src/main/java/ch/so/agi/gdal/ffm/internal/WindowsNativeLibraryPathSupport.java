@@ -1,6 +1,5 @@
 package ch.so.agi.gdal.ffm.internal;
 
-import java.io.IOException;
 import java.lang.foreign.Arena;
 import java.lang.foreign.FunctionDescriptor;
 import java.lang.foreign.Linker;
@@ -52,9 +51,9 @@ final class WindowsNativeLibraryPathSupport {
      * <p>
      * 在 Windows 上注册 bundle 的 DLL 目录，其他平台直接跳过。
      *
-     * @param platform current platform, must not be {@code null} / 当前平台，不能为 {@code null}
+     * @param platform       current platform, must not be {@code null} / 当前平台，不能为 {@code null}
      * @param extractionRoot bundle root directory, must not be {@code null} on Windows / bundle 根目录，Windows 上不能为 {@code null}
-     * @throws NullPointerException if {@code platform} is {@code null} / {@code platform} 为 {@code null} 时抛出
+     * @throws NullPointerException  if {@code platform} is {@code null} / {@code platform} 为 {@code null} 时抛出
      * @throws IllegalStateException if the DLL directory is missing or registration fails / DLL 目录缺失或注册失败时抛出
      */
     static void configureIfNeeded(NativePlatform platform, Path extractionRoot) {
@@ -70,11 +69,11 @@ final class WindowsNativeLibraryPathSupport {
      * <p>
      * 使用显式传入的状态与 Kernel32 访问注册 bundle 的 DLL 目录（便于测试）；非 Windows 直接返回，已注册路径不再重复注册。
      *
-     * @param platform current platform, must not be {@code null} / 当前平台，不能为 {@code null}
+     * @param platform       current platform, must not be {@code null} / 当前平台，不能为 {@code null}
      * @param extractionRoot bundle root directory, must not be {@code null} / bundle 根目录，不能为 {@code null}
-     * @param state registration state, must not be {@code null} / 注册状态，不能为 {@code null}
-     * @param kernel32 Kernel32 access, must not be {@code null} / Kernel32 访问，不能为 {@code null}
-     * @throws NullPointerException if any argument is {@code null} / 任一参数为 {@code null} 时抛出
+     * @param state          registration state, must not be {@code null} / 注册状态，不能为 {@code null}
+     * @param kernel32       Kernel32 access, must not be {@code null} / Kernel32 访问，不能为 {@code null}
+     * @throws NullPointerException  if any argument is {@code null} / 任一参数为 {@code null} 时抛出
      * @throws IllegalStateException if the DLL directory is missing or registration fails / DLL 目录缺失或注册失败时抛出
      */
     static void configureIfNeeded(
@@ -139,7 +138,7 @@ final class WindowsNativeLibraryPathSupport {
      * <p>
      * 先设置默认搜索标志，再通过 AddDllDirectory 注册目录（首选方式）。
      *
-     * @param kernel32 Kernel32 access, must not be {@code null} / Kernel32 访问，不能为 {@code null}
+     * @param kernel32     Kernel32 access, must not be {@code null} / Kernel32 访问，不能为 {@code null}
      * @param dllDirectory DLL directory, must not be {@code null} / DLL 目录，不能为 {@code null}
      * @return failure description, or {@code null} on success / 失败描述，成功时为 {@code null}
      */
@@ -158,7 +157,7 @@ final class WindowsNativeLibraryPathSupport {
      * <p>
      * 通过传统的 SetDllDirectory 兜底方式注册目录。
      *
-     * @param kernel32 Kernel32 access, must not be {@code null} / Kernel32 访问，不能为 {@code null}
+     * @param kernel32     Kernel32 access, must not be {@code null} / Kernel32 访问，不能为 {@code null}
      * @param dllDirectory DLL directory, must not be {@code null} / DLL 目录，不能为 {@code null}
      * @return failure description, or {@code null} on success / 失败描述，成功时为 {@code null}
      */
@@ -174,10 +173,10 @@ final class WindowsNativeLibraryPathSupport {
      * <p>
      * 为 DLL 搜索路径注册失败构建异常，合并首选与兜底两种方式的失败信息。
      *
-     * @param classifier platform classifier, must not be {@code null} / 平台分类串，不能为 {@code null}
-     * @param dllDirectory DLL directory, must not be {@code null} / DLL 目录，不能为 {@code null}
+     * @param classifier       platform classifier, must not be {@code null} / 平台分类串，不能为 {@code null}
+     * @param dllDirectory     DLL directory, must not be {@code null} / DLL 目录，不能为 {@code null}
      * @param preferredFailure preferred-path failure, may be {@code null} / 首选方式失败描述，可为 {@code null}
-     * @param fallbackFailure fallback-path failure, may be {@code null} / 兜底方式失败描述，可为 {@code null}
+     * @param fallbackFailure  fallback-path failure, may be {@code null} / 兜底方式失败描述，可为 {@code null}
      * @return exception to throw, never {@code null} / 待抛出的异常，永不为 {@code null}
      */
     private static IllegalStateException registrationFailure(
@@ -208,7 +207,7 @@ final class WindowsNativeLibraryPathSupport {
      * <p>
      * 已注册 DLL 目录的可变记账，避免重复注册。此为内部 API（internal, not public），请勿在业务代码中直接使用。
      *
-     * @param lock monitor guarding the registration set / 保护注册集合的监视器
+     * @param lock            monitor guarding the registration set / 保护注册集合的监视器
      * @param registeredPaths already registered directories / 已注册的目录集合
      */
     record RegistrationState(Object lock, Set<Path> registeredPaths) {
@@ -464,7 +463,7 @@ final class WindowsNativeLibraryPathSupport {
          * 为给定路径分配 NUL 结尾的宽字符串（UTF-16）。
          *
          * @param arena arena owning the allocation, must not be {@code null} / 拥有该分配的 Arena，不能为 {@code null}
-         * @param path path to encode, must not be {@code null} / 待编码的路径，不能为 {@code null}
+         * @param path  path to encode, must not be {@code null} / 待编码的路径，不能为 {@code null}
          * @return wide-string segment, never {@code null} / 宽字符串内存段，永不为 {@code null}
          */
         private static MemorySegment allocateWideString(Arena arena, Path path) {
@@ -485,7 +484,7 @@ final class WindowsNativeLibraryPathSupport {
          * 调用返回地址的 downcall 句柄。
          *
          * @param handle downcall handle, must not be {@code null} / downcall 句柄，不能为 {@code null}
-         * @param args call arguments / 调用参数
+         * @param args   call arguments / 调用参数
          * @return returned address segment / 返回的地址内存段
          * @throws IllegalStateException if invocation fails / 调用失败时抛出
          */
@@ -505,7 +504,7 @@ final class WindowsNativeLibraryPathSupport {
          * 调用返回 int 的 downcall 句柄。
          *
          * @param handle downcall handle, must not be {@code null} / downcall 句柄，不能为 {@code null}
-         * @param args call arguments / 调用参数
+         * @param args   call arguments / 调用参数
          * @return returned int value / 返回的 int 值
          * @throws IllegalStateException if invocation fails / 调用失败时抛出
          */

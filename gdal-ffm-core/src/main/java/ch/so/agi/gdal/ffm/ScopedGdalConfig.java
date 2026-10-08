@@ -1,6 +1,7 @@
 package ch.so.agi.gdal.ffm;
 
 import ch.so.agi.gdal.ffm.internal.GdalConfigScope;
+
 import java.util.Objects;
 
 /**

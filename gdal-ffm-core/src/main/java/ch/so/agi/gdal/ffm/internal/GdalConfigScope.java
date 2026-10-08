@@ -2,6 +2,7 @@ package ch.so.agi.gdal.ffm.internal;
 
 import ch.so.agi.gdal.ffm.GdalConfig;
 import ch.so.agi.gdal.ffm.generated.GdalGenerated;
+
 import java.lang.foreign.Arena;
 import java.lang.foreign.MemorySegment;
 import java.util.Collections;
@@ -55,9 +56,9 @@ public final class GdalConfigScope {
      * <p>
      * 合并 bundle 作用域默认值与用户配置，用户配置优先；便于测试的显式参数版本。
      *
-     * @param config user config, must not be {@code null} / 用户配置，不能为 {@code null}
-     * @param bundleInfo loaded bundle info, must not be {@code null} / 已加载的 bundle 信息，不能为 {@code null}
-     * @param environment environment variables, must not be {@code null} / 环境变量，不能为 {@code null}
+     * @param config           user config, must not be {@code null} / 用户配置，不能为 {@code null}
+     * @param bundleInfo       loaded bundle info, must not be {@code null} / 已加载的 bundle 信息，不能为 {@code null}
+     * @param environment      environment variables, must not be {@code null} / 环境变量，不能为 {@code null}
      * @param systemProperties system properties, must not be {@code null} / 系统属性，不能为 {@code null}
      * @return unmodifiable effective options, never {@code null} / 不可修改的生效配置项，永不为 {@code null}
      * @throws NullPointerException if any argument is {@code null} / 任一参数为 {@code null} 时抛出
@@ -84,7 +85,7 @@ public final class GdalConfigScope {
      * <p>
      * 通过本地 API 设置单个线程局部 GDAL 配置项，值为 {@code null} 时清除该项。
      *
-     * @param key option name, must not be {@code null} / 配置项名，不能为 {@code null}
+     * @param key   option name, must not be {@code null} / 配置项名，不能为 {@code null}
      * @param value option value, may be {@code null} to clear / 配置项值，可为 {@code null} 表示清除
      */
     private static void setThreadLocalConfigOption(String key, String value) {

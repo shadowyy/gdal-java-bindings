@@ -29,7 +29,7 @@ final class GdalErrors {
      * @param message caller-supplied context message describing the failed operation /
      *                调用方提供的上下文信息，用于描述失败的操作
      * @return a new exception carrying both {@code message} and the GDAL error details /
-     *         携带上下文信息与 GDAL 错误详情的新异常
+     * 携带上下文信息与 GDAL 错误详情的新异常
      */
     static GdalException lastError(String message) {
         int errorNo = GdalGenerated.CPLGetLastErrorNo();

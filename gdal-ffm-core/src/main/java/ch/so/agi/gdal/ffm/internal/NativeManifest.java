@@ -11,14 +11,14 @@ import java.util.regex.Pattern;
  * <p>
  * 每个本地 bundle 自带的 {@code manifest.json} 的解析结果，描述入口库、预加载库与数据目录。此为内部 API（internal, not public），请勿在业务代码中直接使用。
  *
- * @param bundleVersion bundle version string / bundle 版本字符串
- * @param entryLibrary entry library path relative to the bundle root / 相对 bundle 根目录的入口库路径
+ * @param bundleVersion    bundle version string / bundle 版本字符串
+ * @param entryLibrary     entry library path relative to the bundle root / 相对 bundle 根目录的入口库路径
  * @param preloadLibraries preload library paths in load order / 按加载顺序排列的预加载库路径
- * @param gdalDataPath optional GDAL data path, may be {@code null} / 可选的 GDAL 数据目录，可为 {@code null}
- * @param projDataPath optional PROJ data path, may be {@code null} / 可选的 PROJ 数据目录，可为 {@code null}
- * @param driverPath optional driver path, may be {@code null} / 可选的驱动目录，可为 {@code null}
- * @param caBundlePath optional CA bundle path, may be {@code null} / 可选的 CA 证书包路径，可为 {@code null}
- * @param cacheKey optional extraction cache key, may be {@code null} / 可选的解压缓存键，可为 {@code null}
+ * @param gdalDataPath     optional GDAL data path, may be {@code null} / 可选的 GDAL 数据目录，可为 {@code null}
+ * @param projDataPath     optional PROJ data path, may be {@code null} / 可选的 PROJ 数据目录，可为 {@code null}
+ * @param driverPath       optional driver path, may be {@code null} / 可选的驱动目录，可为 {@code null}
+ * @param caBundlePath     optional CA bundle path, may be {@code null} / 可选的 CA 证书包路径，可为 {@code null}
+ * @param cacheKey         optional extraction cache key, may be {@code null} / 可选的解压缓存键，可为 {@code null}
  */
 record NativeManifest(
         String bundleVersion,
@@ -66,7 +66,7 @@ record NativeManifest(
      * <p>
      * 从 manifest JSON 中提取可选的字符串字段，不存在时返回空。
      *
-     * @param json manifest JSON text, must not be {@code null} / manifest 的 JSON 文本，不能为 {@code null}
+     * @param json  manifest JSON text, must not be {@code null} / manifest 的 JSON 文本，不能为 {@code null}
      * @param field field name, must not be {@code null} / 字段名，不能为 {@code null}
      * @return field value, or empty if absent / 字段值，缺失时为空
      */
@@ -84,7 +84,7 @@ record NativeManifest(
      * <p>
      * 从 manifest JSON 中提取可选的字符串数组字段，不存在时返回空列表。
      *
-     * @param json manifest JSON text, must not be {@code null} / manifest 的 JSON 文本，不能为 {@code null}
+     * @param json  manifest JSON text, must not be {@code null} / manifest 的 JSON 文本，不能为 {@code null}
      * @param field field name, must not be {@code null} / 字段名，不能为 {@code null}
      * @return field values in document order, never {@code null} / 按文档顺序排列的字段值，永不为 {@code null}
      */

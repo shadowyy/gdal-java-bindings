@@ -67,11 +67,11 @@ public final class OgrGeometry {
      * <p>
      * 由 WKB 字节构造几何并附加 SRID（归一化为 EWKB）。
      *
-     * @param wkb WKB/EWKB payload, must not be {@code null} / WKB/EWKB 负载，不能为 {@code null}
+     * @param wkb  WKB/EWKB payload, must not be {@code null} / WKB/EWKB 负载，不能为 {@code null}
      * @param srid spatial reference id, must be {@code >= 0}, e.g. {@code 2056} /
      *             空间参考 ID，必须 {@code >= 0}，例如 {@code 2056}
      * @return new geometry instance with SRID, never {@code null} / 带 SRID 的新几何实例，不会为 {@code null}
-     * @throws NullPointerException if {@code wkb} is {@code null} / 参数为 {@code null} 时抛出
+     * @throws NullPointerException     if {@code wkb} is {@code null} / 参数为 {@code null} 时抛出
      * @throws IllegalArgumentException if {@code srid} is negative or payload is too short /
      *                                  SRID 为负或负载过短时抛出
      */

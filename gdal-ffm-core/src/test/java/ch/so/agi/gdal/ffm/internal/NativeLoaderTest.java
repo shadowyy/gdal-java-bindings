@@ -1,11 +1,6 @@
 package ch.so.agi.gdal.ffm.internal;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -16,7 +11,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.jar.JarOutputStream;
 import java.util.zip.ZipEntry;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class NativeLoaderTest {
     private static final String CLASSIFIER = "linux-x86_64";
@@ -27,7 +28,7 @@ class NativeLoaderTest {
         Path secondRoot = createManifestRoot("native-loader-second");
 
         try (URLClassLoader classLoader = new URLClassLoader(
-                new URL[] { firstRoot.toUri().toURL(), secondRoot.toUri().toURL() },
+                new URL[]{firstRoot.toUri().toURL(), secondRoot.toUri().toURL()},
                 null
         )) {
             IllegalStateException error = assertThrows(IllegalStateException.class, () -> invokeFindManifest(classLoader));
@@ -42,7 +43,7 @@ class NativeLoaderTest {
     void resolvesSingleNativeManifest() throws Exception {
         Path onlyRoot = createManifestRoot("native-loader-only");
 
-        try (URLClassLoader classLoader = new URLClassLoader(new URL[] { onlyRoot.toUri().toURL() }, null)) {
+        try (URLClassLoader classLoader = new URLClassLoader(new URL[]{onlyRoot.toUri().toURL()}, null)) {
             URL manifest = invokeFindManifest(classLoader);
             assertEquals("file", manifest.getProtocol());
             assertTrue(manifest.toString().endsWith("/META-INF/gdal-native/" + CLASSIFIER + "/manifest.json"));

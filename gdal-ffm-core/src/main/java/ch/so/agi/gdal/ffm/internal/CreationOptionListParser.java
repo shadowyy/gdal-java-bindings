@@ -1,18 +1,19 @@
 package ch.so.agi.gdal.ffm.internal;
 
-import java.io.StringReader;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Objects;
-import javax.xml.XMLConstants;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+
+import javax.xml.XMLConstants;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.StringReader;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Parses GDAL creation-option-list XML into enumerated option values.
@@ -38,7 +39,7 @@ final class CreationOptionListParser {
      *
      * @param creationOptionListXml creation-option-list XML, may be {@code null} or blank (yields empty list) /
      *                              创建选项列表 XML，可为 {@code null} 或空白（此时返回空列表）
-     * @param optionName option name to look up, must not be {@code null} / 待查找的选项名，不能为 {@code null}
+     * @param optionName            option name to look up, must not be {@code null} / 待查找的选项名，不能为 {@code null}
      * @return distinct non-blank values in document order, never {@code null} / 按文档顺序去重的非空取值，永不为 {@code null}
      * @throws NullPointerException if {@code optionName} is {@code null} / {@code optionName} 为 {@code null} 时抛出
      */

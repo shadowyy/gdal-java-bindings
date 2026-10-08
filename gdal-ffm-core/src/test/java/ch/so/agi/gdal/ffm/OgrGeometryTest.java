@@ -1,13 +1,14 @@
 package ch.so.agi.gdal.ffm;
 
+import org.junit.jupiter.api.Test;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import org.junit.jupiter.api.Test;
 
 class OgrGeometryTest {
     @Test

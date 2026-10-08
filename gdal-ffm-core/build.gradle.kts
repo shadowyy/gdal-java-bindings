@@ -1,5 +1,3 @@
-import java.io.File
-
 plugins {
     `java-library`
     `maven-publish`
@@ -15,15 +13,18 @@ fun currentNativeClassifier(): String {
             "x86_64", "amd64" -> "osx-x86_64"
             else -> error("Unsupported macOS architecture for native test resources: $arch")
         }
+
         os.contains("linux") -> when (arch) {
             "aarch64", "arm64" -> "linux-aarch64"
             "x86_64", "amd64" -> "linux-x86_64"
             else -> error("Unsupported Linux architecture for native test resources: $arch")
         }
+
         os.contains("win") -> when (arch) {
             "x86_64", "amd64" -> "windows-x86_64"
             else -> error("Unsupported Windows architecture for native test resources: $arch")
         }
+
         else -> error("Unsupported operating system for native test resources: $os")
     }
 }
@@ -120,7 +121,7 @@ tasks.register<JavaExec>("smokeTest") {
         if (!inputFile.isFile) {
             throw GradleException(
                 "Smoke test input is missing: ${inputFile.absolutePath}. " +
-                    "Expected gdal-ffm-core/src/integrationTest/resources/smoke/reclass.tif."
+                        "Expected gdal-ffm-core/src/integrationTest/resources/smoke/reclass.tif."
             )
         }
         outputFile.parentFile.mkdirs()
@@ -174,7 +175,7 @@ tasks.register<JavaExec>("smokeTestPackagedNative") {
         if (!inputFile.isFile) {
             throw GradleException(
                 "Smoke test input is missing: ${inputFile.absolutePath}. " +
-                    "Expected gdal-ffm-core/src/integrationTest/resources/smoke/reclass.tif."
+                        "Expected gdal-ffm-core/src/integrationTest/resources/smoke/reclass.tif."
             )
         }
 

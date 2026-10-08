@@ -19,7 +19,7 @@ public interface OgrLayerWriter extends AutoCloseable {
      *
      * @param feature feature to write, must not be {@code null} / 待写入要素，不能为 {@code null}
      * @throws NullPointerException if {@code feature} is {@code null} / 参数为 {@code null} 时抛出
-     * @throws GdalException if the native write fails / 本地写入失败时抛出
+     * @throws GdalException        if the native write fails / 本地写入失败时抛出
      */
     void write(OgrFeature feature);
 

@@ -6,17 +6,29 @@ package ch.so.agi.gdal.ffm;
  * 对应 GDAL 本地 {@code CPLErr} 枚举值。
  */
 public enum CplErrorType {
-    /** No error. / 无错误。 */
+    /**
+     * No error. / 无错误。
+     */
     NONE(0),
-    /** Debug message. / 调试信息。 */
+    /**
+     * Debug message. / 调试信息。
+     */
     DEBUG(1),
-    /** Warning (operation usually continues). / 警告（通常可继续）。 */
+    /**
+     * Warning (operation usually continues). / 警告（通常可继续）。
+     */
     WARNING(2),
-    /** Failure (operation failed). / 失败（操作未成功）。 */
+    /**
+     * Failure (operation failed). / 失败（操作未成功）。
+     */
     FAILURE(3),
-    /** Fatal error. / 致命错误。 */
+    /**
+     * Fatal error. / 致命错误。
+     */
     FATAL(4),
-    /** Unmapped/unknown code. / 未映射的未知码。 */
+    /**
+     * Unmapped/unknown code. / 未映射的未知码。
+     */
     UNKNOWN(Integer.MIN_VALUE);
 
     private final int code;

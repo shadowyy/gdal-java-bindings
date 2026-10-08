@@ -1,6 +1,7 @@
 package ch.so.agi.gdal.ffm.internal;
 
 import ch.so.agi.gdal.ffm.ProgressCallback;
+
 import java.lang.foreign.Arena;
 import java.lang.foreign.FunctionDescriptor;
 import java.lang.foreign.Linker;
@@ -80,10 +81,10 @@ final class ProgressBridge {
      *
      * @param callback Java progress callback, may be {@code null} (yields a no-op handle) /
      *                 Java 进度回调，可为 {@code null}（此时返回空操作句柄）
-     * @param arena FFM arena that owns the stub and user data, must not be {@code null} /
-     *              拥有桩代码与用户数据的 FFM arena，不能为 {@code null}
+     * @param arena    FFM arena that owns the stub and user data, must not be {@code null} /
+     *                 拥有桩代码与用户数据的 FFM arena，不能为 {@code null}
      * @return handle carrying the native function pointer and user data, never {@code null} /
-     *         携带本地函数指针与用户数据的句柄，永不为 {@code null}
+     * 携带本地函数指针与用户数据的句柄，永不为 {@code null}
      */
     static ProgressHandle create(ProgressCallback callback, Arena arena) {
         if (callback == null) {
@@ -107,7 +108,7 @@ final class ProgressBridge {
      * 供 GDAL 调用的本地上行入口，根据用户数据中的标识反查 Java 回调并转发进度。
      *
      * @param complete completion ratio in [0, 1], as reported by GDAL / GDAL 上报的完成度，范围 [0, 1]
-     * @param message native message pointer, may be null / 本地消息指针，可能为空
+     * @param message  native message pointer, may be null / 本地消息指针，可能为空
      * @param userData native user-data pointer carrying the callback id, may be null /
      *                 携带回调标识的本地用户数据指针，可能为空
      * @return 1 to continue, 0 to request cancellation / 返回 1 表示继续，0 表示请求中断
@@ -179,11 +180,11 @@ final class ProgressBridge {
          * <p>
          * 为一次桥接回调创建句柄，保存标识、函数指针、用户数据与状态。
          *
-         * @param id callback identifier, 0 means none / 回调标识，0 表示无回调
+         * @param id         callback identifier, 0 means none / 回调标识，0 表示无回调
          * @param callbackFn native function pointer, must not be {@code null} / 本地函数指针，不能为 {@code null}
-         * @param userData native user-data pointer, must not be {@code null} / 本地用户数据指针，不能为 {@code null}
-         * @param state mutable callback state, may be {@code null} for the no-op handle /
-         *              可变回调状态，空操作句柄下可为 {@code null}
+         * @param userData   native user-data pointer, must not be {@code null} / 本地用户数据指针，不能为 {@code null}
+         * @param state      mutable callback state, may be {@code null} for the no-op handle /
+         *                   可变回调状态，空操作句柄下可为 {@code null}
          */
         private ProgressHandle(long id, MemorySegment callbackFn, MemorySegment userData, CallbackState state) {
             this.id = id;
@@ -220,7 +221,7 @@ final class ProgressBridge {
          * 返回 Java 回调抛出的异常（若有），无异常时返回 {@code null}。
          *
          * @return callback failure, or {@code null} when the callback did not fail /
-         *         回调异常，无失败时返回 {@code null}
+         * 回调异常，无失败时返回 {@code null}
          */
         RuntimeException callbackFailure() {
             return state == null ? null : state.failure;
